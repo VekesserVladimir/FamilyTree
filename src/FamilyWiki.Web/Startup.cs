@@ -1,19 +1,27 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FamilyWiki.Web
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc(o => o.Conventions.Add(new FeatureConvention()))
+                    .AddRazorOptions(o =>
+                    {
+                        // {0} - Action Name
+                        // {1} - Controller Name
+                        // {2} - Feature Name
+                        o.ViewLocationFormats.Clear();
+                        o.ViewLocationFormats.Add("/Features/{2}/{1}/{0}.cshtml");
+                        o.ViewLocationFormats.Add("/Features/{2}/{0}.cshtml");
+                        o.ViewLocationFormats.Add("/Features/Shared/{0}.cshtml");
+                        o.ViewLocationExpanders.Add(new FeatureLocationExpander());
+                    });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -21,10 +29,7 @@ namespace FamilyWiki.Web
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World!");
-            });
+            app.UseMvc();
         }
     }
 }
