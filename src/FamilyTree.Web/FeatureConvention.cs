@@ -1,13 +1,11 @@
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using System;
 using System.Linq;
-using System.Reflection;
-using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using Microsoft.EntityFrameworkCore.Internal;
 
-namespace FamilyWiki.Web
+namespace FamilyTree.Web
 {
     /// <summary>
-    /// Adds a feature name in controller model to allow alternative folder structure
+    /// Adds a feature name in controller model to enable alternative folder structure
     /// </summary>
     public class FeatureConvention : IControllerModelConvention
     {
@@ -23,8 +21,13 @@ namespace FamilyWiki.Web
             {
                 return "";
             }
-            var featureIndex = tokens.IndexOf("features", StringComparer.CurrentCultureIgnoreCase);
-            return featureIndex < tokens.Length ? tokens[featureIndex + 2] : null;
+
+            // Getting the second token after "Features" namespace which is a class name
+            return tokens
+                .SkipWhile(t => !t.Equals("features", StringComparison.CurrentCultureIgnoreCase))
+                .Skip(1)
+                .Take(1)
+                .FirstOrDefault();
         }
     }
 }

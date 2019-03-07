@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FamilyWiki.Web
+namespace FamilyTree.Web
 {
     public class Startup
     {

@@ -1,4 +1,4 @@
-namespace FamilyWiki.Web.Features.Article
+namespace FamilyTree.Web.Features.Article
 {
     public class ArticleModel
     {

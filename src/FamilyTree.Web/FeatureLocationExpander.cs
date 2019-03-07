@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Razor;
 
-namespace FamilyWiki.Web
+namespace FamilyTree.Web
 {
     public class FeatureLocationExpander : IViewLocationExpander
     {

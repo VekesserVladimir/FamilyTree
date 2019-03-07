@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace FamilyWiki.Web.Features.Article
+namespace FamilyTree.Web.Features.Article
 {
     [Route("")]
     public class ArticleController : Controller
@@ -9,7 +9,7 @@ namespace FamilyWiki.Web.Features.Article
         [HttpGet("/{name}")]
         public ActionResult Article(string name)
         {
-            return View(model: new ArticleModel {Content = name, Title = name});
+            return View(new ArticleModel { Content = name, Title = name });
         }
     }
 }
