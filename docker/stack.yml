@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  db-master:
+    image: postgres:11.2
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: wiki
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  db-pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - 8080:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dbadmin@familywiki.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    depends_on:
+      - db-master
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+      - .\servers.json:/pgadmin4/servers.json
+
+volumes:
+  postgres-data:
+  pgadmin-data:
