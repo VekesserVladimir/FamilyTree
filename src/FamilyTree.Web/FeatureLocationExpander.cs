@@ -21,7 +21,7 @@ namespace FamilyTree.Web
             var featureName = controllerActionDescriptor.Properties["feature"] as string;
 
             foreach (var viewLocation in viewLocations)
-                yield return viewLocation.Replace("{3}", featureName);
+                yield return viewLocation.Replace("{2}", featureName);
         }
 
         public void PopulateValues(ViewLocationExpanderContext context)

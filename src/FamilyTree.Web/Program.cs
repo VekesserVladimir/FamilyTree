@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore;
+﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 
 namespace FamilyTree.Web
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -11,7 +12,16 @@ namespace FamilyTree.Web
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+            new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .ConfigureAppConfiguration((context, builder) =>
+                {
+                    builder.SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("appsettings.json", true, true)
+                        .AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName}.json", true, true)
+                        .AddEnvironmentVariables("FAMILYTREE_");
+                })
                 .UseStartup<Startup>();
     }
 }

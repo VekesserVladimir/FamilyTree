@@ -1,12 +1,21 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using System;
 
 namespace FamilyTree.Web
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services)
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        private IConfiguration Configuration { get; }
+        
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(o => o.Conventions.Add(new FeatureConvention()))
                     .AddRazorOptions(o =>
@@ -20,6 +29,8 @@ namespace FamilyTree.Web
                         o.ViewLocationFormats.Add("/Features/Shared/{0}.cshtml");
                         o.ViewLocationExpanders.Add(new FeatureLocationExpander());
                     });
+
+            return services.BuildServiceProvider();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
