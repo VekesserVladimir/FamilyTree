@@ -17,7 +17,7 @@
 
    Переменные среды:
    
-   - `FAMILYTREE_db__master` - connection string для основной базы данных
+   - `FAMILYTREE_ConnectionStrings__master` - connection string для основной базы данных
 
 2. Локально - приложение запускается локально, база данных запускается 
 локально, либо в качестве Docker-контейнера. Оптимальный вариант для 
