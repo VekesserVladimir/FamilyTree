@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  	<script src='Scripts/vuescript.js' async></script>
+  	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id='vue-app'>
+	<header>
+		<div class="header-box">
+			<a class="site-logo" href="index.html">
+				<img src="images/Logo.svg" alt="Logo" class="logo-image"
+				><span class="logo-name">FamilyTree</span>
+			</a
+			><form action="" method="POST" class='search-form'>
+					<input type="text" placeholder="Search" class='search-field' v-bind:class='{ "illuminated-border": isActive }' v-on:focus='isActive = true' v-on:blur='isActive = false'>
+					<input type="submit" class='search-submit-button' value="" title='Искать' v-bind:class='{ "illuminated-border": isActive }'>
+			</form
+			><button class='user-account-button'>
+				<span class='user-name'>Admin</span>
+				<img src="images/avatarka.jpg" alt="Аватарка" class='user-icon'>
+			</button>
+		</div>
+	</header>
+	<main>
+		<div class="control-menu">
+			<ul class='arcticle-control-list'>
+				<li>
+					<button class='create-arcticle-button'>Create article</button>
+				</li>
+				<li>
+					<button class='create-person-record-button'>Create person record</button>
+				</li>
+				<li>
+					<button class='upload-file-button'>Upload file</button>
+				</li>
+			</ul>
+			<ul class='tree-navigation-list'>
+				<li>
+					<button class='browse-tree-button'>Browse tree</button>
+				</li>
+				<li>
+					<button class='random-page-button'>Random</button>
+				</li>
+				<li>
+					<button class='categories-button'>Categories</button>
+				</li>
+			</ul>
+		</div>
+	</main>
+</div>
+</body>
+</html>
