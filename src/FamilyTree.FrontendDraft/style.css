@@ -80,9 +80,9 @@ header {
 	top: -13px;
 	background-color: white;
 	background-image: url(images/search-submit-button-image.svg); 
-	background-size: 52%;
+	background-size: 47%;
 	background-repeat: no-repeat;
-	background-position: 9px 12px;
+	background-position: 9px 13px;
 	border-radius: 0 25px 25px 0;
 	border: 1px solid #bbbbbb;
 	border-left: 0;
@@ -137,7 +137,6 @@ header {
 
 main {
 	width: 1440px;
-	height: 800px;
 	margin: 0 auto;
 	position: relative;
 	bottom: 2px;
@@ -179,11 +178,199 @@ main {
 }
 
 .content {
-	border: 1px solid black;
-	box-sizing: border-box;
 	width: 832px;
 	margin: 0 auto;
 	height: 100%;
 	position: relative;
 	bottom: 272px;
+	padding: 35px 0 0 0;
+}
+
+.content h1, .content h2, .content h3 {
+	margin-top: 0;
+}
+
+.content h1 {
+	margin: 0 0 12px 0;
+	font-size: 64px;
+	line-height: 79px;
+	font-weight: 100;
+	font-stretch: ultra-condensed;
+	font-family: Montserrat;
+}
+
+.content h2 {
+	margin: 0 0 23px 0;
+	font-size: 36px;
+	line-height: 50px;
+	font-family: Montserrat;
+	font-weight: 300;
+}
+
+.content h3 {
+	margin: 0 0 23px 0;
+	font-size: 24px;
+	line-height: 29px;
+	font-family: Rubik;
+	font-weight: 500;
+}
+
+.control-buttons {
+	position: absolute;
+	top: 53px;
+	right: 0;
+}
+
+.control-buttons button {
+	width: 16px;
+	height: 20px;
+	border: 0;
+	cursor: pointer;
+	background-color: #fbfbfb; 
+	background-size: 16px 20px;
+}
+
+.edit-article-button {
+	background-image: url(images/edit-button-image.svg);
+}
+
+.link-button {
+	background-image: url(images/link-button-image.svg);
+	margin: 0 7px 0 7px;
+}
+
+.changes-history-button {
+	background-image: url(images/changes-history-button-image.svg);
+}
+
+.content p {
+	margin: 0 0 23px 0;
+	font-family: Rubik;
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 400;
+}
+
+.person-card {
+	width: 264px;
+	border: 1px solid #bbbbbb;
+	float: right;
+	margin: 92px 0 0 20px;
+	box-sizing: border-box;
+	border-radius: 25px;
+}
+
+.person-photo {
+	width: 100%;
+	border-radius: 25px 25px 0 0;
+	background-color: #66dcac;
+}
+
+.person-info {
+	width: 100%;
+	border-radius: 0 0 25px 25px;
+}
+
+.life-years {
+	display: block;
+	text-align: center;
+	margin: 20px 0 0 0;
+	color: #3a3a3a;
+	font-family: Montserrat;
+	font-size: 16px;
+	font-weight: 400;
+}
+
+.father-row, .mother-row, .children-list-row, .marriage-list-row {
+	display: block;
+	margin: 16px 0 0 0;
+	padding: 0 0 0 21px;
+}
+
+.father-row a, .mother-row a, {
+	display: inline-block;
+}
+
+.father-row-name, .mother-row-name, .children-list-row-name, .marriage-row-name {
+	color: #000000;
+	font-family: Montserrat;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 24px;
+}
+
+.father-name, .mother-name, .child a, .spouse-name, .clause, .sub-clause {
+	color: #006c40;
+	font-family: Rubik;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 24px;
+	text-decoration: none;
+}
+
+.father-name {
+	margin: 0 0 0 7px;
+}
+
+.children-list, .marriage-list {
+	margin: 0;
+	list-style-type: none;
+	padding: 0 0 0 22px;
+}
+
+.marriage-period {
+	color: #000000;
+	font-family: Rubik;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 24px;
+	display: inline-block;
+	margin-left: 5px;
+}
+
+.build-tree-button {
+	width: 223px;
+	height: 40px;
+	color: #ffffff;
+	font-family: Montserrat;
+	font-size: 18px;
+	font-weight: 500;
+	background-color: #41b883;
+	border: 0;
+	margin: 15px 0 17px 20px;
+	padding: 0;
+	border-radius: 25px;
+	cursor: pointer;
+}
+
+.content > img {
+	width: 315px;
+	float: right;
+	margin: 0 0 10px 36px;
+}
+
+.table-of-contents {
+	margin: 42px 0 140px 0;
+}
+
+.table-of-contents > h2 {
+	margin: 0 0 25px 0;
+}
+
+.table-of-contents ul {
+	list-style-type: none;
+	padding: 0 0 0 33px;
+}
+
+.table-of-contents li {
+	margin-bottom: 15px;
+}
+
+.table-of-contents ul a {
+	text-decoration: none;
+	color: #006c40;;
+}
+
+.sub-clause {
+	margin: 0 0 0 12px;
 }
