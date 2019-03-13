@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Adamina|Montserrat|Rubik');
+
 html, body {
 	margin: 0;
 	padding: 0;
@@ -91,6 +92,10 @@ header {
 	border-color: #66dcac;
 }
 
+.search-field:focus, .search-field:focus + .search-submit-button {
+    border-color: #66dcac;
+}
+
 .user-account-button {
 	padding: 0;
 	margin: 0;
@@ -134,7 +139,6 @@ main {
 	width: 1440px;
 	height: 800px;
 	margin: 0 auto;
-	border: 1px solid black;
 	position: relative;
 	bottom: 2px;
 }
@@ -149,16 +153,15 @@ main {
 	margin: 0 0 27px 0;
 }
 
-.control-menu ul li button {
+.control-menu ul li a {
+	text-decoration: none;
 	background-color: #fbfbfb;
-	border: 0;
 	box-sizing: border-box;
 	font-size: 16px;
 	font-family: Rubik;
 	font-weight: 400;
 	height: 16px;
 	padding: 0px;
-	cursor: pointer;
 }
 
 .control-menu ul li {
@@ -167,10 +170,20 @@ main {
 	margin: 0 0 18px 0;
 }
 
-.arcticle-control-list li button {
+.arcticle-control-list li a {
 	color: #1f72ad;
 }
 
-.tree-navigation-list li button {
+.tree-navigation-list li a {
 	color: #006c40;
+}
+
+.content {
+	border: 1px solid black;
+	box-sizing: border-box;
+	width: 832px;
+	margin: 0 auto;
+	height: 100%;
+	position: relative;
+	bottom: 272px;
 }
