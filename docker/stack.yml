@@ -8,6 +8,8 @@ services:
       POSTGRES_DB: wiki
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    networks:
+      - default
 
   db-pgadmin:
     image: dpage/pgadmin4
@@ -21,12 +23,28 @@ services:
     volumes:
       - pgadmin-data:/var/lib/pgadmin
       - .\servers.json:/pgadmin4/servers.json
+    networks:
+      - default
 
   wiki:
     image: "${CI_REGISTRY_IMAGE}"
+    labels:
+      traefik.docker.network: "traefik_proxy"
+      traefik.enable: "true"
+      traefik.frontend.rule: Host:${CI_DEPLOYMENT_URL}
+      traefik.port: 80
     depends_on:
       - db-master
+    networks:
+      - default
+      - traefik_proxy
 
 volumes:
   postgres-data:
   pgadmin-data:
+
+networks:
+  default:
+  traefik_proxy:
+    external: true
+    external: true

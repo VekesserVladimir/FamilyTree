@@ -37,3 +37,30 @@ build:
   only:
   - development
   - ci-setup
+
+stage-deploy:
+  image: kroniak/ssh-client
+  stage: stage
+  variables:
+    CI_DEPLOYMENT_URL: "dev.${CI_DEPLOYMENT_HOSTNAME}"
+    CI_DEPLOYMENT_DIR: ~/deploy/familytree
+  environment:
+    name: dev
+    url: https://dev.${CI_DEPLOYMENT_HOSTNAME}
+  script:
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - echo "$SSH_PRIVATE_KEY_STAGING" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - touch .env
+    - echo "CI_REGISTRY_IMAGE=${CI_REGISTRY_IMAGE}:dev" >> .env
+    - echo "CI_DEPLOYMENT_URL=${CI_DEPLOYMENT_URL}" >> .env
+    - ssh $SSH_HOST "mkdir -p ${CI_DEPLOYMENT_DIR}"
+    - ssh $SSH_HOST "mkdir -p ${CI_DEPLOYMENT_DIR}/docker"
+    - scp docker/stack.yml $SSH_HOST:$CI_DEPLOYMENT_DIR/docker
+    - scp .env $SSH_HOST:$CI_DEPLOYMENT_DIR
+    - scp deploy.sh $SSH_HOST:$CI_DEPLOYMENT_DIR/
+    - ssh $SSH_HOST "chmod 700 ${CI_DEPLOYMENT_DIR}/deploy.sh"
+    - ssh $SSH_HOST "cd ${CI_DEPLOYMENT_DIR} && bash deploy.sh"
+
