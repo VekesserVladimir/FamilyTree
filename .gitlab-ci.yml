@@ -1,0 +1,21 @@
+stages:
+  - build
+  - test
+  - stage
+  - deploy
+
+pages:
+  stage: stage
+  script:
+  - mkdir .public
+  - cp -r src/FamilyTree.FrontendDraft/* .public
+  - mv .public public
+  artifacts:
+    paths:
+    - public
+  environment: 
+    name: pages
+    url: https://renerick-devops.gitlab.io/public/FamilyTree
+  only:
+  - frontend
+  - ci-setup
