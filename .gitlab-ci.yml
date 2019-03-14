@@ -15,7 +15,25 @@ pages:
     - public
   environment: 
     name: pages
-    url: https://renerick-devops.gitlab.io/public/FamilyTree
+    url: $CI_PAGES_URL
   only:
   - frontend
+
+build:
+  image: docker:stable
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+    IMAGE_NAME: "${CI_REGISTRY_IMAGE}:dev"
+  services:
+    - docker:dind
+  stage: build
+  before_script:
+    - docker info
+  script:
+    - sh build-docker-image.sh
+    - docker login -p ${CI_REGISTRY_PASSWORD} -u ${CI_REGISTRY_USER} ${CI_REGISTRY}
+    - docker push ${IMAGE_NAME}
+  only:
+  - development
   - ci-setup

@@ -23,7 +23,7 @@ services:
       - .\servers.json:/pgadmin4/servers.json
 
   wiki:
-    image: registry.gitlab.com/renerick-devops/public/familytree:tag
+    image: "${CI_REGISTRY_IMAGE}"
     depends_on:
       - db-master
 
