@@ -86,13 +86,11 @@ header {
 	border-radius: 0 25px 25px 0;
 	border: 1px solid #bbbbbb;
 	border-left: 0;
-}
-
-.illuminated-border {
-	border-color: #66dcac;
+	transition: border 0.25s ease-in-out; 
 }
 
 .search-field:focus, .search-field:focus + .search-submit-button {
+	outline: none;
     border-color: #66dcac;
 }
 
@@ -140,19 +138,20 @@ main {
 	margin: 0 auto;
 	position: relative;
 	bottom: 2px;
+	display: flex;
 }
 
-.control-menu {
+.navigation-menu {
 	width: 170px;
 	margin: 50px 0 0 23px;
 }
 
-.control-menu ul {
+.navigation-menu ul {
 	padding: 0;
 	margin: 0 0 27px 0;
 }
 
-.control-menu ul li a {
+.navigation-menu ul li a {
 	text-decoration: none;
 	background-color: #fbfbfb;
 	box-sizing: border-box;
@@ -163,7 +162,7 @@ main {
 	padding: 0px;
 }
 
-.control-menu ul li {
+.navigation-menu ul li {
 	height: 16px;
 	list-style-type: none;
 	margin: 0 0 18px 0;
@@ -179,14 +178,12 @@ main {
 
 .content {
 	width: 832px;
-	margin: 0 auto;
 	height: 100%;
-	position: relative;
-	bottom: 272px;
 	padding: 35px 0 0 0;
+	margin: 0 0 50px 111px;
 }
 
-.content h1, .content h2, .content h3 {
+.content h2, .content h3 {
 	margin-top: 0;
 }
 
@@ -217,8 +214,8 @@ main {
 
 .control-buttons {
 	position: absolute;
+	right: 304px;
 	top: 53px;
-	right: 0;
 }
 
 .control-buttons button {
@@ -281,14 +278,10 @@ main {
 	font-weight: 400;
 }
 
-.father-row, .mother-row, .children-list-row, .marriage-list-row {
+.person-card-row {
 	display: block;
 	margin: 16px 0 0 0;
 	padding: 0 0 0 21px;
-}
-
-.father-row a, .mother-row a, {
-	display: inline-block;
 }
 
 .father-row-name, .mother-row-name, .children-list-row-name, .marriage-row-name {
@@ -299,7 +292,7 @@ main {
 	line-height: 24px;
 }
 
-.father-name, .mother-name, .child a, .spouse-name, .clause, .sub-clause {
+.father-name, .mother-name, .child a, .spouse-name, .table-of-contents li {
 	color: #006c40;
 	font-family: Rubik;
 	font-size: 16px;
@@ -328,19 +321,22 @@ main {
 	margin-left: 5px;
 }
 
-.build-tree-button {
-	width: 223px;
+.button {
 	height: 40px;
-	color: #ffffff;
 	font-family: Montserrat;
 	font-size: 18px;
 	font-weight: 500;
-	background-color: #41b883;
+	color: #ffffff;
 	border: 0;
-	margin: 15px 0 17px 20px;
 	padding: 0;
 	border-radius: 25px;
 	cursor: pointer;
+}
+
+.primary {
+	width: 223px;
+	background-color: #41b883;
+	margin: 15px 0 17px 20px;
 }
 
 .content > img {
@@ -371,6 +367,6 @@ main {
 	color: #006c40;;
 }
 
-.sub-clause {
-	margin: 0 0 0 12px;
+.table-of-contents ul ul {
+	padding: 0 0 0 12px;
 }
