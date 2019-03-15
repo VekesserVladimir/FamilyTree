@@ -36,17 +36,16 @@ build:
     - docker push ${IMAGE_NAME}
   only:
   - development
-  - ci-setup
 
 stage-deploy:
   image: kroniak/ssh-client
   stage: stage
   variables:
-    CI_DEPLOYMENT_URL: "dev.${CI_DEPLOYMENT_HOSTNAME}"
+    CI_DEPLOYMENT_URL: "${CI_PROJECT_NAME}-${CI_JOB_STAGE}.${CI_DEPLOYMENT_HOSTNAME}"
     CI_DEPLOYMENT_DIR: ~/deploy/familytree
   environment:
-    name: dev
-    url: https://dev.${CI_DEPLOYMENT_HOSTNAME}
+    name: stage
+    url: https://${CI_PROJECT_NAME}-${CI_JOB_STAGE}.${CI_DEPLOYMENT_HOSTNAME}
   script:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
@@ -63,4 +62,6 @@ stage-deploy:
     - scp deploy.sh $SSH_HOST:$CI_DEPLOYMENT_DIR/
     - ssh $SSH_HOST "chmod 700 ${CI_DEPLOYMENT_DIR}/deploy.sh"
     - ssh $SSH_HOST "cd ${CI_DEPLOYMENT_DIR} && bash deploy.sh"
+  only:
+    - development
 
