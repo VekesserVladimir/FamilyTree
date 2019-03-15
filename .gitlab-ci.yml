@@ -1,0 +1,66 @@
+stages:
+  - build
+  - test
+  - stage
+  - deploy
+
+pages:
+  stage: stage
+  script:
+  - mkdir .public
+  - cp -r src/FamilyTree.FrontendDraft/* .public
+  - mv .public public
+  artifacts:
+    paths:
+    - public
+  environment: 
+    name: pages
+    url: $CI_PAGES_URL
+  only:
+  - frontend
+
+build:
+  image: docker:stable
+  variables:
+    DOCKER_HOST: tcp://docker:2375/
+    DOCKER_DRIVER: overlay2
+    IMAGE_NAME: "${CI_REGISTRY_IMAGE}:dev"
+  services:
+    - docker:dind
+  stage: build
+  before_script:
+    - docker info
+  script:
+    - sh build-docker-image.sh
+    - docker login -p ${CI_REGISTRY_PASSWORD} -u ${CI_REGISTRY_USER} ${CI_REGISTRY}
+    - docker push ${IMAGE_NAME}
+  only:
+  - development
+  - ci-setup
+
+stage-deploy:
+  image: kroniak/ssh-client
+  stage: stage
+  variables:
+    CI_DEPLOYMENT_URL: "dev.${CI_DEPLOYMENT_HOSTNAME}"
+    CI_DEPLOYMENT_DIR: ~/deploy/familytree
+  environment:
+    name: dev
+    url: https://dev.${CI_DEPLOYMENT_HOSTNAME}
+  script:
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - echo "$SSH_PRIVATE_KEY_STAGING" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - touch .env
+    - echo "CI_REGISTRY_IMAGE=${CI_REGISTRY_IMAGE}:dev" >> .env
+    - echo "CI_DEPLOYMENT_URL=${CI_DEPLOYMENT_URL}" >> .env
+    - ssh $SSH_HOST "mkdir -p ${CI_DEPLOYMENT_DIR}"
+    - ssh $SSH_HOST "mkdir -p ${CI_DEPLOYMENT_DIR}/docker"
+    - scp docker/stack.yml $SSH_HOST:$CI_DEPLOYMENT_DIR/docker
+    - scp .env $SSH_HOST:$CI_DEPLOYMENT_DIR
+    - scp deploy.sh $SSH_HOST:$CI_DEPLOYMENT_DIR/
+    - ssh $SSH_HOST "chmod 700 ${CI_DEPLOYMENT_DIR}/deploy.sh"
+    - ssh $SSH_HOST "cd ${CI_DEPLOYMENT_DIR} && bash deploy.sh"
+
