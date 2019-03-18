@@ -300,13 +300,13 @@ main {
 	padding: 0 0 0 7px;
 }
 
-.children-list, .marriage-list {
+.person-card-list {
 	margin: 0;
 	list-style-type: none;
 	padding: 0 0 0 22px;
 }
 
-.marriage-period {
+.person-card-second-value {
 	color: #000000;
 	font-family: Rubik;
 	font-size: 16px;
