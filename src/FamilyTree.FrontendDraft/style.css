@@ -87,7 +87,7 @@ header {
 
 .search-field:focus, .search-field:focus + .search-submit-button {
 	outline: none;
-    border-color: #66dcac;
+	border-color: #66dcac;
 }
 
 .user-account-button {
@@ -106,7 +106,7 @@ header {
 }
 
 .user-account-button:focus {
-    outline: none;
+	outline: none;
 }
 
 .user-icon {
@@ -361,16 +361,28 @@ main {
 }
 
 .gallery {
-	display: flex;
-	justify-content: space-around;
-	padding: 19px;
-	margin: 0 0 32px 0;
+ 	font-size: 0;
+ 	display: -ms-flexbox;
+ 	-ms-flex-wrap: wrap;
+ 	-ms-flex-direction: column;
+ 	-webkit-flex-flow: row wrap; 
+ 	flex-flow: row wrap; 
+ 	display: -webkit-box;
+ 	display: flex;
+ 	padding: 0 19px;
 }
 
-.gallery img {
-	display: inline-block;
-	width: 222px;
-	height: 250px;
+.gallery div {
+ 	-webkit-box-flex: auto;
+ 	-ms-flex: auto;
+ 	flex: auto; 
+ 	width: 200px; 
+ 	margin: .5vw; 
+}
+
+.gallery div img {
+	width: 100%;
+	height: auto;
 }
 
 .table-of-contents {
@@ -396,5 +408,6 @@ main {
 }
 
 .table-of-contents ul ul {
+	margin: 15px 0 0 0;
 	padding: 0 0 0 12px;
 }
