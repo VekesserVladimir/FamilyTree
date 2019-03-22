@@ -6,21 +6,15 @@ html, body {
 	background-color: #fbfbfb;
 }
 
-header {
-	max-height: 78px;
-	width: 100%;
-	box-sizing: border-box;
-}
-
 .header-box {
 	margin: 0 auto;
 	width: 1440px;
 	height: 78px;
+	position: relative;
 }
 
 .site-logo {
 	height: 56px;
-	width: 235px;
 	margin: 20px 0 0 20px;
 	display: inline-block;
 }
@@ -49,7 +43,7 @@ header {
 	display: inline-block;
 	position: relative;
 	bottom: 16px;
-	margin-left: 49px; 
+	margin-left: 57px; 
 	background-color: #fbfbfb;
 }
 
@@ -101,7 +95,7 @@ header {
 	width: 264px;
 	position: relative;
 	bottom: 10px;
-	left: 305px;
+	margin-left: 305px;
 	cursor: pointer;
 }
 
@@ -410,4 +404,115 @@ main {
 .table-of-contents ul ul {
 	margin: 15px 0 0 0;
 	padding: 0 0 0 12px;
+}
+
+.navigation-menu-button {
+	border: none;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background-color: transparent;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	display: none;
+	margin: 0 0 0 5px;
+	box-sizing: border-box;
+	padding: 0;
+	position: relative;
+	bottom: 33px;
+	cursor: pointer;
+}
+
+.menu-dot {
+	width: 5px;
+	height: 5px;
+	background-color: #555;
+	margin: 2px 0;
+	border-radius: 50%;
+}
+
+@media screen and (max-width: 1456px) {
+	.header-box {
+		width: 1180px;
+	}
+
+	main {
+		width: 1180px;
+	}
+
+	.user-account-button {
+		width: 200px;
+		margin-left: 88px;
+	}
+
+	.user-name {
+		left: -38px;
+	}
+
+	.user-icon {
+		left: 44px;
+	}
+
+	.control-buttons {
+		right: 44px;
+	}
+}
+
+@media screen and (max-width: 1196px) {
+	.navigation-menu {
+		display: none;
+	}
+
+	main {
+		width: 840px;
+	}
+
+	.control-buttons {
+		right: 22px;
+	}
+
+	.content {
+		margin-left: 0;
+	}
+
+	.header-box {
+		width: 840px;
+	}
+
+	.user-account-button {
+		width: 50px;
+		margin-left: 55px;
+		border: none;
+		bottom: 0;
+	}
+
+	.user-name {
+		display: none;
+	}
+
+	.user-icon {
+		width: 100%;
+		height: 100%;
+		left: 0px;	
+		top: 0px;
+	}
+
+	.site-logo {
+		margin-left: 0;
+	}
+
+	.search-form {
+		margin-left: 45px;
+		width: 400px;
+	}
+
+	.navigation-menu-button {
+		display: inline-flex;
+	}
+}
+
+@media screen and (max-width: 919px) {
+
 }
