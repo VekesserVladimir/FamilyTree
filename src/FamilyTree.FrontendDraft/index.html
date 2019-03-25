@@ -5,7 +5,6 @@
 	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 	<title>Document</title>
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  	<script src='Scripts/vuescript.js' async></script>
   	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
   	<link rel="stylesheet" href="style.css">
 </head>
@@ -24,11 +23,33 @@
 			<span class='user-name'>Admin</span>
 			<img src="images/avatarka.jpg" alt="Аватарка" class='user-icon'>
 		</button
-		><button class='navigation-menu-button'>
+		><button class='navigation-menu-button' v-on:click='function() {menu.isActive = !menu.isActive; menu.createMenuIsActive = false; menu.browseMenuIsActive = false }' v-bind:class="{ 'navigation-menu-button-active' : menu.isActive }">
 			<div class="menu-dot"></div>
 			<div class="menu-dot"></div>
 			<div class="menu-dot"></div>
 		</button>
+		<div class="menu">
+			<div class="submenu-round">
+				<ul class="create-menu">
+					<a href="#"><li v-bind:class="[ menu.createMenuIsActive ? 'create-first-active' : 'create-first-disabled' ]"><span>Create Arcticle</span></li></a>
+					<a href="#"><li v-bind:class="[ menu.createMenuIsActive ? 'create-second-active' : 'create-second-disabled' ]"><span>Create Person Record</span></li></a>
+					<a href="#"><li v-bind:class="[ menu.createMenuIsActive ? 'create-third-active' : 'create-third-disabled' ]"><span>Upload File</span></li></a>
+				</ul>
+				<ul class="browse-menu">
+					<a href="#"><li v-bind:class="[ menu.browseMenuIsActive ? 'browse-first-active' : 'browse-first-disabled' ]"><span>Browse Tree</span></li></a>
+					<a href="#"><li v-bind:class="[ menu.browseMenuIsActive ? 'browse-second-active' : 'browse-second-disabled' ]"><span>Random Page</span></li></a>
+					<a href="#"><li v-bind:class="[ menu.browseMenuIsActive ? 'browse-third-active' : 'browse-third-disabled' ]"><span>Categories</span></li></a>
+				</ul>
+				<div class="menu-round">
+					<ul class="first-menu">
+						<li v-bind:class="{ 'active-create': menu.isActive, 'disable-create': !menu.isActive }" v-on:click='function() { menu.createMenuIsActive = !menu.createMenuIsActive; menu.browseMenuIsActive = false }'><span>Create</span></li>
+						<li v-bind:class="{ 'active-browse': menu.isActive, 'disable-browse': !menu.isActive }" v-on:click='function() { menu.createMenuIsActive = false; menu.browseMenuIsActive = !menu.browseMenuIsActive }'><span>Browse</span></li>
+					</ul>
+					<div class="button-menu-round">
+					</div>
+				</div>
+			</div>
+		</div>
 	</header>
 	<main>
 		<div class="navigation-menu">
@@ -133,5 +154,6 @@
 		</div>
 	</main>
 </div>
+<script src='Scripts/vuescript.js'></script>
 </body>
 </html>
