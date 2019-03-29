@@ -79,6 +79,15 @@ html, body {
 	transition: border 0.25s ease-in-out; 
 }
 
+.mobile-search-button {
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	border: none;
+	margin: 0 0 0 65%;
+	display: none;
+}
+
 .search-field:focus, .search-field:focus + .search-submit-button {
 	outline: none;
 	border-color: #66dcac;
@@ -671,11 +680,11 @@ main {
 
 @media screen and (max-width: 1456px) {
 	.header-box {
-		width: 1180px;
+		width: 1160px;
 	}
 
 	main {
-		width: 1180px;
+		width: 1160px;
 	}
 
 	.user-account-button {
@@ -696,7 +705,7 @@ main {
 	}
 }
 
-@media screen and (max-width: 1196px) {
+@media screen and (max-width: 1170px) {
 	.navigation-menu {
 		display: none;
 	}
@@ -782,5 +791,23 @@ main {
 }
 
 @media screen and (max-width: 767px) {
-	
+	.logo-name {
+		display: none;
+	}
+
+	.header-box {
+		width: 100%;
+	}
+
+	.search-form {
+		display: none;
+	}
+
+	.mobile-search-button {
+		display: inline-block;
+	}
+
+	.user-account-button {
+		margin: 0 0 0 20px;
+	}
 }
