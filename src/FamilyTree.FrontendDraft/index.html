@@ -13,13 +13,13 @@
 	<header class="header-box">
 		<a class="site-logo" href="index.html">
 			<img src="images/Logo.svg" alt="Logo" class="logo-image"
-			><span class="logo-name">FamilyTree</span>
+			><span class="logo-name" v-show='!searchForm.isActive'>FamilyTree</span>
 		</a
-		><form action="" method="POST" class='search-form'>
+		><form action="" method="POST" v-bind:class="[ searchForm.isActive ? 'search-form-active' : 'search-form' ]">
 				<input type="text" placeholder="Search" class='search-field'>
 				<input type="submit" class='search-submit-button' value="" title='Искать'>
 		</form
-		><button class='mobile-search-button'>
+		><button class='mobile-search-button' v-on:click='searchForm.isActive = !searchForm.isActive' v-show='!searchForm.isActive'>
 		</button
 		><button class='user-account-button'>
 			<span class='user-name'>Admin</span>
@@ -30,7 +30,7 @@
 			<div class="menu-dot"></div>
 			<div class="menu-dot"></div>
 		</button>
-		<div class="menu">
+		<div class="menu" v-bind:class="{ 'menu-active': menu.isActive }">
 			<div class="submenu-round">
 				<ul class="create-menu">
 					<a href="#"><li v-bind:class="[ menu.createMenuIsActive ? 'create-first-active' : 'create-first-disabled' ]"><span>Create Arcticle</span></li></a>

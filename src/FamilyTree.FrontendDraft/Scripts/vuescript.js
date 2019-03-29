@@ -5,6 +5,9 @@ var vm = new Vue({
 			isActive: false,
 			createMenuIsActive: false,
 			browseMenuIsActive: false
+		},
+		searchForm: {
+			isActive: false
 		}
 	},
 	methods: {
