@@ -89,12 +89,12 @@
 			<div class="person-card">
 				<div class="person-card-front" v-bind:class="{ 'person-card-front-active' : personCard.editingIsActive }">
 					<img src="images/person-photo-image.jpg" alt="Person Photo" class="person-photo">
-					<button class="edit-card-button" v-on:click='personCard.editingIsActive = true;'>
-						<div class="edit-button-dot"></div>
-						<div class="edit-button-dot"></div>
-						<div class="edit-button-dot"></div>
-					</button>
 					<div class="person-info">
+						<button class="edit-card-button" v-on:click='personCard.editingIsActive = true;'>
+							<div class="edit-button-dot"></div>
+							<div class="edit-button-dot"></div>
+							<div class="edit-button-dot"></div>
+						</button>
 						<span class="life-years">01.01.1900 - 01.01.2000</span>
 						<div class='person-card-row'>
 							<span href="#" class='person-card-row-name'>Father:</span>
@@ -129,12 +129,12 @@
 				</div>
 				<div class="person-card-back" v-bind:class="{ 'person-card-back-active' : personCard.editingIsActive }">
 					<img src="images/person-photo-image.jpg" alt="Person Photo" class="person-photo">
-					<button class="edit-card-button" v-on:click='personCard.editingIsActive = false;'>
-						<div class="edit-button-dot"></div>
-						<div class="edit-button-dot"></div>
-						<div class="edit-button-dot"></div>
-					</button>
 					<div class="person-info">
+						<button class="edit-card-button" v-on:click='personCard.editingIsActive = false;'>
+							<div class="edit-button-dot"></div>
+							<div class="edit-button-dot"></div>
+							<div class="edit-button-dot"></div>
+						</button>
 						<span class="life-years">01.01.1900 - 01.01.2000</span>
 						<div class='person-card-row'>
 							<span href="#" class='person-card-row-name'>Father:</span>
