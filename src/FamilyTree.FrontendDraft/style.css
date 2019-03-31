@@ -262,7 +262,7 @@ main {
 	margin: 92px 0 0 20px;
 	position: relative;
 	width: 264px;
-	perspective: 1000px;
+	transform: perspective(1000px);
 }
 
 .person-card-front, .person-card-back {
@@ -933,6 +933,10 @@ main {
 	}
 
 	.image-left {
+		width: 100%;
+	}
+
+	.image-center-medium {
 		width: 100%;
 	}
 }
