@@ -8,6 +8,9 @@ var vm = new Vue({
 		},
 		searchForm: {
 			isActive: false
+		},
+		personCard: {
+			editingIsActive: false
 		}
 	}, 
 	methods: {

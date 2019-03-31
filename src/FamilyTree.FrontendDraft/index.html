@@ -30,7 +30,7 @@
 			<div class="menu-dot"></div>
 			<div class="menu-dot"></div>
 		</button>
-		<div class="menu" v-bind:class="{ 'menu-active': menu.isActive }">
+		<div class="menu" v-bind:class="{ 'menu-active' : menu.isActive, 'menu-disabled' : !menu.isActive }">
 			<div class="submenu-round">
 				<ul class="create-menu">
 					<a href="#"><li v-bind:class="[ menu.createMenuIsActive ? 'create-first-active' : 'create-first-disabled' ]"><span>Create Arcticle</span></li></a>
@@ -84,41 +84,93 @@
 				><a class='link-button' href="#"></a
 				><a class='changes-history-button' href="#"></a>
 			</div>
+
+
 			<div class="person-card">
-				<img src="images/person-photo-image.jpg" alt="Person Photo" class="person-photo">
-				<div class="person-info">
-					<span class="life-years">01.01.1900 - 01.01.2000</span>
-					<div class='person-card-row'>
-						<span href="#" class='person-card-row-name'>Father:</span>
-						<a href="#" class="row-value">Ivanov I.I.</a>
+				<div class="person-card-front" v-bind:class="{ 'person-card-front-active' : personCard.editingIsActive }">
+					<img src="images/person-photo-image.jpg" alt="Person Photo" class="person-photo">
+					<button class="edit-card-button" v-on:click='personCard.editingIsActive = true;'>
+						<div class="edit-button-dot"></div>
+						<div class="edit-button-dot"></div>
+						<div class="edit-button-dot"></div>
+					</button>
+					<div class="person-info">
+						<span class="life-years">01.01.1900 - 01.01.2000</span>
+						<div class='person-card-row'>
+							<span href="#" class='person-card-row-name'>Father:</span>
+							<a href="#" class="row-value">Ivanov I.I.</a>
+						</div>
+						<div class='person-card-row'>
+							<span class='person-card-row-name'>Mother:</span>
+							<a href="#" class="row-value">Ivanova I.I.</a>
+						</div>
+						<div class="person-card-row">
+							<span class="person-card-row-name">Children</span>
+							<ul class='person-card-list'>
+								<li class="row-value"><a href="#">Ivanov I.I.</a></li>
+								<li class="row-value"><a href="#">Ivanov I.I.</a></li>
+							</ul>
+						</div>
+						<div class=person-card-row>
+							<span class="person-card-row-name">Marriage</span>
+							<ul class='person-card-list'>
+								<li>
+									<a href="#" class='row-value'>Ivanov I.I.</a>
+									<span class='person-card-second-value'>1930-1950</span>
+								</li>
+								<li>
+									<a href="#" class='row-value'>Ivanov I.I.</a>
+									<span class='person-card-second-value'>1950-1970</span>
+								</li>
+							</ul>
+						</div>
 					</div>
-					<div class='person-card-row'>
-						<span class='person-card-row-name'>Mother:</span>
-						<a href="#" class="row-value">Ivanova I.I.</a>
-					</div>
-					<div class="person-card-row">
-						<span class="person-card-row-name">Children</span>
-						<ul class='person-card-list'>
-							<li class="row-value"><a href="#">Ivanov I.I.</a></li>
-							<li class="row-value"><a href="#">Ivanov I.I.</a></li>
-						</ul>
-					</div>
-					<div class=person-card-row>
-						<span class="person-card-row-name">Marriage</span>
-						<ul class='person-card-list'>
-							<li>
-								<a href="#" class='row-value'>Ivanov I.I.</a>
-								<span class='person-card-second-value'>1930-1950</span>
-							</li>
-							<li>
-								<a href="#" class='row-value'>Ivanov I.I.</a>
-								<span class='person-card-second-value'>1950-1970</span>
-							</li>
-						</ul>
-					</div>
+					<button class="button primary">Build Tree</button>
 				</div>
-				<button class="button primary">Build Tree</button>
+				<div class="person-card-back" v-bind:class="{ 'person-card-back-active' : personCard.editingIsActive }">
+					<img src="images/person-photo-image.jpg" alt="Person Photo" class="person-photo">
+					<button class="edit-card-button" v-on:click='personCard.editingIsActive = false;'>
+						<div class="edit-button-dot"></div>
+						<div class="edit-button-dot"></div>
+						<div class="edit-button-dot"></div>
+					</button>
+					<div class="person-info">
+						<span class="life-years">01.01.1900 - 01.01.2000</span>
+						<div class='person-card-row'>
+							<span href="#" class='person-card-row-name'>Father:</span>
+							<a href="#" class="row-value">Ivanov I.I.</a>
+						</div>
+						<div class='person-card-row'>
+							<span class='person-card-row-name'>Mother:</span>
+							<a href="#" class="row-value">Ivanova I.I.</a>
+						</div>
+						<div class="person-card-row">
+							<span class="person-card-row-name">Children</span>
+							<ul class='person-card-list'>
+								<li class="row-value"><a href="#">Ivanov I.I.</a></li>
+								<li class="row-value"><a href="#">Ivanov I.I.</a></li>
+							</ul>
+						</div>
+						<div class=person-card-row>
+							<span class="person-card-row-name">Marriage</span>
+							<ul class='person-card-list'>
+								<li>
+									<a href="#" class='row-value'>Ivanov I.I.</a>
+									<span class='person-card-second-value'>1930-1950</span>
+								</li>
+								<li>
+									<a href="#" class='row-value'>Ivanov I.I.</a>
+									<span class='person-card-second-value'>1950-1970</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<button class="button primary">Build Tree</button>
+				</div>
 			</div>
+
+
+
 			<h1>Heading 1</h1>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem laudantium reprehenderit, quis, quibusdam vel, consequuntur dolor autem modi non est nostrum aspernatur esse laborum repellendus id sit neque nesciunt suscipit!</p>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis officiis optio reprehenderit molestiae minima. Cupiditate dolorum porro, reiciendis molestias hic deserunt, pariatur fugiat odio quia at fugit ut asperiores. Consectetur.

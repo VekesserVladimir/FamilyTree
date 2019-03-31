@@ -258,12 +258,60 @@ main {
 }
 
 .person-card {
-	width: 264px;
-	border: 1px solid #bbbbbb;
 	float: right;
 	margin: 92px 0 0 20px;
+	position: relative;
+	width: 264px;
+	perspective: 1000px;
+}
+
+.person-card-front, .person-card-back {
+	width: 100%;
+	border: 1px solid #bbbbbb;
+	background-color: #ffffff;
+	float: right;
 	box-sizing: border-box;
 	border-radius: 25px;
+	position: relative;
+	transition: transform 0.5s ease-in-out;
+	backface-visibility: hidden;
+}
+
+.person-card-front-active {
+	transform: rotateY(180deg);
+}
+
+.person-card-back {
+	position: absolute;
+	transform: rotateY(180deg);
+}
+
+.person-card-back-active {
+	transform: rotateY(360deg);
+}
+
+.edit-card-button {
+	height: 20px;
+	width: 20px;
+	position: absolute;
+	right: 15px;
+	top: 321px;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	align-items: center;
+	background-color: #ffffff;
+	border: none;
+	cursor: pointer;
+}
+
+.edit-button-dot {
+	width: 4px;
+	height: 4px;
+	background-color: #555;
+	margin: 1px 0 1px 0;
+	border-radius: 50%;
+
 }
 
 .person-photo {
@@ -471,13 +519,17 @@ main {
 	overflow: hidden;
 	position: absolute;
 	right: 20px;
-	top: 37px;
 	width: 300px;
-	z-index: 4;
+	z-index: 6;
 }
 
 .menu-active {
-	z-index: 6;
+	top: 37px;
+}
+
+.menu-disabled {
+	top: -400px;
+	transition: top 0s ease 0.25s;	
 }
 
 .menu span,.menu a span {
