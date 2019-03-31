@@ -15,11 +15,11 @@
 			<img src="images/Logo.svg" alt="Logo" class="logo-image"
 			><span class="logo-name" v-show='!searchForm.isActive'>FamilyTree</span>
 		</a
-		><form action="" method="POST" v-bind:class="[ searchForm.isActive ? 'search-form-active' : 'search-form' ]">
-				<input type="text" placeholder="Search" class='search-field'>
+		><form class='search-form' action="" method="POST">
+				<input type="text" placeholder="Search" class='search-field' v-on:blur="closeSearchForm">
 				<input type="submit" class='search-submit-button' value="" title='Искать'>
 		</form
-		><button class='mobile-search-button' v-on:click='searchForm.isActive = !searchForm.isActive' v-show='!searchForm.isActive'>
+		><button class='mobile-search-button' v-show='!searchForm.isActive' v-on:click="openSearchForm">
 		</button
 		><button class='user-account-button'>
 			<span class='user-name'>Admin</span>
@@ -156,6 +156,7 @@
 		</div>
 	</main>
 </div>
+<button class="mobile-build-tree-button"></button>
 <script src='Scripts/vuescript.js'></script>
 </body>
 </html>
