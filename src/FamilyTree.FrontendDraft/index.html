@@ -21,7 +21,7 @@
 		</form
 		><button class='mobile-search-button' v-show='!searchForm.isActive' v-on:click="openSearchForm">
 		</button
-		><button class='user-account-button'>
+		><button class='user-account-button' v-on:click='accountMenu.isActive = !accountMenu.isActive'>
 			<span class='user-name'>Admin</span>
 			<img src="images/avatarka.jpg" alt="Аватарка" class='user-icon'>
 		</button
@@ -30,6 +30,10 @@
 			<div class="menu-dot"></div>
 			<div class="menu-dot"></div>
 		</button>
+		<ul class="account-menu" v-bind:class="{ 'account-menu-active' : accountMenu.isActive }">
+			<li class="menu-item"><a href="#" class='profile-account-link'>Profile</a></li>
+			<li class="menu-item"><button class='exit-account-button'>Exit</button></li>
+		</ul>
 		<div class="menu" v-bind:class="{ 'menu-active' : menu.isActive, 'menu-disabled' : !menu.isActive }">
 			<div class="submenu-round">
 				<ul class="create-menu">

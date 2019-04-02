@@ -129,17 +129,90 @@ html, body {
 	border-radius: 50%;
 	position: relative;
 	left: 77px;
-	top: 3px;
+	top: 2px;
 }
 
 .user-name {
 	position: relative;
-	right: 69px;
-	bottom: 8px;
+	right: 61px;
+	bottom: 9px;
 	color: #000000;
 	font-family: Montserrat;
 	font-size: 16px;
 	font-weight: 400;
+}
+
+.account-menu {
+	position: absolute;
+	right: 20px;
+	top: 90px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 264px;
+	height: 100px;
+	overflow: hidden;
+	z-index: 10;
+}
+
+.menu-item {
+	width: 100%;
+	height: 50px;
+	box-sizing: border-box;
+	border: 1px solid #bbbbbb;
+	background-color: #ffffff;
+	position: relative;
+	left: 100%;
+	transition: left 0.1s ease-in-out;
+}
+
+.account-menu-active > .menu-item {
+	left: 0;
+}
+
+.menu-item > a {
+	display: block;
+	text-decoration: none;
+	padding: 15px 0 0 24px;
+	box-sizing: border-box;
+	color: #000000;
+}
+
+.menu-item > button {
+	padding: 0;
+	border: none;
+	background-color: #ffffff;
+	text-align: left;
+	padding-left: 24px;
+}
+
+.menu-item > a, .menu-item > button {
+	width: 100%;
+	height: 100%;
+	font-family: Montserrat;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: inherit;
+	transition: background-color 0.1s ease-in-out;
+}
+
+.account-menu .menu-item:nth-child(1) {
+	border-radius: 25px 25px 0 0;
+}
+
+.account-menu .menu-item:nth-child(2) {
+	position: relative;
+	bottom: 1px;
+	border-radius: 0 0 25px 25px;
+}
+
+.exit-account-button:hover {
+	background-color: #FF6450;
+}
+
+.profile-account-link:hover {
+	background-color: #1f72ad;
+	color: #ffffff;
 }
 
 main {
@@ -778,6 +851,10 @@ main {
 		width: 200px;
 	}
 
+	.account-menu {
+		width: 200px;
+	}
+
 	.user-name {
 		left: -38px;
 	}
@@ -830,6 +907,10 @@ main {
 		top: 0px;
 	}
 
+	.account-menu {
+		right: 62px;
+	}
+
 	.site-logo {
 		margin-left: 0;
 	}
@@ -862,6 +943,10 @@ main {
 
 	main {
 		width: 720px;
+	}
+
+	.account-menu {
+		right: 55px;
 	}
 
 	.content {

@@ -11,6 +11,9 @@ var vm = new Vue({
 		},
 		personCard: {
 			editingIsActive: false
+		},
+		accountMenu: {
+			isActive: false
 		}
 	}, 
 	methods: {
