@@ -1,10 +1,10 @@
 var vm = new Vue({
 	el: '#vue-app',
 	data: {
-		menu: {
+		mobileNavigationMenu: {
 			isActive: false,
-			createMenuIsActive: false,
-			browseMenuIsActive: false
+			createItemActive: false,
+			browseItemActive: false
 		},
 		searchForm: {
 			isActive: false

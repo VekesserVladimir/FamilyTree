@@ -21,11 +21,11 @@
 		</form
 		><button class='mobile-search-button' v-show='!searchForm.isActive' v-on:click="openSearchForm">
 		</button
-		><button class='user-account-button' v-on:click='accountMenu.isActive = !accountMenu.isActive'>
+		><button class='user-account-button' v-on:click='function() { accountMenu.isActive = !accountMenu.isActive; mobileNavigationMenu.isActive = false; mobileNavigationMenu.createItemActive = false; mobileNavigationMenu.browseItemActive = false; }'>
 			<span class='user-name'>Admin</span>
 			<img src="images/avatarka.jpg" alt="Аватарка" class='user-icon'>
 		</button
-		><button class='navigation-menu-button' v-on:click='function() {menu.isActive = !menu.isActive; menu.createMenuIsActive = false; menu.browseMenuIsActive = false }' v-bind:class="{ 'navigation-menu-button-active' : menu.isActive }">
+		><button class='navigation-menu-button' v-bind:class="{ 'navigation-menu-button-active' : mobileNavigationMenu.isActive }" v-on:click='function() { mobileNavigationMenu.isActive = !mobileNavigationMenu.isActive; mobileNavigationMenu.createItemActive = false; mobileNavigationMenu.browseItemActive = false; accountMenu.isActive = false; }'>
 			<div class="menu-dot"></div>
 			<div class="menu-dot"></div>
 			<div class="menu-dot"></div>
@@ -34,28 +34,20 @@
 			<li class="menu-item"><a href="#" class='profile-account-link'>Profile</a></li>
 			<li class="menu-item"><button class='exit-account-button'>Exit</button></li>
 		</ul>
-		<div class="menu" v-bind:class="{ 'menu-active' : menu.isActive, 'menu-disabled' : !menu.isActive }">
-			<div class="submenu-round">
-				<ul class="create-menu">
-					<a href="#"><li v-bind:class="[ menu.createMenuIsActive ? 'create-first-active' : 'create-first-disabled' ]"><span>Create Arcticle</span></li></a>
-					<a href="#"><li v-bind:class="[ menu.createMenuIsActive ? 'create-second-active' : 'create-second-disabled' ]"><span>Create Person Record</span></li></a>
-					<a href="#"><li v-bind:class="[ menu.createMenuIsActive ? 'create-third-active' : 'create-third-disabled' ]"><span>Upload File</span></li></a>
-				</ul>
-				<ul class="browse-menu">
-					<a href="#"><li v-bind:class="[ menu.browseMenuIsActive ? 'browse-first-active' : 'browse-first-disabled' ]"><span>Browse Tree</span></li></a>
-					<a href="#"><li v-bind:class="[ menu.browseMenuIsActive ? 'browse-second-active' : 'browse-second-disabled' ]"><span>Random Page</span></li></a>
-					<a href="#"><li v-bind:class="[ menu.browseMenuIsActive ? 'browse-third-active' : 'browse-third-disabled' ]"><span>Categories</span></li></a>
-				</ul>
-				<div class="menu-round">
-					<ul class="first-menu">
-						<li v-bind:class="{ 'active-create': menu.isActive, 'disable-create': !menu.isActive }" v-on:click='function() { menu.createMenuIsActive = !menu.createMenuIsActive; menu.browseMenuIsActive = false }'><span>Create</span></li>
-						<li v-bind:class="{ 'active-browse': menu.isActive, 'disable-browse': !menu.isActive }" v-on:click='function() { menu.createMenuIsActive = false; menu.browseMenuIsActive = !menu.browseMenuIsActive }'><span>Browse</span></li>
-					</ul>
-					<div class="button-menu-round">
-					</div>
-				</div>
-			</div>
-		</div>
+		<ul class="mobile-navigation-menu" v-bind:class="{ 'mobile-navigation-menu-active' : mobileNavigationMenu.isActive, 'mobile-navigation-menu-create-active' : mobileNavigationMenu.createItemActive, 'mobile-navigation-menu-browse-active' : mobileNavigationMenu.browseItemActive }">
+			<li class="menu-item">
+				<button v-on:click='function() { mobileNavigationMenu.createItemActive = !mobileNavigationMenu.createItemActive; mobileNavigationMenu.browseItemActive = false; }'>Create</button>
+			</li>
+			<li class="menu-subitem"><a href="#">Create article</a></li>
+			<li class="menu-subitem"><a href="#">Create person record</a></li>
+			<li class="menu-subitem"><a href="#">Upload file</a></li>	
+			<li class="menu-item">
+				<button v-on:click='function() { mobileNavigationMenu.browseItemActive = !mobileNavigationMenu.browseItemActive; mobileNavigationMenu.createItemActive = false; }'>Browse</button>
+			</li>
+			<li class="menu-subitem"><a href="#">Browse tree</a></li>
+			<li class="menu-subitem"><a href="#">Random</a></li>
+			<li class="menu-subitem"><a href="#">Categories</a></li>
+		</ul>
 	</header>
 	<main>
 		<div class="navigation-menu">
