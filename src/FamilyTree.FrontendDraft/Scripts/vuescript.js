@@ -25,8 +25,10 @@ var vm = new Vue({
 			form.select();
 		},
 		closeSearchForm: function() {
-			document.querySelector('.search-form').style.display = 'none';
-			this.searchForm.isActive = false;
+			if(document.querySelector('body').offsetWidth <= 750) {
+				document.querySelector('.search-form').style.display = 'none';
+				this.searchForm.isActive = false;
+			}
 		}
 	}
 })

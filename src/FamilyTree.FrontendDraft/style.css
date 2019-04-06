@@ -10,6 +10,15 @@ body {
 	overflow-x: hidden;
 }
 
+button, 
+button:active, 
+button:focus,
+input, 
+input:active, 
+input:focus {
+    outline: none;
+}
+
 .header-box {
 	margin: 0 auto;
 	width: 1440px;
@@ -156,7 +165,7 @@ body {
 	width: 264px;
 	height: 100px;
 	overflow: hidden;
-	z-index: 10;
+	z-index: 8;
 }
 
 .menu-item {
@@ -172,7 +181,6 @@ body {
 }
 
 .mobile-navigation-menu .menu-item {
-	position: relative;
 	z-index: 7;
 }
 
@@ -604,18 +612,18 @@ main {
 .mobile-navigation-menu {
 	width: 260px;
 	position: absolute;
-	top: -300px;
+	top: 90px;
 	right: 0px;
-	z-index: 10;
 	overflow: hidden;
 }
 
 .mobile-navigation-menu-active {
-	top: 90px;
+	z-index: 8;
 }
 
 .mobile-navigation-menu > .menu-item, .mobile-navigation-menu > .menu-subitem {
 	transition: left 0.1s ease-in-out, bottom 0.1s ease-in-out;
+	position: relative;
 	left: 100%;
 }
 
@@ -686,11 +694,24 @@ main {
 	padding: 0;
 	cursor: pointer;
 	z-index: 7;
-	transition: transform 0.1s ease-in-out;
 }
 
-.navigation-menu-button-active {
-	transform: rotate(-90deg);
+.navigation-menu-button-active .menu-dot:nth-child(1), .navigation-menu-button-active .menu-dot:nth-child(3) {
+	border-radius: 1.5px;
+	width: 25px;
+	height: 3px;
+}
+
+.navigation-menu-button-active .menu-dot:nth-child(1) {
+	transform: translate(0px, 5.5px) rotate(45deg);
+}
+
+.navigation-menu-button-active .menu-dot:nth-child(2) {
+	height: 0px;
+}
+
+.navigation-menu-button-active .menu-dot:nth-child(3) {
+	transform: translate(0px, -5px) rotate(-45deg);
 }
 
 .menu-dot {
@@ -699,6 +720,7 @@ main {
 	background-color: #555;
 	margin: 2px 0;
 	border-radius: 50%;
+	transition: transform 0.1s ease-in-out, width 0.1s ease-in-out, height 0.1s ease-in-out, border-radius 0s ease 0.1s;
 }
 
 .mobile-build-tree-button {
