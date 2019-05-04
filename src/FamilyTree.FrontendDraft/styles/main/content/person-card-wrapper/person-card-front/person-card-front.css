@@ -1,0 +1,57 @@
+@import url(./edit-card-button/edit-card-button.css);
+@import url(./row/row.css);
+
+.person-card-front,
+.person-card-back {
+    width: 100%;
+    border: 1px solid #bbbbbb;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    border-radius: 25px;
+
+}
+
+.person-card-wrapper__person-card-front,
+.person-card-wrapper__person-card-back {
+    transition: transform 0.5s ease-in-out;
+    float: right;
+    margin: 92px 0 0 0;
+    position: relative;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.person-card-wrapper__person-card-back {
+    position: absolute;
+    transform: rotateY(180deg);
+}
+
+.person-card-front_active {
+    transform: rotateY(180deg);
+}
+
+.person-card-back_active {
+    transform: rotateY(360deg);
+}
+
+.person-card-front__person-photo {
+    width: 100%;
+    border-radius: 25px 25px 0 0;
+    background-color: #66dcac;
+}
+
+.person-card-front__person-info {
+    width: 100%;
+    border-radius: 0 0 25px 25px;
+    position: relative;
+}
+
+.person-card-front__life-years {
+    display: block;
+    text-align: center;
+    margin: 20px 0 0 0;
+    color: #3a3a3a;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 400;
+}

@@ -1,0 +1,25 @@
+.image_right {
+    display: block;
+    width: 315px;
+    float: right;
+    margin: 0 0 10px 26px;
+}
+
+.image_left {
+    display: block;
+    width: 315px;
+    float: left;
+    margin: 0 26px 10px 0;
+}
+
+.image_center_big {
+    width: 100%;
+    margin: 0 0 32px 0;
+    display: block;
+}
+
+.image_center_medium {
+    display: block;
+    width: 350px;
+    margin: 0 auto 32px auto;
+}

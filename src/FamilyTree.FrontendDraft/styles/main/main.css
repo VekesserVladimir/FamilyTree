@@ -1,0 +1,14 @@
+@import url(./button/button.css);
+@import url(./navigation-menu/navigation-menu.css);
+@import url(./content/content.css);
+
+.main {
+    width: 1440px;
+    display: flex;
+}
+
+.vue-app__main {
+    margin: 0 auto;
+    position: relative;
+    bottom: 2px;
+}

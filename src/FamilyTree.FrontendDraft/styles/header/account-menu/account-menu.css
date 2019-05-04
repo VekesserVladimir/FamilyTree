@@ -1,0 +1,15 @@
+.account-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 264px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.header__account-menu {
+    position: absolute;
+    right: 20px;
+    top: 90px;
+    z-index: 8;
+}

@@ -1,0 +1,13 @@
+@import url(./person-card-front/person-card-front.css);
+
+.person-card-wrapper {
+    width: 264px;
+    transform: perspective(1000px);
+    perspective: 1000px;
+}
+
+.main__person-card-wrapper {
+    float: right;
+    position: relative;
+    margin-left: 20px;
+}

@@ -1,0 +1,48 @@
+@import url(./control-buttons/control-buttons.css);
+@import url(./person-card-wrapper/person-card-wrapper.css);
+@import url(./table-of-contents/table-of-contents.css);
+@import url(./image/image.css);
+@import url(./gallery/gallery.css);
+
+.content {
+    width: 832px;
+    height: 100%;
+    padding: 35px 0 0 0;
+}
+
+.main__content {
+    margin: 0 0 50px 111px;
+}
+
+.content h1 {
+    margin: 0 0 12px 0;
+    font-size: 64px;
+    line-height: 79px;
+    font-weight: 100;
+    font-stretch: ultra-condensed;
+    font-family: Montserrat;
+}
+
+.content h2 {
+    margin: 0 0 23px 0;
+    font-size: 36px;
+    line-height: 50px;
+    font-family: Montserrat;
+    font-weight: 300;
+}
+
+.content h3 {
+    margin: 0 0 23px 0;
+    font-size: 24px;
+    line-height: 29px;
+    font-family: Rubik;
+    font-weight: 500;
+}
+
+.content p {
+    margin: 0 0 23px 0;
+    font-family: Rubik;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+}

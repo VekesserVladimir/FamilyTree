@@ -1,0 +1,36 @@
+.table-of-contents li {
+    color: #006c40;
+    font-family: Rubik;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-decoration: none;
+}
+
+.content__table-of-contents {
+    margin: 42px 0 140px 0;
+}
+
+.table-of-contents>h2 {
+    margin: 0 0 25px 0;
+}
+
+.table-of-contents ul {
+    list-style-type: none;
+    padding: 0 0 0 33px;
+}
+
+.table-of-contents li {
+    margin-bottom: 15px;
+}
+
+.table-of-contents ul a {
+    text-decoration: none;
+    color: #006c40;
+    ;
+}
+
+.table-of-contents ul ul {
+    margin: 15px 0 0 0;
+    padding: 0 0 0 12px;
+}

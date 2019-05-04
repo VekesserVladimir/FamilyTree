@@ -1,0 +1,21 @@
+.button {
+    height: 40px;
+    width: 220px;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffffff;
+    border: 0;
+    padding: 0;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.button_primary {
+    width: calc(100% - 40px);
+    background-color: #41b883;
+}
+
+.person-card-front__button {
+    margin: 15px 20px 17px 20px;
+}
