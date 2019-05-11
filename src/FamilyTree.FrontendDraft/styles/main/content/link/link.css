@@ -1,0 +1,20 @@
+.link {
+	text-decoration: none;
+	font-family: Rubik;
+	font-size: 16px;
+	line-height: 25px;
+}
+
+.link_blue {
+	font-family: Montserrat;
+	color: #1F72AD;
+}
+
+.link_green_dark {
+	color: #006c40;
+	line-height: 24px;
+}
+
+.link_green_medium {
+	color: #41B883;
+}

@@ -16,6 +16,12 @@
     background-color: #41b883;
 }
 
+.button_secondary {
+    width: 228px;
+    background-color: #1F72AD;
+}
+
 .person-card-front__button {
     margin: 15px 20px 17px 20px;
 }
+

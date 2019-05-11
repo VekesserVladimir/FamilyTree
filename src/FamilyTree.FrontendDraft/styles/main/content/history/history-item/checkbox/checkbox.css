@@ -1,0 +1,24 @@
+.checkbox input[type='checkbox'] {
+	display: none;
+}
+
+.checkbox__custom-checkbox {
+	transition: 0.1s;
+}
+
+.checkbox_history .checkbox__custom-checkbox {
+	box-sizing: border-box;
+	width: 25px;
+	height: 25px;
+	border-radius: 25px;
+	border: 4px solid #99CDF3;
+}
+
+.checkbox input[type='checkbox']:checked + .checkbox__custom-checkbox {
+	border-color: #1F72AD;
+	background-color: #1F72AD;
+}
+
+.checkbox__custom-checkbox_hidden {
+	visibility: hidden;
+}

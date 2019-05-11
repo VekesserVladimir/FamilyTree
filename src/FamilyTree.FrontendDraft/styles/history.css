@@ -1,0 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Adamina|Montserrat|Rubik');
+
+@import url("./header/header.css");
+@import url("./main/main.css");
+@import url("./media queries/media-queries.css");

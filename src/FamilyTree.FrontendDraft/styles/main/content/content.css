@@ -3,6 +3,9 @@
 @import url(./table-of-contents/table-of-contents.css);
 @import url(./image/image.css);
 @import url(./gallery/gallery.css);
+@import url(./input-form/input-form.css);
+@import url(./history/history.css);
+@import url(./link/link.css);
 
 .content {
     width: 832px;
@@ -14,7 +17,7 @@
     margin: 0 0 50px 111px;
 }
 
-.content h1 {
+.h1 {
     margin: 0 0 12px 0;
     font-size: 64px;
     line-height: 79px;
@@ -23,7 +26,11 @@
     font-family: Montserrat;
 }
 
-.content h2 {
+.h1_narrow {
+    font-weight: 100;
+}
+
+.h2 {
     margin: 0 0 23px 0;
     font-size: 36px;
     line-height: 50px;
@@ -31,7 +38,7 @@
     font-weight: 300;
 }
 
-.content h3 {
+.h3 {
     margin: 0 0 23px 0;
     font-size: 24px;
     line-height: 29px;
@@ -39,10 +46,15 @@
     font-weight: 500;
 }
 
-.content p {
+.content_paragraph {
     margin: 0 0 23px 0;
     font-family: Rubik;
     font-size: 16px;
     line-height: 24px;
     font-weight: 400;
+}
+
+.content__history_controls_container {
+    margin-top: 20px;
+    display: flex;
 }
