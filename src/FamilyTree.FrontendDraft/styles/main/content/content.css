@@ -8,6 +8,7 @@
 @import url(./link/link.css);
 @import url(./revision/revision.css);
 @import url(./item-heading/item-heading.css);
+@import url(./search-list/search-list.css);
 
 .content {
     width: 832px;

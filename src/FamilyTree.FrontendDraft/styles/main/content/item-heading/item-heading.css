@@ -4,3 +4,11 @@
     font-family: Rubik;
     margin: 0 0 14px 0;
 }
+
+.search-item__item-heading {
+	margin: 0 0 4px 0;
+}
+
+.item-heading_green {
+	color: #006C40;
+}

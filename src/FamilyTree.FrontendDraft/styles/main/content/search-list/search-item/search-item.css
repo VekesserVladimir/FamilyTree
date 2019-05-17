@@ -1,0 +1,10 @@
+.search-item {
+    width: 100%;
+}
+
+.search-list__content {
+    margin: 0 0 15px 0;
+    font-family: Rubik;
+    font-size: 16px;
+    line-height: 25px;
+}

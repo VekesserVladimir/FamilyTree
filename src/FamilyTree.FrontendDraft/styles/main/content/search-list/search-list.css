@@ -1,0 +1,9 @@
+@import url(./search-item/search-item.css);
+
+.search-list {
+	width: 100%;
+}
+
+.content__search-list {
+	margin-top: 22px;
+}
