@@ -5,6 +5,11 @@
 	line-height: 25px;
 }
 
+.link_red {
+	font-family: Montserrat;
+	color: #FF391E;
+}
+
 .link_blue {
 	font-family: Montserrat;
 	color: #1F72AD;

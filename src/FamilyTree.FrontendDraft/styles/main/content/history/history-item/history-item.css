@@ -2,8 +2,10 @@
 
 .history-item {
     width: 100%;
+    box-sizing: border-box;
 	display: flex;
-	margin: 0 0 19px 9px;
+	margin-bottom: 19px;
+	padding-left: 9px;
 }
 
 .history-item__checkbox-container {
@@ -17,22 +19,16 @@
 	margin-left: 46px;
 }
 
-.history-item__heading {
-    font-size: 24px;
-    line-height: 28px;
-    font-family: Rubik;
-}
-
 .history-item__wrapper {
     display: flex;
     align-items: flex-end;
 }
 
-.history-item__wrapper .link:nth-child(2) {
+.history-item__wrapper .history-item__link:nth-child(2) {
     margin-left: 8px;
 }
 
-.history-item__wrapper .link:nth-child(3) {
+.history-item__wrapper .history-item__link:nth-child(3) {
     margin-left: auto;
 }
 

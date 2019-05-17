@@ -1,0 +1,22 @@
+.revision {
+	box-sizing: border-box;
+	width: 100%;
+	border-radius: 25px;
+	border: 2px solid #FF9E20;
+	padding: 15px 39px 5px 23px;
+}
+
+.content__revision {
+	margin-bottom: 14px;
+}
+
+.revision__info {
+	font-family: Rubik;
+	
+}
+
+.revision__link-wrapper {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 14px;
+}

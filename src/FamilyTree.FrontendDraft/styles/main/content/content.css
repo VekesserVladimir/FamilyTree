@@ -6,6 +6,8 @@
 @import url(./input-form/input-form.css);
 @import url(./history/history.css);
 @import url(./link/link.css);
+@import url(./revision/revision.css);
+@import url(./item-heading/item-heading.css);
 
 .content {
     width: 832px;

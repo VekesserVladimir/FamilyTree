@@ -30,8 +30,5 @@ var vm = new Vue({
                 this.searchForm.isActive = false;
             }
         }
-    },
-    mounted() {
-        document.querySelector('.history-item:nth-child(1)').classList.add('');
     }
 })
