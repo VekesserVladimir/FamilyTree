@@ -12,16 +12,39 @@
 }
 
 .button_primary {
-    width: calc(100% - 40px);
     background-color: #41b883;
 }
 
 .button_secondary {
-    width: 228px;
     background-color: #1F72AD;
 }
 
+.button_high {
+    height: 50px;
+}
+
+.button_secondary_light {
+    background-color: transparent;
+    color: #1F72AD;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    border: 1px solid #1F72AD;
+}
+
 .person-card-front__button {
+    width: calc(100% - 40px);
     margin: 15px 20px 17px 20px;
 }
 
+.history_controls_container__button {
+    width: 228px;
+}
+
+.content__button {
+    width: 150px;
+}
+
+.edit-person-form__button {
+    width: 133px;
+}

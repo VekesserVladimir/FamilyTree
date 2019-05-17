@@ -9,6 +9,7 @@
 @import url(./revision/revision.css);
 @import url(./item-heading/item-heading.css);
 @import url(./search-list/search-list.css);
+@import url(./edit-person-form/edit-person-form.css);
 
 .content {
     width: 832px;
@@ -20,13 +21,38 @@
     margin: 0 0 50px 111px;
 }
 
+.content__edit-wrapper {
+    margin-bottom: 21px;
+}
+
+.content__edit-wrapper_center {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content__edit-wrapper_low {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 22px;
+}
+
+.content__edit-wrapper button {
+    margin-left: 11px;
+}
+
 .h1 {
     margin: 0 0 12px 0;
     font-size: 64px;
-    line-height: 79px;
+    line-height: 78px;
     font-weight: 100;
     font-stretch: ultra-condensed;
     font-family: Montserrat;
+}
+
+.edit-wrapper__h1 {
+    margin: 0;
 }
 
 .h1_narrow {

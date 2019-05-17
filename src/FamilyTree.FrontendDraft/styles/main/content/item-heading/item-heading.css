@@ -2,7 +2,7 @@
     font-size: 24px;
     line-height: 28px;
     font-family: Rubik;
-    margin: 0 0 14px 0;
+    margin: 0;
 }
 
 .search-item__item-heading {
@@ -11,4 +11,8 @@
 
 .item-heading_green {
 	color: #006C40;
+}
+
+.revision__item-heading {
+	margin: 0 0 14px 0;
 }

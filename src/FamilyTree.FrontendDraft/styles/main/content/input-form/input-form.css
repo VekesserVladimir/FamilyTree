@@ -5,7 +5,7 @@
     align-items: center;
 }
 
-.input-form__field {
+.input-field {
     font-family: Montserrat;
     width: 174px;
     height: 100%;
@@ -17,9 +17,17 @@
     transition: border 0.25s ease-in-out;
 }
 
-.input-form__field:focus {
+.input-field:focus {
     outline: none;
     border-color: #66dcac;
+}
+
+.input-field_high {
+    height: 50px;
+}
+
+.edit-person-group__input-field {
+    width: 100%;
 }
 
 .input-form__name {
