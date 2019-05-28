@@ -1,0 +1,10 @@
+@import url(./compare-part/compare-part.css);
+
+.compare-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.content__compare-container {
+	margin-top: 28px;
+}

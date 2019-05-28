@@ -10,6 +10,7 @@
 @import url(./item-heading/item-heading.css);
 @import url(./search-list/search-list.css);
 @import url(./edit-person-form/edit-person-form.css);
+@import url(./compare-container/compare-container.css);
 
 .content {
     width: 832px;
