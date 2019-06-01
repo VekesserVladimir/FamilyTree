@@ -1,4 +1,5 @@
 @import url(./person-card-front/person-card-front.css);
+@import url(./person-card-back/person-card-back.css);
 
 .person-card-wrapper {
     width: 264px;

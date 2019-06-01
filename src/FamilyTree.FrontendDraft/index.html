@@ -123,44 +123,102 @@
 					<button class="button button_primary person-card-front__button">Build Tree</button>
 				</div>
 				<div class="person-card-back person-card-wrapper__person-card-back" v-bind:class="{ 'person-card-back_active' : personCard.editingIsActive }">
-					<img src="images/person-photo-image.jpg" alt="Person Photo" class="person-card-front__person-photo">
-					<div class="person-card-front__person-info">
-						<button class="edit-card-button person-card-front__edit-card-button" v-on:click='personCard.editingIsActive = false;'>
-							<div class="edit-card-button__dot"></div>
-							<div class="edit-card-button__dot"></div>
-							<div class="edit-card-button__dot"></div>
-						</button>
-						<span class="person-card-front__life-years">01.01.1900 - 01.01.2000</span>
-						<div class='row person-card-front__row'>
-							<span class='row__name'>Father:</span>
-							<a href="#" class="row__value">Ivanov I.I.</a>
+					<form action="" class='person-card-back__edit-form'>
+						<div class="person-card-back__row">
+							<span class="person-card-back__row-name">First name</span>
+							<input type="text" class='input-field person-card-back__input-form'>
 						</div>
-						<div class='row person-card-front__row'>
-							<span class='row__name'>Mother:</span>
-							<a href="#" class="row__value">Ivanova I.I.</a>
+						<div class="person-card-back__row">
+							<span class="person-card-back__row-name">Last name</span>
+							<input type="text" class='input-field person-card-back__input-form'>
 						</div>
-						<div class="row person-card-front__row">
-							<span class="row__name">Children</span>
-							<ul class='person-card-list'>
-								<li class="row__value"><a href="#">Ivanov I.I.</a></li>
-								<li class="row__value"><a href="#">Ivanov I.I.</a></li>
-							</ul>
+						<div class="person-card-back__row">
+							<span class="person-card-back__row-name">Middle name</span>
+							<input type="text" class='input-field person-card-back__input-form'>
 						</div>
-						<div class="row person-card-front__row">
-							<span class="row__name">Marriage</span>
-							<ul class='person-card-list'>
-								<li>
-									<a href="#" class='row__value'>Ivanov I.I.</a>
-									<span class='row__second-value'>1930-1950</span>
-								</li>
-								<li>
-									<a href="#" class='row__value'>Ivanov I.I.</a>
-									<span class='row__second-value'>1950-1970</span>
-								</li>
-							</ul>
+						<div class="person-card-back__row">
+							<span class="person-card-back__row-name">Date of birth</span>
+							<input type="date" class='input-field person-card-back__input-form'>
 						</div>
-					</div>
-					<button class="button button_primary person-card-front__button">Save changes</button>
+						<div class="person-card-back__row">
+							<span class="person-card-back__row-name">Date of death</span>
+							<input type="date" class='input-field person-card-back__input-form'>
+							<label class='checkbox person-card-back__checkbox_death'>
+								<input type="checkbox" checked>
+								<div class="checkbox__custom-checkbox"></div>
+							</label>
+						</div>
+						<div class="person-card-back__row">
+							<span class="person-card-back__row-name">Father</span>
+							<div class='person-card-back__search-form'>
+								<input type="text" class='search-form__field search-form__field_card'>
+								<input type="submit" class='person-card-back__submit-button' value="" title='Искать'>
+							</div>
+						</div>
+						<div class="person-card-back__row">
+							<span class="person-card-back__row-name">Mother</span>
+							<div class='person-card-back__search-form'>
+								<input type="text" class='search-form__field search-form__field_card'>
+								<input type="submit" class='person-card-back__submit-button' value="" title='Искать'>
+							</div>
+						</div>
+						<div class="person-card-back__row">
+							<div class='person-card-back__heading-wrapper'>
+								<span class="person-card-back__row-name">Marriage</span>
+								<div class='add-button_wrapper'>
+									<button class='add-button-wrapper__button'>
+									</button>
+									<span class="add-button-wrapper__name">Add new</span>
+								</div>	
+							</div>
+							<div class="add-form" id='add-form_marriage' v-bind:class="{ addForm_marriage_collapsed : addFormMarriage.isActive }">
+								<button class="add-form__close-button" v-on:click.prevent="closeAddFormMarriage">
+									<div></div>
+									<div></div>
+								</button>
+								<div class="person-card-back__row">
+									<span class="person-card-back__row-name person-card-back__row-name_white">Person</span>
+									<div class='person-card-back__search-form'>
+										<input type="text" class='search-form__field search-form__field_card'>
+										<input type="submit" class='person-card-back__submit-button' value="" title='Искать'>
+									</div>
+								</div>
+								<div class="person-card-back__row">
+									<span class='person-card-back__row-name person-card-back__row-name_white'>Date of mariage</span>
+									<div class="add-form__wrapper">
+										<input type="date" class='input-field person-card-back__input-form'>
+										<span class='add-form__dash'>-</span>
+										<input type="date" class='input-field person-card-back__input-form'>
+										<div class='add-button_wrapper'>
+											<label class='checkbox'>
+												<input type="checkbox">
+												<div class="checkbox__custom-checkbox"></div>
+											</label>
+											<span class="add-button-wrapper__name add-button-wrapper__name_light">Present</span>
+										</div>
+										<button class="button button_primary button_small">Add</button>
+									</div>
+								</div>
+							</div>
+							<div class="family-member-list person-card-back__family-member-list">
+								<div class="family-member">
+									<div class="family-member__wrapper">
+										<span class='family-member__name'>Ivanov Ivan Ivanovich</span>
+									</div>
+									<div class="family-member__wrapper">
+										<span class='family-member__date'>2010.03.01</span>
+										<span>-</span>
+										<span class='family-member__date'>2010.04.01</span>
+									</div>
+									<div class="family-member__wrapper">
+										<button class="family-member__button"></button>
+										<button class="family-member__button"></button>
+									</div>
+								</div>
+								<div class="family-member"></div>
+							</div>
+						</div>
+					</form>
 				</div>
 			</div>
 			<h1 class='h1'>Heading 1</h1>

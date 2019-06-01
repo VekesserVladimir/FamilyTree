@@ -1,0 +1,34 @@
+.input-field {
+    font-family: Montserrat;
+    width: 174px;
+    height: 100%;
+    border-radius: 25px;
+    border: 1px solid #bbbbbb;
+    padding: 3px 0 0 25px;
+    box-sizing: border-box;
+    font-size: 22px;
+    transition: border 0.2s ease-in-out;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #66dcac;
+}
+
+.input-field_high {
+    height: 50px;
+}
+
+.edit-person-group__input-field {
+    width: 100%;
+}
+.history_controls_container__input-form {
+	margin-left: 56px;
+}
+
+.person-card-back__input-form {
+    width: 100%;
+    height: 25px;
+    padding: 1px 0 0 12px;
+    font-size: 16px;
+}

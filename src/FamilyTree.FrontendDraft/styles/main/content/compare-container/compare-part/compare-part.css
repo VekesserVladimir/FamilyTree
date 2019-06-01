@@ -8,18 +8,18 @@
 	box-sizing: border-box;
 }
 
-.compare-part_red {
+.compare-part_deleted {
 	border: 1px solid #FFB8B8;
 }
 
-.compare-part_green {
+.compare-part_added {
 	border: 1px solid #66DCAC;
 }
 
-.compare-part__difference_color_red {
+.compare-part__difference_deleted {
 	background-color: #FFB8B8;
 }
 
-.compare-part__difference_color_green {
+.compare-part__difference_added {
 	background-color: #66DCAC;
 }

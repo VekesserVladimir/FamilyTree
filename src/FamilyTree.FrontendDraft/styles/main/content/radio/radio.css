@@ -1,12 +1,16 @@
-.checkbox input[type='checkbox'] {
+.radio {
+	height: 25px;
+}
+
+.radio input[type='checkbox'] {
 	display: none;
 }
 
-.checkbox__custom-checkbox {
+.radio__custom-radio {
 	transition: 0.1s;
 }
 
-.checkbox_history .checkbox__custom-checkbox {
+.radio_history .radio__custom-radio {
 	box-sizing: border-box;
 	width: 25px;
 	height: 25px;
@@ -14,11 +18,11 @@
 	border: 4px solid #99CDF3;
 }
 
-.checkbox input[type='checkbox']:checked + .checkbox__custom-checkbox {
+.radio input[type='checkbox']:checked + .radio__custom-radio {
 	border-color: #1F72AD;
 	background-color: #1F72AD;
 }
 
-.checkbox__custom-checkbox_hidden {
+.radio__custom-radio_hidden {
 	visibility: hidden;
 }

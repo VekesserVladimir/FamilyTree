@@ -1,0 +1,37 @@
+@import url(./add-button-wrapper/add-button-wrapper.css);
+@import url(./add-form/add-form.css);
+@import url(./family-member-list/family-member-list.css);
+
+.person-card-back {
+	padding: 30px 28px 0px 24px;
+}
+
+.person-card-back__row {
+	margin-bottom: 15px;
+}
+
+.person-card-back__row-name {
+	width: 81px;
+	font-family: Montserrat;
+	font-size: 15px;
+	line-height: 25px;
+	margin-right: 10px;
+}
+
+.person-card-back__row-name_white {
+	color: #dddddd;
+}
+
+.person-card-back__row_horizontal {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.add-form__wrapper .input-field {
+	width: 160px;
+}
+
+.add-form__wrapper .add-button_wrapper, .add-form__wrapper .button {
+	margin-top: 10px;
+}

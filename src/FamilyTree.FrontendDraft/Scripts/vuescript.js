@@ -14,6 +14,9 @@ var vm = new Vue({
         },
         accountMenu: {
             isActive: false
+        },
+        addFormMarriage: {
+            isActive: false
         }
     },
     methods: {

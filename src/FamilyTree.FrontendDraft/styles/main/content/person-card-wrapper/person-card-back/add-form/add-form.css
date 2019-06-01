@@ -1,0 +1,71 @@
+.add-form {
+	width: calc(100% + 24px + 28px);
+	background-color: #333333;
+	margin-left: -24px;
+	box-shadow: inset 0px 4px 5px rgba(0, 0, 0, 0.25), inset 0px -4px 5px rgba(0, 0, 0, 0.25);
+	margin-top: 8px;
+	padding: 1px 28px 1px 24px;
+	box-sizing: border-box;
+	position: relative;
+	overflow: hidden;
+	
+}
+
+#add-form_marriage {
+	transition: height 2s;
+}
+
+.add-form .person-card-back__row:nth-child(2) {
+	margin-top: -10px;
+}
+
+.add-form__wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.add-form__dash {
+	margin: 0 0 0 75px;
+	color: #c4c4c4;
+}
+
+.add-form__close-button {
+	width: 11px;
+	height: 11px;
+	position: relative;
+	padding: 0;
+	margin: 0;
+	border: none;
+	background-color: transparent;
+	margin-left: 104.5%;
+	margin-top: 7px;
+	cursor: pointer;
+}
+
+.add-form__close-button div {
+	height: 14px;
+	width: 2px;
+	position: absolute;
+	border-radius: 25px;
+	background-color: #DDDDDD;
+}
+
+.add-form__close-button div:nth-child(1) {
+	position: absolute;
+	top: -2px;
+	left: 4.5px;
+	transform: rotate(-45deg);
+}
+
+.add-form__close-button div:nth-child(2) {
+	position: absolute;
+	top: -2px;
+	left: 4.5px;
+	transform: rotate(45deg);	
+}
+
+.addForm_marriage_collapsed {
+	height: 0px;
+	padding: 0px;
+}

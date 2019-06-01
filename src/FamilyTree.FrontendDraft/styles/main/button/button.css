@@ -23,6 +23,13 @@
     height: 50px;
 }
 
+.button_small {
+    height: 20px;
+    width: 62px;
+    font-size: 14px;
+    margin: 0;
+}
+
 .button_secondary_light {
     background-color: transparent;
     color: #1F72AD;

@@ -5,38 +5,9 @@
     align-items: center;
 }
 
-.input-field {
-    font-family: Montserrat;
-    width: 174px;
-    height: 100%;
-    border-radius: 25px;
-    border: 1px solid #bbbbbb;
-    padding: 3px 0 0 25px;
-    box-sizing: border-box;
-    font-size: 22px;
-    transition: border 0.25s ease-in-out;
-}
-
-.input-field:focus {
-    outline: none;
-    border-color: #66dcac;
-}
-
-.input-field_high {
-    height: 50px;
-}
-
-.edit-person-group__input-field {
-    width: 100%;
-}
-
 .input-form__name {
 	font-family: Montserrat;
 	font-size: 16px;
 	line-height: 25px;
 	margin-right: 8px;
-}
-
-.history_controls_container__input-form {
-	margin-left: 56px;
 }
