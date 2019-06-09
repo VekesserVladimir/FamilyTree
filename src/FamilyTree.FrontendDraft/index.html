@@ -123,6 +123,10 @@
 					<button class="button button_primary person-card-front__button">Build Tree</button>
 				</div>
 				<div class="person-card-back person-card-wrapper__person-card-back" v-bind:class="{ 'person-card-back_active' : personCard.editingIsActive }">
+					<button class="person-card-back__close-button person-card-back__close-button_big person-card-back__close-button_dark" v-on:click.prevent="toggleEditPersonForm">
+						<div></div>
+						<div></div>
+					</button>
 					<form action="" class='person-card-back__edit-form'>
 						<div class="person-card-back__row">
 							<span class="person-card-back__row-name">First name</span>
@@ -165,14 +169,14 @@
 						<div class="person-card-back__row">
 							<div class='person-card-back__heading-wrapper'>
 								<span class="person-card-back__row-name">Marriage</span>
-								<div class='add-button_wrapper'>
+								<div class='add-button_wrapper' v-if='addFormMarriage.isActive' v-on:click='toggleAddFormMarriage'>
 									<button class='add-button-wrapper__button'>
 									</button>
 									<span class="add-button-wrapper__name">Add new</span>
 								</div>	
 							</div>
 							<div class="add-form" id='add-form_marriage' v-bind:class="{ addForm_marriage_collapsed : addFormMarriage.isActive }">
-								<button class="add-form__close-button" v-on:click.prevent="closeAddFormMarriage">
+								<button class="person-card-back__close-button person-card-back__close-button_small person-card-back__close-button_light" v-on:click.prevent="toggleAddFormMarriage">
 									<div></div>
 									<div></div>
 								</button>
@@ -211,8 +215,8 @@
 										<span class='family-member__date'>2010.04.01</span>
 									</div>
 									<div class="family-member__wrapper">
-										<button class="family-member__button"></button>
-										<button class="family-member__button"></button>
+										<button class="family-member__button family-member__button_edit"></button>
+										<button class="family-member__button family-member__button_delete"></button>
 									</div>
 								</div>
 								<div class="family-member"></div>

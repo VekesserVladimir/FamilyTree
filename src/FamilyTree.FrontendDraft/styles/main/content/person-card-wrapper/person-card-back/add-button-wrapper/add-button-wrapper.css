@@ -2,6 +2,7 @@
 	display: flex;
 	align-items: flex-end;
 	margin-top: 2px;
+	cursor: pointer;
 }
 
 .add-button-wrapper__name {
@@ -22,11 +23,7 @@
 	background-position: 2px 2px;
 	position: relative;
 	margin-left: -18px;
-}
-
-.person-card-back__heading-wrapper {
-	display: flex;
-	align-items: center;
+	cursor: pointer;
 }
 
 .add-button-wrapper__name {

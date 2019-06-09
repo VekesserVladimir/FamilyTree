@@ -2,7 +2,7 @@
 	height: 25px;
 }
 
-.radio input[type='checkbox'] {
+.radio input[type='radio'] {
 	display: none;
 }
 
@@ -18,7 +18,7 @@
 	border: 4px solid #99CDF3;
 }
 
-.radio input[type='checkbox']:checked + .radio__custom-radio {
+.radio input[type='radio']:checked + .radio__custom-radio {
 	border-color: #1F72AD;
 	background-color: #1F72AD;
 }

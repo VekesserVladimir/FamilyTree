@@ -23,12 +23,15 @@
 }
 
 .family-member__button {
-	width: 10px;
-	height: 10px;
+	width: 14px;
+	height: 14px;
 	padding: 0;
 	margin: 0;
 	border: none;
 	cursor: pointer;
+	background-color: transparent;
+	background-size: contain;
+	background-repeat: no-repeat;
 }
 
 .family-member__name {
@@ -58,4 +61,12 @@
 	font-family: Montserrat;
 	font-size: 10px;
 	line-height: 12px;
+}
+
+.family-member__button_edit {
+	background-image: url(../../../../../../../images/edit-button-image.svg);
+}
+
+.family-member__button_delete {
+	background-image: url(../../../../../../../images/delete-button-image.svg);
 }

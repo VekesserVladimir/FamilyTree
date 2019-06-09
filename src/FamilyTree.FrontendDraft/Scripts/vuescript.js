@@ -1,3 +1,14 @@
+Vue.component('history-item-control', {
+    data: function() {
+        return {
+            isActive: false,
+            leftCheckboxIsActive: false,
+            rightCheckboxIsActive: false
+        }
+    },
+    template: "<div class='history-item__radio-container'><label class='radio radio_history'><input type='radio' name='item1'><div class='radio__custom-radio'></div></label><label class='radio radio_history'><input type='radio' name='item1'><div class='radio__custom-radio'></div></label></div>"
+})
+
 var vm = new Vue({
     el: '#vue-app',
     data: {
@@ -16,7 +27,7 @@ var vm = new Vue({
             isActive: false
         },
         addFormMarriage: {
-            isActive: false
+            isActive: true
         }
     },
     methods: {
@@ -32,6 +43,12 @@ var vm = new Vue({
                 document.querySelector('.search-form').style.display = 'none';
                 this.searchForm.isActive = false;
             }
+        },
+        toggleEditPersonForm: function() {
+            this.addFormMarriage.isActive = false;
+        },
+        toggleAddFormMarriage: function() {
+            this.addFormMarriage.isActive = !this.addFormMarriage.isActive;
         }
     }
 })
