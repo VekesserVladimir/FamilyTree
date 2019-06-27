@@ -1,12 +1,12 @@
 .add-button_wrapper {
 	display: flex;
-	align-items: flex-end;
+	align-items: center;
 	margin-top: 2px;
 	cursor: pointer;
 }
 
 .add-button-wrapper__name {
-	margin-left: 4px;
+	margin: 0 4px;
 	font-family: Montserrat;
 	font-size: 10px;
 	line-height: 15px;
@@ -27,7 +27,7 @@
 }
 
 .add-button-wrapper__name {
-	color: #555555;
+	color: #666666;
 	letter-spacing: 1px;
 }
 

@@ -16,7 +16,7 @@
 			><span class="site-logo__name" v-show='!searchForm.isActive'>FamilyTree</span>
 		</a
 		><form class='search-form header__search-form' action="" method="POST">
-				<input type="text" placeholder="Search" class='search-form__field' v-on:blur="closeSearchForm">
+				<input type="text" placeholder="Search" class='input-field search-form__input-field' v-on:blur="closeSearchForm">
 				<input type="submit" class='search-form__submit-button' value="" title='Искать'>
 		</form
 		><button class='mobile-search-button header__mobile-search-button' v-show='!searchForm.isActive' v-on:click="openSearchForm">
@@ -85,7 +85,7 @@
 				<div class="person-card-front person-card-wrapper__person-card-front" v-bind:class="{ 'person-card-front_active' : personCard.editingIsActive }">
 					<img src="images/person-photo-image.jpg" alt="Person Photo" class="person-card-front__person-photo">
 					<div class="person-card-front__person-info">
-						<button class="edit-card-button person-card-front__edit-card-button" v-on:click='personCard.editingIsActive = true;'>
+						<button class="edit-card-button person-card-front__edit-card-button" v-on:click='openEditPersonForm'>
 							<div class="edit-card-button__dot"></div>
 							<div class="edit-card-button__dot"></div>
 							<div class="edit-card-button__dot"></div>
@@ -123,108 +123,61 @@
 					<button class="button button_primary person-card-front__button">Build Tree</button>
 				</div>
 				<div class="person-card-back person-card-wrapper__person-card-back" v-bind:class="{ 'person-card-back_active' : personCard.editingIsActive }">
-					<button class="person-card-back__close-button person-card-back__close-button_big person-card-back__close-button_dark" v-on:click.prevent="toggleEditPersonForm">
+					<button class="person-card-back__close-button person-card-back__close-button_big person-card-back__close-button_dark" v-on:click.prevent="closeEditPersonForm">
 						<div></div>
 						<div></div>
 					</button>
-					<form action="" class='person-card-back__edit-form'>
+					<form action="" class='person-card-back__edit-form' @submit='checkForm'>
 						<div class="person-card-back__row">
 							<span class="person-card-back__row-name">First name</span>
-							<input type="text" class='input-field person-card-back__input-form'>
+							<input type="text" class='input-field person-card-back__input-form' v-model='personCard.firstName' v-bind:class='{ "search-form__field_error_light" : personCard.errors.firstNameError }'>
 						</div>
 						<div class="person-card-back__row">
 							<span class="person-card-back__row-name">Last name</span>
-							<input type="text" class='input-field person-card-back__input-form'>
+							<input type="text" class='input-field person-card-back__input-form' v-model='personCard.lastName' v-bind:class='{ "search-form__field_error_light" : personCard.errors.lastNameError }'>
 						</div>
 						<div class="person-card-back__row">
 							<span class="person-card-back__row-name">Middle name</span>
-							<input type="text" class='input-field person-card-back__input-form'>
+							<input type="text" class='input-field person-card-back__input-form' v-model='personCard.middleName' v-bind:class='{ "search-form__field_error_light" : personCard.errors.middleNameError }'>
 						</div>
 						<div class="person-card-back__row">
 							<span class="person-card-back__row-name">Date of birth</span>
-							<input type="date" class='input-field person-card-back__input-form'>
+							<input type="date" class='input-field person-card-back__input-form' v-model='personCard.dateOfBirth' v-bind:class='{ "search-form__field_error_light" : personCard.errors.dateOfBirthError }'>
 						</div>
 						<div class="person-card-back__row">
 							<span class="person-card-back__row-name">Date of death</span>
-							<input type="date" class='input-field person-card-back__input-form'>
-							<label class='checkbox person-card-back__checkbox_death'>
-								<input type="checkbox" checked>
-								<div class="checkbox__custom-checkbox"></div>
-							</label>
+							<input type="date" class='input-field person-card-back__input-form' v-bind:disabled='personCard.stillAlive' v-model='personCard.dateOfDeath' v-bind:class='{ "search-form__field_error_light" : personCard.errors.dateOfDeathError }'>
+							<div class="add-button_wrapper person-card-back__checkbox_death">
+								<label class='checkbox'>
+									<span class='add-button-wrapper__name'>Person is alive</span>
+									<input type="checkbox" v-model='personCard.stillAlive'>
+									<div class="checkbox__custom-checkbox"></div>
+								</label>
+							</div>
 						</div>
 						<div class="person-card-back__row">
 							<span class="person-card-back__row-name">Father</span>
 							<div class='person-card-back__search-form'>
-								<input type="text" class='search-form__field search-form__field_card'>
+								<input type="text" class='input-field search-form__input-field search-form__field_card' v-model='personCard.father' v-bind:class='{ "search-form__field_error_light" : personCard.errors.fatherError }'>
 								<input type="submit" class='person-card-back__submit-button' value="" title='Искать'>
 							</div>
 						</div>
 						<div class="person-card-back__row">
 							<span class="person-card-back__row-name">Mother</span>
 							<div class='person-card-back__search-form'>
-								<input type="text" class='search-form__field search-form__field_card'>
+								<input type="text" class='input-field search-form__input-field search-form__field_card' v-model='personCard.mother' v-bind:class='{ "search-form__field_error_light" : personCard.errors.motherError }'>
 								<input type="submit" class='person-card-back__submit-button' value="" title='Искать'>
 							</div>
 						</div>
 						<div class="person-card-back__row">
-							<div class='person-card-back__heading-wrapper'>
-								<span class="person-card-back__row-name">Marriage</span>
-								<div class='add-button_wrapper' v-if='addFormMarriage.isActive' v-on:click='toggleAddFormMarriage'>
-									<button class='add-button-wrapper__button'>
-									</button>
-									<span class="add-button-wrapper__name">Add new</span>
-								</div>	
-							</div>
-							<div class="add-form" id='add-form_marriage' v-bind:class="{ addForm_marriage_collapsed : addFormMarriage.isActive }">
-								<button class="person-card-back__close-button person-card-back__close-button_small person-card-back__close-button_light" v-on:click.prevent="toggleAddFormMarriage">
-									<div></div>
-									<div></div>
-								</button>
-								<div class="person-card-back__row">
-									<span class="person-card-back__row-name person-card-back__row-name_white">Person</span>
-									<div class='person-card-back__search-form'>
-										<input type="text" class='search-form__field search-form__field_card'>
-										<input type="submit" class='person-card-back__submit-button' value="" title='Искать'>
-									</div>
-								</div>
-								<div class="person-card-back__row">
-									<span class='person-card-back__row-name person-card-back__row-name_white'>Date of mariage</span>
-									<div class="add-form__wrapper">
-										<input type="date" class='input-field person-card-back__input-form'>
-										<span class='add-form__dash'>-</span>
-										<input type="date" class='input-field person-card-back__input-form'>
-										<div class='add-button_wrapper'>
-											<label class='checkbox'>
-												<input type="checkbox">
-												<div class="checkbox__custom-checkbox"></div>
-											</label>
-											<span class="add-button-wrapper__name add-button-wrapper__name_light">Present</span>
-										</div>
-										<button class="button button_primary button_small">Add</button>
-									</div>
-								</div>
-							</div>
-							<div class="family-member-list person-card-back__family-member-list">
-								<div class="family-member">
-									<div class="family-member__wrapper">
-										<span class='family-member__name'>Ivanov Ivan Ivanovich</span>
-									</div>
-									<div class="family-member__wrapper">
-										<span class='family-member__date'>2010.03.01</span>
-										<span>-</span>
-										<span class='family-member__date'>2010.04.01</span>
-									</div>
-									<div class="family-member__wrapper">
-										<button class="family-member__button family-member__button_edit"></button>
-										<button class="family-member__button family-member__button_delete"></button>
-									</div>
-								</div>
-								<div class="family-member"></div>
-							</div>
+							<family-members type='marriage' ref='fm1'></family-members>
+							<family-members type='children' ref='fm2'></family-members>								
 						</div>
+						<input type='submit' class="button button_primary" value="Save changes">
 					</form>
 				</div>
 			</div>
+			<div class='markdown'>
 			<h1 class='h1'>Heading 1</h1>
 			<p class='content_paragraph'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem laudantium reprehenderit, quis, quibusdam vel, consequuntur dolor autem modi non est nostrum aspernatur esse laborum repellendus id sit neque nesciunt suscipit!</p>
 			<p class='content_paragraph'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis officiis optio reprehenderit molestiae minima. Cupiditate dolorum porro, reiciendis molestias hic deserunt, pariatur fugiat odio quia at fugit ut asperiores. Consectetur.
@@ -260,6 +213,7 @@
 				<div><img src="images/image.jpg" alt="person photos"></div>
 			</div>
 		</div>
+	</div>
 	</main>
 	<button class="mobile-build-tree-button vue-app__mobile-build-tree-button"></button>
 </div>

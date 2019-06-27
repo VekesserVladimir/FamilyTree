@@ -1,4 +1,5 @@
 .family-member {
+	box-sizing: border-box;
 	height: 50px;
 	width: 100%;
 	border: 1px solid #BBBBBB;
@@ -15,11 +16,14 @@
 }
 
 .family-member:first-child {
-	border-radius: 12.5px 12.5px 0 0;
+	border-top-left-radius: 12.5px;
+	border-top-right-radius: 12.5px;
 }
 
 .family-member:last-child {
-	border-radius: 0 0 12.5px 12.5px;
+	border-bottom-left-radius: 12.5px;
+	border-bottom-right-radius: 12.5px;
+	margin-bottom: 10px;
 }
 
 .family-member__button {
@@ -36,7 +40,7 @@
 
 .family-member__name {
 	display: inline-block;
-	width: 95px;
+	width: 90px;
 	margin: 0 10px;
 	font-family: Rubik;
 	font-weight: 300;
@@ -53,6 +57,10 @@
 	height: 100%;
 }
 
+.family-member__dash {
+	line-height: 10px;
+}
+
 .family-member__wrapper:last-child {
 	justify-content: space-around;
 }
@@ -60,11 +68,25 @@
 .family-member__date {
 	font-family: Montserrat;
 	font-size: 10px;
+	line-height: 15px;
+}
+
+.family-member__date-input {
+	font-family: Montserrat;
+	font-size: 10px;
 	line-height: 12px;
+	border-radius: 25px;
+	border: 1px solid #bbbbbb;
+	width: 100%;
+	padding: 1px 0 0 2px;
 }
 
 .family-member__button_edit {
 	background-image: url(../../../../../../../images/edit-button-image.svg);
+}
+
+.family-member__button_confirm {
+	background-image: url(../../../../../../../images/confirm-button-image.svg);
 }
 
 .family-member__button_delete {

@@ -15,6 +15,27 @@
     border-color: #66dcac;
 }
 
+.search-form__input-field {
+    width: 100%;
+}
+
+.search-form__field_error {
+    border-width: 2px;
+    border-color: #FF391E;
+}
+
+.search-form__field_error_light {
+    border-width: 1px;
+    border-color: #FF391E;
+}
+
+.search-form__field_card {
+    height: 25px;
+    color: black;
+    padding: 2px 12px;
+    font-size: 16px;
+}
+
 .input-field_high {
     height: 50px;
 }

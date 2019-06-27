@@ -1,54 +1,305 @@
+var familyMember = Vue.component('family-member', {
+	data: function() {
+		return {
+			memberName: this.name,
+			memberBirth: this.dateofbirth,
+			memberDeath: this.dateofdeath,
+			isEditing: false
+		}
+	},
+	methods: {
+		editMember: function() {
+			this.isEditing = true;
+		},
+		deleteMember: function() {
+			this.$emit('userdelete', this.index);
+		},
+		changeMember: function() {
+			if(this.memberName == '' || this.memberBirth == '' || this.memberDeath == '') return;
+			this.$emit('changemember', this.index, this.memberName, this.memberBirth, this.memberDeath);
+			this.isEditing = false;
+		}
+	},
+	props: [ "name", "startdate", "enddate", "index" ],
+	template:   "<div class='family-member'>" +
+					"<div class='family-member__wrapper'>" + 
+						"<span class='family-member__name'>{{ name }}</span>" +
+					"</div>" +
+					"<div class='family-member__wrapper'>" +
+						"<input type='text' class='family-member__date-input' v-if='isEditing' v-model='memberBirth'>" +
+						"<span class='family-member__date' v-if='!isEditing'>{{ startdate }}</span>" +
+						"<span class='family-member__dash'>-</span>" +
+						"<input type='text' class='family-member__date-input' v-if='isEditing' v-model='memberDeath'>" +
+						"<span class='family-member__date' v-if='!isEditing'>{{ enddate }}</span>" +
+					"</div>" +
+					"<div class='family-member__wrapper'>" +
+						"<button class='family-member__button family-member__button_edit' v-on:click.prevent='editMember' v-if='!isEditing'></button>" +
+						"<button class='family-member__button family-member__button_confirm' v-on:click.prevent='changeMember' v-if='isEditing'></button>" +
+						"<button class='family-member__button family-member__button_delete' v-on:click.prevent='deleteMember'></button>" +
+					"</div>" +
+				"</div>"
+})
+
+var fm = Vue.component('family-members', {
+	data: function() {
+		return {
+			isOpen: false,
+			memberList: [
+				{ 
+					name: 'Ivanov Ivan Ivanovich',
+					startDate: '01.01.2010',
+					endDate: '01.01.2011'
+				},
+				{
+					name: 'Ivanov Ivan Ivanovich',
+					startDate: '01.01.2013',
+					endDate: '01.01.2015'
+				},
+			],
+			addForm: {
+				isActive: false,
+				checkboxIsActive: true,
+				person: '',
+				startDate: '',
+				endDate: '',
+				personError: false,
+				startDateError: false,
+				endDateError: false
+			}
+		}
+	},
+	props: [ "type" ],
+	methods: {
+		openAddForm: function() {
+			this.addForm.isActive = true;
+		},
+		closeAddForm: function() {
+			this.addForm.person = '';
+			this.addForm.startDate = '';
+			this.addForm.endDate = '';
+			this.addForm.isActive = false;
+		},
+		addNewSpouse: function() {
+			var flag = false;
+			if(this.addForm.person == '') {
+				this.addForm.personError = true;
+				flag = true;
+			}
+			if(this.addForm.startDate == '') {
+				this.addForm.startDateError = true;
+				flag = true;
+			}
+			if(!this.addForm.checkboxIsActive && this.addForm.endDate == '') {
+				this.addForm.endDateError = true;
+				flag = true;
+			}
+			if(flag) return;
+			if(this.addForm.checkboxIsActive) {
+				this.addForm.endDate = 'present';
+			}
+			this.memberList.push({
+				name: this.addForm.person,
+				startDate: this.addForm.startDate.split('-').join('.'),
+				endDate: this.addForm.endDate.split('-').join('.')
+			});
+			this.closeAddForm();
+		},
+		deleteMember: function(index) {
+			console.log(this.type, typeof this.type);
+			this.memberList.splice(index, 1);
+		},
+		changeMember: function(index, name, birth, death) {
+			this.memberList[index].name = name;
+			this.memberList[index].startDate = birth;
+			this.memberList[index].endDate = death;
+		},
+		toggleList: function() {
+			this.isOpen = !this.isOpen;
+			this.addForm.isActive = false;
+		},
+		closeList: function() {
+			this.isOpen = false;
+			this.addForm.isActive = false;
+		}
+	},
+	components: {
+		familyMember
+	},
+	template:   "<div>" +
+					"<div class='person-card-back__heading-wrapper'>" +
+						"<span class='person-card-back__row-name person-card-back__list-button' v-on:click='toggleList'>{{type == 'marriage' ? 'Marriage' : 'Children'}}</span>" +
+						"<div class='person-card-back__openArrow' v-on:click='toggleList' v-if='!isOpen'></div>" +
+						"<div class='add-button_wrapper'  v-if='!addForm.isActive && isOpen' v-on:click='openAddForm'>" +
+							"<button class='add-button-wrapper__button'></button>" +
+							"<span class='add-button-wrapper__name'>Add new</span>" +
+						"</div>" +    
+					"</div>" +
+					"<div class='family-members-control' v-bind:class='{ \"family-members-control_collapsed\" : !isOpen }'>" +
+						"<div class='add-form' id='add-form_marriage' v-bind:class='{ addForm_marriage_collapsed : !addForm.isActive }'>" +
+							"<button class='person-card-back__close-button person-card-back__close-button_small person-card-back__close-button_light' v-on:click.prevent='closeAddForm'>" +
+								"<div></div>" +
+								"<div></div>" +
+							"</button>" +
+						"<div class='person-card-back__row'>" +
+							"<span class='person-card-back__row-name person-card-back__row-name_white'>Person</span>" +
+							"<div class='person-card-back__search-form'>" +
+								"<input type='text' class='input-field search-form__input-field search-form__field_card' v-model='addForm.person' v-bind:class='{ \"search-form__field_error\" : addForm.personError }'>" +
+								"<input type='submit' class='person-card-back__submit-button' value='' title='Искать'>" +
+							"</div>" +
+						"</div>" +
+						"<div class='person-card-back__row'>" +
+							"<span class='person-card-back__row-name person-card-back__row-name_white'>{{type == 'marriage' ? 'Date of marriage' : 'Years of life'}}</span>" +
+							"<div class='add-form__wrapper'>" +
+								"<input type='date' class='input-field person-card-back__input-form' v-model='addForm.startDate' v-bind:class='{ \"search-form__field_error\" : addForm.startDateError }'>" +
+								"<span class='add-form__dash' v-if='!addForm.checkboxIsActive'>-</span>" +
+								"<input type='date' class='input-field person-card-back__input-form' v-model='addForm.endDate' v-if='!addForm.checkboxIsActive' v-bind:class='{ \"search-form__field_error\" : addForm.endDateError }'>" +
+								"<div class='add-button_wrapper'>" +
+									"<label class='checkbox'>" +
+										"<input type='checkbox' v-model='addForm.checkboxIsActive'>" +
+										"<div class='checkbox__custom-checkbox'></div>" +
+										"<span class='add-button-wrapper__name add-button-wrapper__name_light'>{{type == 'marriage' ? 'Present' : 'Still alive'}}</span>" +
+									"</label>" +
+								"</div>" +
+								"<button class='button button_primary button_small' v-on:click.prevent='addNewSpouse'>Add</button>" +
+							"</div>" +
+						"</div>" +
+					"</div>" +
+					"<div class='family-member-list'>" +
+						"<family-member v-for='(member, index) in memberList' v-bind:key='member.id' v-bind:index='index' v-bind:name='member.name'" + 
+						"v-bind:startdate='member.startDate' v-bind:enddate='member.endDate' v-on:userdelete='deleteMember' v-on:changemember='changeMember'></family-member>" +
+					"</div>" +
+				"</div></div>"
+})
+
 Vue.component('history-item-control', {
-    data: function() {
-        return {
-            isActive: false,
-            leftCheckboxIsActive: false,
-            rightCheckboxIsActive: false
-        }
-    },
-    template: "<div class='history-item__radio-container'><label class='radio radio_history'><input type='radio' name='item1'><div class='radio__custom-radio'></div></label><label class='radio radio_history'><input type='radio' name='item1'><div class='radio__custom-radio'></div></label></div>"
+	data: function() {
+		return {
+			isActive: false,
+			leftCheckboxIsActive: false,
+			rightCheckboxIsActive: false
+		}
+	},
+	template:   "<div class='history-item__radio-container'>" +
+					"<label class='radio radio_history'>" +
+						"<input type='radio' name='item1'>" +
+						"<div class='radio__custom-radio'></div>" +
+					"</label>" +
+					"<label class='radio radio_history'>" +
+						"<input type='radio' name='item1'>" +
+						"<div class='radio__custom-radio'></div>" +
+					"</label>" +
+				"</div>"
+}) 
+
+Vue.component('search-form', {
+	data: function() {
+			return {
+					isActive: false
+			}
+	},
+	methods: {
+	},
+	template:   "<form class='search-form header__search-form' action='' method='POST'>" +
+					"<input type='text' placeholder='Search' class='search-form__field' v-on:blur='closeSearchForm'>" +
+					"<input type='submit' class='search-form__submit-button' value='' title='Искать'>" +
+				"</form>"
 })
 
 var vm = new Vue({
-    el: '#vue-app',
-    data: {
-        mobileNavigationMenu: {
-            isActive: false,
-            createItemActive: false,
-            browseItemActive: false
-        },
-        searchForm: {
-            isActive: false
-        },
-        personCard: {
-            editingIsActive: false
-        },
-        accountMenu: {
-            isActive: false
-        },
-        addFormMarriage: {
-            isActive: true
-        }
-    },
-    methods: {
-        openSearchForm: function() {
-            this.searchForm.isActive = true;
-            document.querySelector('.search-form').style.display = 'inline-block';
-            var form = document.querySelector('.search-form__field');
-            form.focus();
-            form.select();
-        },
-        closeSearchForm: function() {
-            if (document.querySelector('body').offsetWidth <= 750) {
-                document.querySelector('.search-form').style.display = 'none';
-                this.searchForm.isActive = false;
-            }
-        },
-        toggleEditPersonForm: function() {
-            this.addFormMarriage.isActive = false;
-        },
-        toggleAddFormMarriage: function() {
-            this.addFormMarriage.isActive = !this.addFormMarriage.isActive;
-        }
-    }
+	el: '#vue-app',
+	data: {
+		mobileNavigationMenu: {
+			isActive: false,
+			createItemActive: false,
+			browseItemActive: false
+		},
+		searchForm: {
+			isActive: false
+		},
+		personCard: {
+			editingIsActive: false,
+			stillAlive: true,
+			firstName: '',
+			lastName: '',
+			middleName: '',
+			dateOfBirth: '',
+			dateOfDeath: '',
+			father: '',
+			mother: '',
+			errors: {
+				firstNameError: false,
+				lastNameError: false,
+				middleNameError: false,
+				dateOfBirthError: false,
+				dateOfDeathError: false,
+				fatherError: false,
+				motherError: false
+			}
+		},
+		accountMenu: {
+				isActive: false
+		}
+	},
+	methods: {
+		openEditPersonForm: function() {
+			this.personCard.editingIsActive = true;
+		},
+		closeEditPersonForm: function() {
+			this.$refs.fm1.closeAddForm();
+			this.$refs.fm2.closeAddForm();
+			this.$refs.fm1.closeList();
+			this.$refs.fm2.closeList();
+			this.personCard.editingIsActive = false;
+		},
+		openSearchForm: function() {
+			this.searchForm.isActive = true;
+			document.querySelector('.search-form').style.display = 'inline-block';
+			var form = document.querySelector('.search-form__field');
+			form.focus();
+			form.select();
+		},
+		closeSearchForm: function() {
+			if (document.querySelector('body').offsetWidth <= 750) {
+				document.querySelector('.search-form').style.display = 'none';
+				this.searchForm.isActive = false;
+			}
+		},
+		checkForm: function(e) {
+			if(this.personCard.firstName != '' && 
+			   this.personCard.lastName != '' && 
+			   this.personCard.middleName != '' && 
+			   this.personCard.dateOfBirth && 
+			   ((this.personCard.stillAlive && this.personCard.dateOfDeath != '') || (!this.personCard.stillAlive)) && 
+			   this.personCard.father != '' && 
+			   this.personCard.mother != '') {
+				return true;
+			}
+			if(this.personCard.firstName == '') {
+				this.personCard.errors.firstNameError = true;
+			}
+			if(this.personCard.lastName == '') {
+				this.personCard.errors.lastNameError = true;
+			}
+			if(this.personCard.middleName == '') {
+				this.personCard.errors.middleNameError = true;
+			}
+			if(this.personCard.dateOfBirth == '') {
+				this.personCard.errors.dateOfBirthError = true;
+			}
+			if(!this.personCard.stillAlive && this.personCard.dateOfDeath == '') {
+				this.personCard.errors.dateOfDeathError = true;
+			}
+			if(this.personCard.father == '') {
+				this.personCard.errors.fatherError = true;
+			}
+			if(this.personCard.mother == '') {
+				this.personCard.errors.motherError = true;
+			}
+
+			e.preventDefault();
+		}
+	},
+	components: {
+		fm
+	}
 })
