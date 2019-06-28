@@ -14,6 +14,7 @@
 @import url(./person-card-wrapper/person-card-wrapper.css);
 @import url(./checkbox/checkbox.css);
 @import url(./radio/radio.css);
+@import url(./tree/tree.css);
 
 .content {
     width: 832px;
