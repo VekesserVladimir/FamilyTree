@@ -16,7 +16,7 @@
 			><span class="site-logo__name" v-show='!searchForm.isActive'>FamilyTree</span>
 		</a
 		><form class='search-form header__search-form' action="" method="POST">
-				<input type="text" placeholder="Search" class='search-form__field' v-on:blur="closeSearchForm">
+				<input type="text" placeholder="Search" class='input-field search-form__input-field' v-on:blur="closeSearchForm">
 				<input type="submit" class='search-form__submit-button' value="" title='Искать'>
 		</form
 		><button class='mobile-search-button header__mobile-search-button' v-show='!searchForm.isActive' v-on:click="openSearchForm">
@@ -81,89 +81,14 @@
 					<input type="submit" class="button button_secondary history_controls_container__button" value="Compare selected">
 					<div class='input-form history_controls_container__input-form'>
 						<span class='input-form__name'>Author</span>
-						<input type="text" class="input_field">
+						<input type="text" class="input-field">
 					</div>
 				</div>
-				<div class="history">
-					<div class="history-item">
-						<history-item-control></history-item-control>
-						<div class="history-item__content">
-							<div class='history-item__wrapper'>
-								<p class="item-heading">Add info about home</p>
-								<a href="#" class="link link_blue history-item__link">View revision</a>
-								<a href="#" class="link link_blue history-item__link">Revert</a>
-							</div>
-							<div class="history-item__wrapper">
-								<a href="" class="link link_green_medium history-item__link">Admin</a>
-								<span class="history-item__date">2019.11-01 14:01</span>
-							</div>
-							<p class="history-item__message">Add some extra information about the house itself and the nature around</p>
-						</div>
-					</div>
-					<div class="history-item">
-						<history-item-control></history-item-control>
-						<div class="history-item__content">
-							<div class='history-item__wrapper'>
-								<p class="item-heading">Add info about home</p>
-								<a href="#" class="link link_blue history-item__link">View revision</a>
-								<a href="#" class="link link_blue history-item__link">Revert</a>
-							</div>
-							<div class="history-item__wrapper">
-								<a href="" class="link link_green_medium history-item__link">Admin</a>
-								<span class="history-item__date">2019.11-01 14:01</span>
-							</div>
-						</div>
-					</div>
-					<div class="history-item">
-						<history-item-control></history-item-control>
-						<div class="history-item__content">
-							<div class='history-item__wrapper'>
-								<p class="item-heading">Add info about home</p>
-								<a href="#" class="link link_blue history-item__link">View revision</a>
-								<a href="#" class="link link_blue history-item__link">Revert</a>
-							</div>
-							<div class="history-item__wrapper">
-								<a href="" class="link link_green_medium history-item__link">Admin</a>
-								<span class="history-item__date">2019.11-01 14:01</span>
-							</div>
-							<p class="history-item__message">Add some extra information about the house itself and the nature around. Long log text entry that was left for whatever reasond to describe this particular revision with maximum details</p>
-						</div>
-					</div>
-					<div class="history-item">
-						<history-item-control></history-item-control>
-						<div class="history-item__content">
-							<div class='history-item__wrapper'>
-								<p class="item-heading">Add info about home</p>
-								<a href="#" class="link link_blue history-item__link">View revision</a>
-								<a href="#" class="link link_blue history-item__link">Revert</a>
-							</div>
-							<div class="history-item__wrapper">
-								<a href="" class="link link_green_medium history-item__link">Admin</a>
-								<span class="history-item__date">2019.11-01 14:01</span>
-							</div>
-						</div>
-					</div>
-					<div class="history-item">
-						<history-item-control></history-item-control>
-						<div class="history-item__content">
-							<div class='history-item__wrapper'>
-								<p class="item-heading">Add info about home</p>
-								<a href="#" class="link link_blue history-item__link">View revision</a>
-								<a href="#" class="link link_blue history-item__link">Revert</a>
-							</div>
-							<div class="history-item__wrapper">
-								<a href="" class="link link_green_medium history-item__link">Admin</a>
-								<span class="history-item__date">2019.11-01 14:01</span>
-							</div>
-							<p class="history-item__message">Add some extra information about the house itself and the nature around. Long log text entry that was left for whatever reasond to describe this particular revision with maximum details</p>
-						</div>
-					</div>
-				</div>
+				<history-item-list></history-item-list>
 			</form>
 		</div>
 	</main>
 </div>
-<script src='Scripts/History.js'></script>
 <script src='Scripts/vuescript.js'></script>
 </body>
 </html>

@@ -171,25 +171,104 @@ var fm = Vue.component('family-members', {
 				"</div></div>"
 })
 
-Vue.component('history-item-control', {
+Vue.component('history-item', {
 	data: function() {
 		return {
-			isActive: false,
-			leftCheckboxIsActive: false,
-			rightCheckboxIsActive: false
+			leftCheckbox: this.type == 'selectedLeft' ? true : false,
+			rightCheckbox: this.type == 'selectedRight' ? true : false
 		}
 	},
-	template:   "<div class='history-item__radio-container'>" +
-					"<label class='radio radio_history'>" +
-						"<input type='radio' name='item1'>" +
-						"<div class='radio__custom-radio'></div>" +
-					"</label>" +
-					"<label class='radio radio_history'>" +
-						"<input type='radio' name='item1'>" +
-						"<div class='radio__custom-radio'></div>" +
-					"</label>" +
+	methods: {
+		changeValue: function(checkbox) {
+			console.log(this.leftCheckbox, this.rightCheckbox);
+			this.$emit('changeValue', this.index, checkbox);
+		}
+	},
+	props: [ "name", "author", "date", "text", "type", "index" ],
+	template:   "<div class='history-item'>" +
+					"<div class='history-item__radio-container'>" +
+						"<label class='radio radio_history' v-bind:class='{ \"radio__custom-radio_hidden\" : type == \"onlyRightCheck\" || type == \"selectedRight\"}'>" +
+							"<input type='radio' name='first' v-bind:checked='leftCheckbox' v-on:change='changeValue(\"left\")'>" +
+							"<div class='radio__custom-radio'></div>" +
+						"</label>" +
+						"<label class='radio radio_history' v-bind:class='{ \"radio__custom-radio_hidden\" : type == \"onlyLeftCheck\" || type == \"selectedLeft\"}'>" +
+							"<input type='radio' name='second' v-bind:checked='rightCheckbox' v-on:change='changeValue(\"right\")'>" +
+							"<div class='radio__custom-radio'></div>" +
+						"</label>" +
+					"</div>" +
+					"<div class='history-item__content'>" +
+						"<div class='history-item__wrapper'>" +
+							"<p class='item-heading'>{{ name }}</p>" +
+							"<a href='#'' class='link link_blue history-item__link'>View revision</a>" +
+							"<a href='#'' class='link link_blue history-item__link'>Revert</a>" +
+						"</div>" +
+						"<div class='history-item__wrapper'>" +
+							"<a href='#' class='link link_green_medium history-item__link'>{{ author }}</a>" +
+							"<span class='history-item__date'>{{ date }}</span>" +
+						"</div>" +
+						"<p class='history-item__message'>{{ text }}</p>" +
+					"</div>" +
 				"</div>"
 }) 
+
+Vue.component('history-item-list', {
+	data: function() {
+		return {
+			firstSelectedItemIndex: 0,
+			secondSelectedItemIndex: 1,
+			historyItems: [
+				{
+					name: "Add info about home",
+					author: "Admin",
+					date: "2019.11-01 14:01",
+					text: "Add some extra information about the house itself and the nature around"
+				},
+				{
+					name: "Add info about home",
+					author: "Admin",
+					date: "2019.11-01 14:01",
+					text: "Add some extra information about the house itself and the nature around"
+				},
+				{
+					name: "Add info about home",
+					author: "Admin",
+					date: "2019.11-01 14:01",
+					text: "Add some extra information about the house itself and the nature around"
+				},
+				{
+					name: "Add info about home",
+					author: "Admin",
+					date: "2019.11-01 14:01",
+					text: "Add some extra information about the house itself and the nature around"
+				},
+				{
+					name: "Add info about home",
+					author: "Admin",
+					date: "2019.11-01 14:01",
+					text: "Add some extra information about the house itself and the nature around"
+				},
+				{	
+					name: "Add info about home",
+					author: "Admin",
+					date: "2019.11-01 14:01",
+					text: "Add some extra information about the house itself and the nature around"
+				}
+			]
+		}
+	},
+	methods: {
+		changeValue(index, checkbox) {
+			if(checkbox == 'left') {
+				this.secondSelectedItemIndex = index;
+			}
+			if(checkbox == 'right') {
+				this.firstSelectedItemIndex = index;
+			}
+		}
+	},
+	template: "<div class='history'><history-item v-on:changeValue='changeValue' v-for='(item, index) in historyItems' v-bind:index='index' v-bind:type='index < firstSelectedItemIndex ? \"onlyRightCheck\" : (index == firstSelectedItemIndex) ? \"selectedRight\" : (index > firstSelectedItemIndex && index < secondSelectedItemIndex) ? \"bothCheck\" : (index == secondSelectedItemIndex) ? \"selectedLeft\" : \"onlyLeftCheck\"' v-bind:key='item.id' v-bind:name='item.name' v-bind:author='item.author'" +
+	 		  "v-bind:date='item.date' v-bind:text='item.text'></history-item></div>"
+})
 
 Vue.component('search-form', {
 	data: function() {
