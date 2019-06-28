@@ -1,3 +1,116 @@
+Vue.component("card-history", {
+	data: function() {
+		return {
+			cardHistoryItems: [
+				{
+					name: "Add info about home",
+					author: "Admin",
+					date: "2019.11-01 14:01",
+					properties: [
+						{
+							name: "Family name",
+							oldValue: "Ivanova",
+							newValue: "Petrova"
+						},
+						{
+							name: "Family name",
+							oldValue: "Ivanova",
+							newValue: "Petrova"
+						},
+						{
+							name: "Family name",
+							oldValue: "Ivanova",
+							newValue: "Petrova"
+						}
+					]
+				},
+				{
+					name: "Add info about home",
+					author: "Admin",
+					date: "2019.11-01 14:01",
+					properties: [
+						{
+							name: "Family name",
+							oldValue: "Ivanova",
+							newValue: "Petrova"
+						},
+						{
+							name: "Family name",
+							oldValue: "Ivanova",
+							newValue: "Petrova"
+						},
+						{
+							name: "Family name",
+							oldValue: "Ivanova",
+							newValue: "Petrova"
+						}
+					]
+				},
+				{
+					name: "Add info about home",
+					author: "Admin",
+					date: "2019.11-01 14:01",
+					properties: [
+						{
+							name: "Family name",
+							oldValue: "Ivanova",
+							newValue: "Petrova"
+						},
+						{
+							name: "Family name",
+							oldValue: "Ivanova",
+							newValue: "Petrova"
+						},
+						{
+							name: "Family name",
+							oldValue: "Ivanova",
+							newValue: "Petrova"
+						}
+					]
+				}
+			]
+		}
+	},
+	template:   "<div class='card-history'>" +
+					"<history-card-item v-for='item in cardHistoryItems' v-bind:key='item.id' v-bind:item='item'></history-card-item>" +
+				"</div>"
+});
+
+Vue.component("history-card-item", {
+	data: function() {
+		return {
+
+		}
+	},
+	props: [ "item" ],
+	template: "<div class='card-history-item'>" +
+				"<p class='item-heading'>{{ item.name }}</p>" +
+				"<div class='history-item__wrapper'>" +
+					"<a href='' class='link link_green_medium history-item__link'>{{ item.author }}</a>" +
+					"<span class='history-item__date'>{{ item.date }}</span>" +
+				"</div>" +
+				"<div class='card-history-item__property-list'>" +
+					"<history-card-item-property v-for='prop in item.properties' v-bind:key='prop.id' v-bind:property='prop'></history-card-item-property>" +
+				"</div>" +
+				"<div class='card-history-item__line'></div>" +
+			"</div>"
+});
+
+Vue.component("history-card-item-property", {
+	data: function() {
+		return {
+
+		}
+	},
+	props: [ "property" ],
+	template: 	"<div class='history-item__wrapper'>" +
+					"<span class='card-history-item__property-name'>{{ property.name }}:</span>" +
+					"<span class='card-history-item__value card-history-item__value_old'>{{ property.oldValue }}</span>" +
+					"<div class='card-history-item__arrow'></div>" +
+					"<span class='card-history-item__value card-history-item__value_new'>{{ property.newValue }}</span>" +
+				"</div>"
+});
+
 var familyMember = Vue.component('family-member', {
 	data: function() {
 		return {
@@ -38,7 +151,7 @@ var familyMember = Vue.component('family-member', {
 						"<button class='family-member__button family-member__button_delete' v-on:click.prevent='deleteMember'></button>" +
 					"</div>" +
 				"</div>"
-})
+});
 
 var fm = Vue.component('family-members', {
 	data: function() {
@@ -169,7 +282,7 @@ var fm = Vue.component('family-members', {
 						"v-bind:startdate='member.startDate' v-bind:enddate='member.endDate' v-on:userdelete='deleteMember' v-on:changemember='changeMember'></family-member>" +
 					"</div>" +
 				"</div></div>"
-})
+});
 
 Vue.component('history-item', {
 	data: function() {
@@ -209,7 +322,7 @@ Vue.component('history-item', {
 						"<p class='history-item__message'>{{ text }}</p>" +
 					"</div>" +
 				"</div>"
-}) 
+});
 
 Vue.component('history-item-list', {
 	data: function() {
@@ -268,7 +381,7 @@ Vue.component('history-item-list', {
 	},
 	template: "<div class='history'><history-item v-on:changeValue='changeValue' v-for='(item, index) in historyItems' v-bind:index='index' v-bind:type='index < firstSelectedItemIndex ? \"onlyRightCheck\" : (index == firstSelectedItemIndex) ? \"selectedRight\" : (index > firstSelectedItemIndex && index < secondSelectedItemIndex) ? \"bothCheck\" : (index == secondSelectedItemIndex) ? \"selectedLeft\" : \"onlyLeftCheck\"' v-bind:key='item.id' v-bind:name='item.name' v-bind:author='item.author'" +
 	 		  "v-bind:date='item.date' v-bind:text='item.text'></history-item></div>"
-})
+});
 
 Vue.component('search-form', {
 	data: function() {
@@ -282,7 +395,7 @@ Vue.component('search-form', {
 					"<input type='text' placeholder='Search' class='search-form__field' v-on:blur='closeSearchForm'>" +
 					"<input type='submit' class='search-form__submit-button' value='' title='Искать'>" +
 				"</form>"
-})
+});
 
 var vm = new Vue({
 	el: '#vue-app',
@@ -381,4 +494,4 @@ var vm = new Vue({
 	components: {
 		fm
 	}
-})
+});

@@ -15,6 +15,7 @@
 @import url(./checkbox/checkbox.css);
 @import url(./radio/radio.css);
 @import url(./tree/tree.css);
+@import url(./card-history/card-history.css);
 
 .content {
     width: 832px;

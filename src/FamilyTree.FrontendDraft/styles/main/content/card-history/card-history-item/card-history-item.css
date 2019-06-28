@@ -1,0 +1,47 @@
+.card-history-item {
+	margin-bottom: 15px;
+}
+
+.card-history-item__property-name {
+	font-family: Rubik;
+	font-size: 16px;
+	line-height: 25px;
+	font-weight: 600;
+	margin-right: 24px;
+}
+
+.card-history-item__property-list {
+	margin-top: 27px;
+	margin-bottom: 13px;
+}
+
+.card-history-item__value {
+	font-family: Rubik;
+	font-size: 16px;
+	line-height: 25px;
+}
+
+.card-history-item__value_old {
+	color: #9D0000;
+	margin-right: 16px;
+}
+
+.card-history-item__value_new {
+	color: #006C40;
+}
+
+.card-history-item__arrow {
+	width: 14px;
+	height: 25px;
+	background-image: url("../../../../../images/property-arrow.svg");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position: 0 4px;
+	margin-right: 15px;
+}
+
+.card-history-item__line {
+	width: 100%;
+	height: 1px;
+	background-color: #A4A4A4;
+}
