@@ -1,4 +1,16 @@
-treeJson = d3.json("data.json", function (error, treeData) {
+var url_string = window.location.href;
+var url = new URL(url_string);
+var id = url.searchParams.get("id");
+
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "familytree-stage.renerick.name/tree/build?person=" + id, true);
+xhr.timeout = 30000;
+xhr.send();
+
+xhr.onreadystatechange = function() { // (3)
+	if (xhr.readyState != 4) return;
+
+treeJson = d3.json(JSON.parse(xhr.responseXML), function (error, treeData) {
 	dTree.init(treeData,
 		{
 			target: "#graph",
@@ -66,3 +78,5 @@ treeJson = d3.json("data.json", function (error, treeData) {
 		}
 	});
 });
+
+}
