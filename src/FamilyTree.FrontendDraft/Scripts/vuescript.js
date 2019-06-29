@@ -385,17 +385,68 @@ Vue.component('history-item-list', {
 
 Vue.component('search-form', {
 	data: function() {
-			return {
-					isActive: false
-			}
+		return {
+			isActive: false,
+			searchResult: "",
+			xhr: new XMLHttpRequest()
+		}
 	},
 	methods: {
+		openSearchForm: function() {
+			isActive = true;
+			document.querySelector('.search-form').style.display = 'inline-block';
+			var form = document.querySelector('.search-form__field');
+			form.focus();
+			form.select();
+		},
+		closeSearchForm: function() {
+			if (document.querySelector('body').offsetWidth <= 750) {
+				document.querySelector('.search-form').style.display = 'none';
+				isActive = false;
+			}
+		},
+		getSearchResult: function() {
+			xhr.abort();
+			xhr.open("GET", "search/autocomplete?q=query&person=false", true);
+			xhr.timeout = 30000;
+			xhr.send();
+
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState != 4) return;
+				this.searchResult = JSON.parse(xhr.responseXML);
+			}
+		}
 	},
-	template:   "<form class='search-form header__search-form' action='' method='POST'>" +
-					"<input type='text' placeholder='Search' class='search-form__field' v-on:blur='closeSearchForm'>" +
-					"<input type='submit' class='search-form__submit-button' value='' title='Искать'>" +
-				"</form>"
+	template:   "<div class='search-form__wrapper'>" +
+					"<form class='search-form header__search-form' action='' method='POST'>" +
+						"<input type='text' placeholder='Search' class='input-field search-form__input-field' v-on:blur='closeSearchForm' v-on:input='getSearchResult'>" +
+						"<input type='submit' class='search-form__submit-button' value='' title='Искать'>" +
+					"</form>" +
+					"<button class='mobile-search-button header__mobile-search-button' v-show='!isActive' v-on:click='openSearchForm'></button>" +
+					"<div class='search-result-list'>" +
+						"<div class='search-list__people'>" +
+							"<search-form-item type='person' v-for='person in searchResult.Persons' v-bind:key='person.id' v-bind:item='person'></search-form-item>" +
+						"</div>" +
+						"<div class='card-history-item__line' v-if='searchResult != \"\"'></div>" +
+						"<div class='search-list__articles'>" +
+							"<search-form-item type='article' v-for='article in searchResult.Articles' v-bind:key='article.id' v-bind:item='article'></search-form-item>" +
+						"</div>" +
+					"</div>" +
+				"</div>"
 });
+
+Vue.component('search-form-item', {
+	data: function() {
+		return {
+			src: this.item.ThumbnailId
+		}
+	},
+	props: [ "type", "item" ],
+	template: 	"<a href='' class='search-result-list__item'>" +
+					"<img v-bind:src='src' alt='' class='search-result-list__photo' v-if='type == \"person\"'\>" +
+					"<span class='search-result-list__full-name'>{{(type == \"person\") ? (item.FirstName + \" \" + item.FamilyName + \" \" + item.MiddleName) : item.Title}}</span>" +
+				"</a>"
+})
 
 var vm = new Vue({
 	el: '#vue-app',
@@ -442,19 +493,6 @@ var vm = new Vue({
 			this.$refs.fm1.closeList();
 			this.$refs.fm2.closeList();
 			this.personCard.editingIsActive = false;
-		},
-		openSearchForm: function() {
-			this.searchForm.isActive = true;
-			document.querySelector('.search-form').style.display = 'inline-block';
-			var form = document.querySelector('.search-form__field');
-			form.focus();
-			form.select();
-		},
-		closeSearchForm: function() {
-			if (document.querySelector('body').offsetWidth <= 750) {
-				document.querySelector('.search-form').style.display = 'none';
-				this.searchForm.isActive = false;
-			}
 		},
 		checkForm: function(e) {
 			if(this.personCard.firstName != '' && 

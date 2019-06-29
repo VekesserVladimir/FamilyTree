@@ -13,14 +13,9 @@
 	<header class="header vue-app__header">
 		<a class="site-logo header__site-logo" href="index.html">
 			<img src="images/Logo.svg" alt="Logo" class="site-logo__image"
-			><span class="site-logo__name" v-show='!searchForm.isActive'>FamilyTree</span>
+			><span class="site-logo__name">FamilyTree</span>
 		</a
-		><form class='search-form header__search-form' action="" method="POST">
-				<input type="text" placeholder="Search" class='input-field search-form__input-field' v-on:blur="closeSearchForm">
-				<input type="submit" class='search-form__submit-button' value="" title='Искать'>
-		</form
-		><button class='mobile-search-button header__mobile-search-button' v-show='!searchForm.isActive' v-on:click="openSearchForm">
-		</button
+		><search-form></search-form
 		><button class='user-account-button header__user-account-button' v-on:click='function() { accountMenu.isActive = !accountMenu.isActive; mobileNavigationMenu.isActive = false; mobileNavigationMenu.createItemActive = false; mobileNavigationMenu.browseItemActive = false; }'>
 			<span class='user-account-button__name'>Admin</span>
 			<img src="images/avatarka.jpg" alt="Аватарка" class='user-account-button__icon'>

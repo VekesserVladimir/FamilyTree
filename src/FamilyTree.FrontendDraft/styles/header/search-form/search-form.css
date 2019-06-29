@@ -54,3 +54,56 @@
 .person-card-back__search-form {
     position: relative;
 }
+
+.search-form__wrapper {
+    position: relative;
+}
+
+.search-result-list {
+    width: 548px;
+    position: absolute;
+    left: 57px;
+    top: 60px;
+    z-index: 5;
+}
+
+.search-result-list__item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 70px;
+    background-color: white;
+    text-decoration: none;
+    padding-left: 24px;
+    border-left: 1px solid #BBBBBB;
+    border-right: 1px solid #BBBBBB;
+}
+
+.search-result-list__item:hover {
+    background-color: #F1F1F1;
+}
+
+.search-list__people .search-result-list__item:first-child {
+    border-radius: 25px 25px 0 0;
+    border-top: 1px solid #BBBBBB;
+}
+
+.search-list__articles .search-result-list__item:last-child {
+    border-bottom: 1px solid #BBBBBB;
+    border-radius: 0 0 25px 25px;
+}
+
+.search-result-list__item .search-result-list__photo {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    background-color: green;
+    margin-right: 16px;
+}
+
+.search-result-list__item .search-result-list__full-name {
+    font-family: Roboto;
+    font-size: 24px;
+    line-height: 37px;
+    color: #000000;
+}
