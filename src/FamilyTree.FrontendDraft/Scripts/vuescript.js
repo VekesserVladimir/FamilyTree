@@ -255,10 +255,7 @@ var fm = Vue.component('family-members', {
 							"</button>" +
 						"<div class='person-card-back__row'>" +
 							"<span class='person-card-back__row-name person-card-back__row-name_white'>Person</span>" +
-							"<div class='person-card-back__search-form'>" +
-								"<input type='text' class='input-field search-form__input-field search-form__field_card' v-model='addForm.person' v-bind:class='{ \"search-form__field_error\" : addForm.personError }'>" +
-								"<input type='submit' class='person-card-back__submit-button' value='' title='Искать'>" +
-							"</div>" +
+							"<search-form type='card'></search-form>" +
 						"</div>" +
 						"<div class='person-card-back__row'>" +
 							"<span class='person-card-back__row-name person-card-back__row-name_white'>{{type == 'marriage' ? 'Date of marriage' : 'Years of life'}}</span>" +
@@ -387,6 +384,8 @@ Vue.component('search-form', {
 	data: function() {
 		return {
 			isActive: false,
+			fullName: "",
+			id: '',
 			searchResult: "",
 			xhr: new XMLHttpRequest()
 		}
@@ -406,29 +405,37 @@ Vue.component('search-form', {
 			}
 		},
 		getSearchResult: function() {
-			xhr.abort();
-			xhr.open("GET", "search/autocomplete?q=query&person=false", true);
-			xhr.timeout = 30000;
-			xhr.send();
+			if(this.fullName.length > 2) {
+				this.xhr.abort();
+				this.xhr.open("GET", "search/autocomplete?q=" + this.fullName + "&person=" + (this.type == 'card') ? "true" : "false", true);
+				this.xhr.timeout = 30000;
+				this.xhr.send();
 
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState != 4) return;
-				this.searchResult = JSON.parse(xhr.responseXML);
+				this.xhr.onreadystatechange = function() {
+					if (this.xhr.readyState != 4) return;
+					this.searchResult = JSON.parse(this.xhr.responseXML);
+				}
 			}
+		},
+		selectPerson: function(firstName, familyName, middleName, id) {
+			this.searchResult = "";
+			this.fullName = firstName + " " + familyName + " " + middleName;
 		}
 	},
+	props: [ "type" ],
 	template:   "<div class='search-form__wrapper'>" +
-					"<form class='search-form header__search-form' action='' method='POST'>" +
-						"<input type='text' placeholder='Search' class='input-field search-form__input-field' v-on:blur='closeSearchForm' v-on:input='getSearchResult'>" +
-						"<input type='submit' class='search-form__submit-button' value='' title='Искать'>" +
-					"</form>" +
+					"<div v-bind:class='{ \"header__search-form\" : type != \"card\", \"search-form\" : type != \"card\", \"search-form_small\" : type == \"card\" }' action='' method='POST'>" +
+						"<input type='text' v-model:value='fullName' placeholder='Search' class='input-field search-form__input-field' v-on:blur='closeSearchForm' v-on:input='getSearchResult'>" +
+						"<input type='submit' class='search-form__submit-button' value='' title='Искать' v-if='type != \"card\"'>" +
+						"<input type='hidden' v-bind:value='id' />" +
+					"</div>" +
 					"<button class='mobile-search-button header__mobile-search-button' v-show='!isActive' v-on:click='openSearchForm'></button>" +
-					"<div class='search-result-list'>" +
+					"<div v-bind:class='{ \"search-result-list_small\" : type == \"card\", \"search-result-list\" : type != \"card\" }'>" +
 						"<div class='search-list__people'>" +
-							"<search-form-item type='person' v-for='person in searchResult.Persons' v-bind:key='person.id' v-bind:item='person'></search-form-item>" +
+							"<search-form-item type='person' v-on:selectPerson='selectPerson' v-for='person in searchResult.Persons' v-bind:key='person.id' v-bind:searchtype='type' v-bind:item='person'></search-form-item>" +
 						"</div>" +
-						"<div class='card-history-item__line' v-if='searchResult != \"\"'></div>" +
-						"<div class='search-list__articles'>" +
+						"<div class='card-history-item__line' v-if='searchResult != \"\" && type != \"card\"'></div>" +
+						"<div class='search-list__articles' v-if='type != \"card\"'>" +
 							"<search-form-item type='article' v-for='article in searchResult.Articles' v-bind:key='article.id' v-bind:item='article'></search-form-item>" +
 						"</div>" +
 					"</div>" +
@@ -441,8 +448,14 @@ Vue.component('search-form-item', {
 			src: this.item.ThumbnailId
 		}
 	},
-	props: [ "type", "item" ],
-	template: 	"<a href='' class='search-result-list__item'>" +
+	methods: {
+		selectPerson: function(e) {
+			e.preventDefault();
+			this.$emit("selectPerson", this.item.FirstName, this.item.FamilyName, this.item.MiddleName, this.item.Id);
+		}
+	},
+	props: [ "type", "item", "searchtype" ],
+	template: 	"<a href='' v-on:click='selectPerson' v-bind:class='{ \"search-result-list__item\" : searchtype != \"card\", \"search-result-list__item_small\" : searchtype == \"card\" }'>" +
 					"<img v-bind:src='src' alt='' class='search-result-list__photo' v-if='type == \"person\"'\>" +
 					"<span class='search-result-list__full-name'>{{(type == \"person\") ? (item.FirstName + \" \" + item.FamilyName + \" \" + item.MiddleName) : item.Title}}</span>" +
 				"</a>"

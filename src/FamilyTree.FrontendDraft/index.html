@@ -31,7 +31,7 @@
 		</ul>
 		<ul class="mobile-navigation-menu header__mobile-navigation-menu" v-bind:class="{ 'mobile-navigation-menu_active' : mobileNavigationMenu.isActive, 'mobile-navigation-menu_active_create' : mobileNavigationMenu.createItemActive, 'mobile-navigation-menu_active_browse' : mobileNavigationMenu.browseItemActive }">
 			<li class="menu-item mobile-navigation-menu__menu-item">
-				<button class='menu-item__button' v-on:click='function() { mobileNavigationMenu.createItemActive = !mobileNavigationMenu.createItemActive; mobileNavigationMenu.browseItemActive = false; }'>Create</button>
+				<button class='menu-item__button' v-on:click='function() { mobileNavigationMenu.createItemActive = !mobileNavigationMenu.createItemAcgitive; mobileNavigationMenu.browseItemActive = false; }'>Create</button>
 			</li>
 			<li class="menu-subitem"><a href="#">Create article</a></li>
 			<li class="menu-subitem"><a href="#">Create person record</a></li>
@@ -153,8 +153,7 @@
 						<div class="person-card-back__row">
 							<span class="person-card-back__row-name">Father</span>
 							<div class='person-card-back__search-form'>
-								<input type="text" class='input-field search-form__input-field search-form__field_card' v-model='personCard.father' v-bind:class='{ "search-form__field_error_light" : personCard.errors.fatherError }'>
-								<input type="submit" class='person-card-back__submit-button' value="" title='Искать'>
+								<search-form type='card'></search-form>
 							</div>
 						</div>
 						<div class="person-card-back__row">
