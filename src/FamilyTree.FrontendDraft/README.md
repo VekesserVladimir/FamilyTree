@@ -1,6 +1,24 @@
-# Frontend
+# familytree2.0
 
-В этой директории ведется работа над frontend-частью проекта. Здесь находятся html/css/js документы, которым только
-предстоит стать разметкой Razor.
+## Project setup
+```
+npm install
+```
 
-Все обновления в демонстрационных целях размещаются на GitLab Pages
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

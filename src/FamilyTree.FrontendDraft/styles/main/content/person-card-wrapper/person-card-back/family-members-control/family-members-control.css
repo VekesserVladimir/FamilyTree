@@ -1,8 +1,0 @@
-.family-members-control {
-	transition: height 0.25s ease-in-out;
-}
-
-.family-members-control_collapsed {
-	height: 0;
-	overflow: hidden;
-}

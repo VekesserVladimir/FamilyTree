@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Adamina|Montserrat:300,400,500,600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Rubik:300,400&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: Montserrat;
+	box-sizing: border-box;
+	outline: none;
+}
+
+.button {
+	height: 40px;
+	width: 100px;
+	border-radius: 24px;
+	border: none;
+	cursor: pointer;
+}
+
+.button svg {
+	color: #fff;
+	font-size: 16px;
+}
+
+.button_primary {
+	background-color: #2CA770;
+}
+
+.user-photo {
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+}

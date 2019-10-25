@@ -58,6 +58,10 @@ artifacts/
 # StyleCop
 StyleCopReport.xml
 
+# Frontend
+node_modules/
+dist/
+
 # Files built by Visual Studio
 *_i.c
 *_p.c
