@@ -14,9 +14,9 @@
 		<div class="account" v-click-outside="hideMenu">
 			<div class="menu" v-bind:class="{ 'menu_active' : isActive}">
 				<span class="menu__header">Admin</span>
-				<a href="#" class="menu__link">Profile</a>
-				<a href="#" class="menu__link">Admin dashboard</a>
-				<a href="#" class="menu__link">Logout</a>
+				<a href="" class="menu__link">Profile</a>
+				<a href="" class="menu__link">Admin dashboard</a>
+				<a href="" class="menu__link">Logout</a>
 			</div>
 			<button class='account__button' v-on:click='isActive = !isActive'>
 				<img src="http://risovach.ru/upload/2019/09/generator/glad-valakas_218285982_orig_.png" alt="user-photo" class='user-photo'>

@@ -1,0 +1,71 @@
+export default {
+	photoLink: "",
+	id: 1,
+	taggedPersons:[
+		{
+			coordinates: {
+				xTopLeft:1,
+				yTopLeft:6,
+				xBottomRight:1,
+				yBottomRight:6
+			},
+			person:{
+				id:"id",
+				avatarUri:"http://risovach.ru/upload/2019/09/generator/glad-valakas_218285982_orig_.png",
+				sex:"male",
+				lastName:"lastName",
+				firstName:"firstName"
+			},
+			suggestions:[
+				{
+					id:"id",
+					avatarUri:"http://example.com/aeiou",
+					sex:"male",
+					lastName:"lastName",
+					firstName:"firstName"
+				},
+				{
+					id:"id",
+					avatarUri:"http://example.com/aeiou",
+					sex:"male",
+					lastName:"lastName",
+					firstName:"firstName"
+				}
+			]
+		},
+		{
+			coordinates:{
+				xTopLeft:1,
+				yTopLeft:6,
+				xBottomRight:1,
+				yBottomRight:6
+			},
+			person:{
+				id:"id",
+				avatarUri:"http://risovach.ru/upload/2019/09/generator/glad-valakas_218285982_orig_.png",
+				sex:"male",
+				lastName:"lastName",
+				firstName:"firstName"
+			},
+			suggestions:[
+				{
+					id:"id",
+					avatarUri:"http://example.com/aeiou",
+					sex:"male",
+					lastName:"lastName",
+					firstName:"firstName"
+				},
+				{
+					id:"id",
+					avatarUri:"http://example.com/aeiou",
+					sex:"male",
+					lastName:"lastName",
+					firstName:"firstName"
+				}
+			]
+		}
+	],
+	description:"Magna aute ea aliquip voluptate. Ut ex nisi eu sit eu ullamco exercitation. Fugiat veniam magna non dolor reprehenderit sit. Dolore aute dolor reprehenderit ullamco...",
+	date:"2000-01-23T00:00:00",
+	title:"Cool stock photo!"
+}

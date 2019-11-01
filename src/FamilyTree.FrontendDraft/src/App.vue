@@ -1,19 +1,20 @@
 <template>
 	<div id="app">
-		<Header/>
+		<router-view/>
 	</div>
 </template>
 
 <script>
-import Header from "./components/Header"
-
 export default {
-	components: {
-		Header
-	}
 }
 </script>
 
-<style lang="less" scoped>
-  
+<style lang="less">
+	.content {
+		width: 944px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 </style>
