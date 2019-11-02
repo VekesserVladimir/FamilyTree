@@ -18,7 +18,6 @@
 					<div class="results__title">{{person.firstName + ' ' + person.lastName}}</div>
 				</a>
 			</div>
-			<div class="line"></div>
 			<div class="results__photos">
 				<h4 class="results__block-title">Photos</h4>
 				<a href='#' class="results__result" v-for='photo in getSearchResults.photos' v-bind:key="photo.id">
@@ -135,11 +134,11 @@ export default {
 			}
 
 			&__people {
-				padding: 20px 0;
+				padding: 15px 0 0 0;
 			}
 
 			&__photos {
-				padding: 20px 0;
+				padding: 15px 0 20px 0;
 			}
 
 			&__user-photo {
