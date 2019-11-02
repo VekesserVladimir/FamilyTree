@@ -1,5 +1,5 @@
 <template>
-	<form action="" class='search-form header__search-form'>
+	<form action="" class='search-form header__search-form' v-click-outside="closeForm">
 		<input 
 			type="text" 
 			class='search-form__input'
@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import ClickOutside from "vue-click-outside"
+
 export default {
 	name: "SearchForm",
 	data() {
@@ -59,6 +61,9 @@ export default {
 				this.isActive = false;
 				this.searchResults = '';
 			}
+		},
+		closeForm() {
+			this.isActive = false;
 		}
 	},
 	computed: {
@@ -67,6 +72,9 @@ export default {
 				return this.searchResults;
 			} else return null;
 		}
+	},
+	directives: {
+		ClickOutside
 	}
 }
 </script>
