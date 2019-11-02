@@ -81,11 +81,11 @@ export default {
 
 			&__description {
 				font-size: 14px;
-				margin-bottom: 38px; 
 			}
 
 			&__tagged-persons {
-				margin-bottom: 16px;
+				position: absolute;
+				bottom: 48px;
 
 				a {
 					display: inline-block;
@@ -103,6 +103,8 @@ export default {
 			&__date {
 				font-family: Montserrat;
 				font-size: 16px;
+				position: absolute;
+				bottom: 10px;
 			}
 		}
 	}
