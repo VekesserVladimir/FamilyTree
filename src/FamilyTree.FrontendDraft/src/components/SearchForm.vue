@@ -88,13 +88,12 @@ export default {
 			height: 40px;
 			border-radius: 24px;
 			border: 1px solid #918888;
-
 			padding-left: 20px;
 			font-size: 16px;
 		}
 
 		&_active {
-			border-radius: 24px 24px 0 0;
+			border-radius: 20px 20px 0 0;
 			border-bottom: none;
 		}
 

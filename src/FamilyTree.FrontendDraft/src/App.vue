@@ -16,5 +16,14 @@ export default {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+
+		.header {
+			font-size: 32px;
+			font-weight: 500;
+			line-height: 48px;
+			color: #242121;
+			margin-top: 24px;
+			width: 100%;
+		}
 	}
 </style>

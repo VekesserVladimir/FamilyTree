@@ -133,7 +133,7 @@ export default {
 					height: 33px;
 					width: 100%;
 					line-height: 33px;
-					color: #9E9898;
+					color: #918888;
 				}
 
 				&__link:hover {

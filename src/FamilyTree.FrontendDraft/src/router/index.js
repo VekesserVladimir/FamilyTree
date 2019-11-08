@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomePage from '../views/HomePage'
 import LoginPage from '../views/LoginPage'
 import RegisterPage from '../views/RegisterPage'
+import AdminDashboard from '../views/AdminDashboard'
 
 Vue.use(VueRouter)
 
@@ -18,6 +19,10 @@ const routes = [
   {
     path: '/register',
     component: RegisterPage
+  },
+  {
+    path: '/admin',
+    component: AdminDashboard
   }
 ]
 
