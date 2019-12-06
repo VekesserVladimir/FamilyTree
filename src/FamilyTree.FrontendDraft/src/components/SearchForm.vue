@@ -31,6 +31,7 @@
 
 <script>
 import ClickOutside from "vue-click-outside"
+import {mapGetters} from "vuex"
 
 export default {
 	name: "SearchForm",
@@ -42,19 +43,26 @@ export default {
 		}
 	},
 	methods: {
+		...mapGetters(["getTokenFromCookie"]),
 		async search() {
 			if(this.query.length >= 3) {
-				let res = await fetch('https://familytree-stage.renerick.name/api/1.0.0/search?query=' + this.query);
+				let res = await fetch('https://familytree-stage.renerick.name/api/1.0.0/search?query=' + this.query, 
+				{
+					method: 'GET',
+					headers: {
+						Authorization: "Bearer " + this.getTokenFromCookie()
+					}
+				});
 				this.searchResults = await res.json();
 				this.isActive = true;
-				this.searchResults.persons[1].avatarUri = 'http://risovach.ru/upload/2019/09/generator/glad-valakas_218285982_orig_.png';
-				this.searchResults.persons[0].avatarUri = 'http://risovach.ru/upload/2019/09/generator/glad-valakas_218285982_orig_.png';
+				this.searchResults.persons[1].avatarUri = 'https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg';
+				this.searchResults.persons[0].avatarUri = 'https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg';
 				this.searchResults.persons[0].id = 1;
 				this.searchResults.persons[1].id = 2;
 				this.searchResults.photos[0] = {};
 				this.searchResults.photos[1] = {};
-				this.searchResults.photos[0].avatarUri = 'http://risovach.ru/upload/2019/09/generator/glad-valakas_218285982_orig_.png';
-				this.searchResults.photos[1].avatarUri = 'http://risovach.ru/upload/2019/09/generator/glad-valakas_218285982_orig_.png';
+				this.searchResults.photos[0].avatarUri = 'https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg';
+				this.searchResults.photos[1].avatarUri = 'https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg';
 				this.searchResults.photos[0].title = 'Анапа 2006';
 				this.searchResults.photos[1].title = 'Крым 2017';
 			} else {
@@ -103,7 +111,7 @@ export default {
 			border-radius: 0 24px 24px 0;
 			background-color: transparent;
 			position: absolute;
-			right: 0;
+			right: 2px;
 			border: none;
 			cursor: pointer;
 		}

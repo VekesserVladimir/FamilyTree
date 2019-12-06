@@ -1,9 +1,9 @@
 <template>
 	<div class="header">
-		<div class="logo">
+		<router-link to='/' class="logo">
 			<img src="../assets/logo.svg" alt="" class='logo__img'> 
 			<span class="logo__text">FamilyTree</span>
-		</div>
+		</router-link>
 		<SearchForm/>
 		<button class="button button_primary">
 			<font-awesome-icon icon='user-plus'/>
@@ -14,12 +14,12 @@
 		<div class="account" v-click-outside="hideMenu">
 			<div class="menu" v-bind:class="{ 'menu_active' : isActive}">
 				<span class="menu__header">Admin</span>
-				<a href="" class="menu__link">Profile</a>
-				<a href="" class="menu__link">Admin dashboard</a>
-				<a href="" class="menu__link">Logout</a>
+				<router-link to='/profile' class="menu__link">Profile</router-link>
+				<router-link to='/admin' class="menu__link">Admin dashboard</router-link>
+				<a class="menu__link">Logout</a>
 			</div>
 			<button class='account__button' v-on:click='isActive = !isActive'>
-				<img src="http://risovach.ru/upload/2019/09/generator/glad-valakas_218285982_orig_.png" alt="user-photo" class='user-photo'>
+				<img src="https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg" alt="user-photo" class='user-photo'>
 			</button>
 		</div>
     </div>
@@ -58,6 +58,7 @@ export default {
 		.logo {
 			display: flex;
 			align-items: flex-start;
+			text-decoration: none;
 
 			&__img {
 				width: 56px;
@@ -69,6 +70,7 @@ export default {
 				font-size: 24px;
 				font-family: Adamina;
 				margin-top: 20px;
+				color: #242121;
 			}
 		}
 

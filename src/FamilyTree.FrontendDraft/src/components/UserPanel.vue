@@ -7,15 +7,16 @@
 		<div class="user-list">
 			<UserItem v-for='user in usersList' v-bind:key="user.id" v-bind:user = 'user.user'/>
 		</div>
-			<SettingItem v-bind:user = 'usersList[0].user'/>
-			<SettingItem v-bind:user = 'usersList[0].user'/>
-			<SettingItem v-bind:user = 'usersList[0].user'/>
+			<SettingItem v-bind:setting = 'defaultSetting'/>
+			<SettingItem v-bind:setting = 'anonym'/>
+			<SettingItem v-bind:setting = 'registration'/>
 	</div>
 </template>
 
 <script>
 import UserItem from './UserItem';
 import SettingItem from './SettingItem'
+import {mapGetters} from "vuex"
 
 export default {
 	components: {
@@ -24,15 +25,36 @@ export default {
 	},
 	data() {
 		return {
-			usersList: []
+			usersList: [],
+			defaultSetting: {
+				name: 'Default',
+				permission: 'readonly'
+			},
+			anonym: {
+				name: 'Anonym',
+				permission: 'noaccess'
+			},
+			registration: {
+				name: 'Registration',
+				permission: 'enabled'
+			}
 		}
 	},
+	methods: {
+		...mapGetters(["getTokenFromCookie"])
+	},
 	async mounted() {
-		let res = await fetch('https://familytree-stage.renerick.name/api/1.0.0/admin/users');
+		let res = await fetch('https://familytree-stage.renerick.name/api/1.0.0/admin/users',
+			{
+				method: 'GET',
+				headers: {
+					Authorization: "Bearer " + this.getTokenFromCookie()
+				}
+			});
 		res = await res.json();
 		this.usersList = res.users;
 		this.usersList.forEach(user => {
-			user.avatarUri = 'http://risovach.ru/upload/2019/09/generator/glad-valakas_218285982_orig_.png';
+			user.avatarUri = 'https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg';
 			user.permission = 'readonly';
 		});
 		this.usersList = this.usersList.map(item => {
@@ -49,7 +71,7 @@ export default {
 	width: 464px;
 	height: 640px;
 	border-radius: 24px;
-	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 	display: inline-block;
 
 	&__input {
@@ -80,7 +102,7 @@ export default {
 		overflow-y: scroll;
 
 		&::-webkit-scrollbar {
-			width: 5px;
+			width: 4px;
 
 			&-thumb {
 				background-color: #918888;

@@ -4,6 +4,9 @@ import HomePage from '../views/HomePage'
 import LoginPage from '../views/LoginPage'
 import RegisterPage from '../views/RegisterPage'
 import AdminDashboard from '../views/AdminDashboard'
+import ProfilePage from "../views/ProfilePage"
+import PhotoPage from "../views/PhotoPage"
+import PersonPage from "../views/PersonPage"
 
 Vue.use(VueRouter)
 
@@ -23,6 +26,18 @@ const routes = [
   {
     path: '/admin',
     component: AdminDashboard
+  },
+  {
+    path: '/profile',
+    component: ProfilePage
+  },
+  {
+    path: '/photo',
+    component: PhotoPage
+  },
+  {
+    path: '/person',
+    component: PersonPage
   }
 ]
 

@@ -5,11 +5,35 @@
 </template>
 
 <script>
+import {mapMutations, mapGetters} from "vuex"
 export default {
+	methods: {
+		...mapGetters(["getTokenFromCookie"]),
+		...mapMutations(["setUser"])
+
+	},
+	beforeMount() {
+		const token = this.getTokenFromCookie();
+		if(token) this.setUser(token);
+			else this.$router.push("/login");
+	}
 }
 </script>
 
 <style lang="less">
+	body {
+		&::-webkit-scrollbar {
+			width: 4px;
+			height: 4px;
+
+			&-thumb {
+				background-color: #918888;
+				border-radius: 10px;
+				margin-right: 5px;
+			}
+		}
+	}
+
 	.content {
 		width: 944px;
 		margin: 0 auto;

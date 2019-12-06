@@ -82,6 +82,7 @@
 <script>
 import Header from '../components/Header'
 import UserPanel from '../components/UserPanel'
+import {mapGetters} from "vuex"
 
 export default {
 	components: {
@@ -97,8 +98,16 @@ export default {
 			}
 		}
 	},
+	methods: {
+		...mapGetters(["getTokenFromCookie"])
+	},
 	async mounted() {
-		let res = await fetch('https://familytree-stage.renerick.name/api/1.0.0/admin/status');
+		let res = await fetch('https://familytree-stage.renerick.name/api/1.0.0/admin/status', {
+			method: 'GET',
+			headers: {
+				Authorization: "Bearer " + this.getTokenFromCookie()
+			}			
+		});
 		this.stats = await res.json();
 	}
 }
@@ -114,7 +123,7 @@ export default {
 		.panel {
 			width: 464px;
 			height: 200px;
-			box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+			box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 			border-radius: 24px;
 
 			&__row {
