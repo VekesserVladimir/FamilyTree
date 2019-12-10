@@ -9,7 +9,7 @@
 			<div v-else class="photo-page-wrapper">
 				<h1 class="header">{{photo.title}}</h1>
 				<div class="photo-page__photo">
-					<img v-bind:src="photo.img" class='photo-page__img'>
+					<img v-bind:src="photo.imageUri" class='photo-page__img'>
 					<span class="photo-page__date">{{getDate}}</span>
 				</div>
 				<div class="tagged-people">
