@@ -10,11 +10,11 @@
 						<h4 class="panel__header">Persons</h4>
 						<div class="panel__row">
 							<div class="counter">
-								<span class="counter__info">{{Math.ceil(stats.photosStats.totalRecords)}}</span>
+								<!-- <span class="counter__info">{{Math.ceil(stats.photosStats.totalRecords)}}</span> -->
 								<span class="counter__header">Person records</span>
 							</div>
 							<div class="counter">
-								<span class="counter__info">{{Math.ceil(stats.photosStats.totalRelations)}}</span>
+								<!-- <span class="counter__info">{{Math.ceil(stats.photosStats.totalRelations)}}</span> -->
 								<span class="counter__header">Relation records</span>
 							</div>
 						</div>
@@ -23,11 +23,11 @@
 						<h4 class="panel__header">Photos</h4>
 						<div class="panel__row">
 							<div class="counter">
-								<span class="counter__info">{{Math.ceil(stats.personStats.totalPhotos)}}</span>
+								<!-- <span class="counter__info">{{Math.ceil(stats.personStats.totalPhotos)}}</span> -->
 								<span class="counter__header">Photos</span>
 							</div>
 							<div class="counter">
-								<span class="counter__info">{{Math.ceil(stats.personStats.totalTags)}}</span>
+								<!-- <span class="counter__info">{{Math.ceil(stats.personStats.totalTags)}}</span> -->
 								<span class="counter__header">Tags</span>
 							</div>							
 						</div>
@@ -39,36 +39,36 @@
 								<font-awesome-icon 
 									icon='globe-europe' 
 									class='status__icon' 
-									v-bind:class="{ status__icon_disabled : !stats.healthStats.server }"/>
+									v-bind:class="{ status__icon_disabled : !stats.server }"/>
 								<span class="status__name">Server</span>
 								<span 
 									class="status__value"
-									v-bind:class="{ status__value_disabled : !stats.healthStats.server }"
-									>{{ stats.healthStats.server ? 'Ok' : 'Down' }}
+									v-bind:class="{ status__value_disabled : !stats.server }"
+									>{{ stats.server ? 'Ok' : 'Down' }}
 								</span>
 							</div>
 							<div class="status">
 								<font-awesome-icon 
 									icon='meh' 
 									class='status__icon'
-									v-bind:class="{ status__icon_disabled : !stats.healthStats.faceDetection }"/>
+									v-bind:class="{ status__icon_disabled : !stats.faceDetection }"/>
 								<span class="status__name">Face detection</span>
 								<span 
 									class="status__value"
-									v-bind:class="{ status__value_disabled : !stats.healthStats.faceDetection }"
-									>{{ stats.healthStats.faceDetection ? 'Ok' : 'Down' }}
+									v-bind:class="{ status__value_disabled : !stats.faceDetection }"
+									>{{ stats.faceDetection ? 'Ok' : 'Down' }}
 								</span>
 							</div>
 							<div class="status">
 								<font-awesome-icon 
 									icon='database' 
 									class='status__icon'
-									v-bind:class="{ status__icon_disabled : !stats.healthStats.database }"/>
+									v-bind:class="{ status__icon_disabled : !stats.database }"/>
 								<span class="status__name">Database</span>
 								<span 
 									class="status__value"
-									v-bind:class="{ status__value_disabled : !stats.healthStats.database }"
-									>{{ stats.healthStats.database ? 'Ok' : 'Down' }}
+									v-bind:class="{ status__value_disabled : !stats.database }"
+									>{{ stats.database ? 'Ok' : 'Down' }}
 								</span>
 							</div>
 						</div>
@@ -91,10 +91,8 @@ export default {
 	},
 	data() {
 		return {
-			stats: {
-				personStats: '',
-				photosStats: '',
-				healthStats: ''
+				stats: {
+
 			}
 		}
 	},
@@ -109,6 +107,7 @@ export default {
 			}			
 		});
 		this.stats = await res.json();
+		console.log(this.stats);
 	}
 }
 </script>
