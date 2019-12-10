@@ -14,8 +14,9 @@ export default {
 	},
 	beforeMount() {
 		const token = this.getTokenFromCookie();
+		console.log(window.location.pathname);
 		if(token) this.setUser(token);
-			else this.$router.push("/login");
+			else if(window.location.pathname != '/login') this.$router.push("/login");
 	}
 }
 </script>

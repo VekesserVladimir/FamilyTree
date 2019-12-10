@@ -1,6 +1,6 @@
 <template>
 	<div class='photo'>
-		<img v-bind:src='photo.photoLink' class='photo__img'>
+		<img v-bind:src='photo.imageUri' class='photo__img'>
 		<div class="info">
 			<h4 class="info__title">{{photo.title}}</h4>
 			<p class="info__description">{{photo.description}}</p>
@@ -29,7 +29,11 @@ export default {
 			let date = new Date(this.photo.date);
 			return date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
 		}
+	},
+	mounted() {
+		console.log(this.photo);
 	}
+
 }
 </script>
 

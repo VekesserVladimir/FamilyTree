@@ -40,15 +40,15 @@ export default {
 			}
 		}
 	},
-	methods: {
-		...mapGetters(["getTokenFromCookie"])
+	computed: {
+		...mapGetters(['getUserToken'])
 	},
 	async mounted() {
 		let res = await fetch('https://familytree-stage.renerick.name/api/1.0.0/admin/users',
 			{
 				method: 'GET',
 				headers: {
-					Authorization: "Bearer " + this.getTokenFromCookie()
+					Authorization: "Bearer " + this.getUserToken
 				}
 			});
 		res = await res.json();

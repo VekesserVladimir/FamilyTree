@@ -10,7 +10,7 @@
 				<h1 class="header">{{user.username}}</h1>
 				<div class="profile">
 					<div class="profile__photo-wrapper">
-						<img v-bind:src="user.photo" class="profile__photo">
+						<img v-bind:src="user.photo" class="profile__photo" ref='img'>
 						<input type="file" id='photo-input' v-on:change='uploadPhoto'>
 						<label for="photo-input" class='profile__change_button'>Set photo</label>
 					</div>
@@ -46,25 +46,28 @@ export default {
 		}
 	},
 	methods: {
-		...mapGetters(["getTokenFromCookie"]),
 		uploadPhoto(e) {
-			let reader, files = e.target.files
-			reader = new FileReader()
-			reader.onload = (e) => {
-				this.user.photo = e.target.result
+			var file    = e.target.files[0];
+			var reader  = new FileReader();
+
+			reader.onloadend = () => {
+				this.$refs.img.src = reader.result;
 			}
-			reader.readAsDataURL(files[0]);
-			console.log(this.user.photo);
-			//this.user.photo = this.$refs.photoInput.files[0];
-			//this.user.photo = 'https://images.unsplash.com/photo-1533972751724-9135a8410a4c?ixlib=rb-1.2.1&w=1000&q=80';
+
+			if (file) {
+				reader.readAsDataURL(file);
+			}
 		}
+	},
+	computed: {
+		...mapGetters(["getUserToken"])
 	},
 	async mounted() {
 		let res = await fetch("https://familytree-stage.renerick.name/api/1.0.0/admin/user/1",
 			{
 				method: 'GET',
 				headers: {
-					Authorization: "Bearer " + this.getTokenFromCookie()
+					Authorization: "Bearer " + this.getUserToken
 				}
 			});
 		this.user = await res.json();

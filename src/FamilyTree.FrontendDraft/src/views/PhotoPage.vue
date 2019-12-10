@@ -37,10 +37,8 @@ export default {
 			photo: null
 		}
 	},
-	methods: {
-		...mapGetters(["getTokenFromCookie"])
-	},
 	computed: {
+		...mapGetters(["getUserToken"]),
 		getDate() {
 			let date = new Date(this.photo.date);
 			return date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
@@ -50,10 +48,11 @@ export default {
 		let res = await fetch("https://familytree-stage.renerick.name/api/1.0.0/photo/06f353c4-66ea-4b25-8520-4551df553ddf", {
 			method: 'GET',
 			headers: {
-				Authorization: "Bearer " + this.getTokenFromCookie()
+				Authorization: "Bearer " + this.getUserToken
 			}
 		});
 		this.photo = await res.json();
+		console.log(this.photo);
 		this.photo.taggedPersons.forEach(item => {
 			item.person.avatarUri = 'https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg';
 			console.log(item);

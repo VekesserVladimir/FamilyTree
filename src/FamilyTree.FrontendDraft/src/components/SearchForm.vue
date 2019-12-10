@@ -11,14 +11,15 @@
 			<font-awesome-icon icon='search' class='search-form__icon'/>
 		</button>
 		<div class="results" v-if='isActive'>
-			<div class="results__people">
+			<h4 class="results__block-title block-title__offset" v-if='!peopleFinded && !photosFinded'>The search has not given any results</h4>
+			<div class="results__people" v-if='peopleFinded'>
 				<h4 class="results__block-title">People</h4>
 				<a href='#' class="results__result" v-for='person in getSearchResults.persons' v-bind:key="person.id">
 					<img alt="" class="user-photo results__user-photo" v-bind:src="person.avatarUri">
 					<div class="results__title">{{person.firstName + ' ' + person.lastName}}</div>
 				</a>
 			</div>
-			<div class="results__photos">
+			<div class="results__photos" v-if='photosFinded'>
 				<h4 class="results__block-title">Photos</h4>
 				<a href='#' class="results__result" v-for='photo in getSearchResults.photos' v-bind:key="photo.id">
 					<img alt="" class="user-photo results__user-photo" v-bind:src='photo.avatarUri'>
@@ -39,32 +40,40 @@ export default {
 		return {
 			searchResults: '',
 			isActive: false,
+			peopleFinded: false,
+			photosFinded: false,
 			query: ''
 		}
 	},
 	methods: {
-		...mapGetters(["getTokenFromCookie"]),
 		async search() {
 			if(this.query.length >= 3) {
 				let res = await fetch('https://familytree-stage.renerick.name/api/1.0.0/search?query=' + this.query, 
 				{
 					method: 'GET',
 					headers: {
-						Authorization: "Bearer " + this.getTokenFromCookie()
+						Authorization: "Bearer " + this.getUserToken
 					}
 				});
 				this.searchResults = await res.json();
 				this.isActive = true;
-				this.searchResults.persons[1].avatarUri = 'https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg';
-				this.searchResults.persons[0].avatarUri = 'https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg';
-				this.searchResults.persons[0].id = 1;
-				this.searchResults.persons[1].id = 2;
-				this.searchResults.photos[0] = {};
-				this.searchResults.photos[1] = {};
-				this.searchResults.photos[0].avatarUri = 'https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg';
-				this.searchResults.photos[1].avatarUri = 'https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg';
-				this.searchResults.photos[0].title = 'Анапа 2006';
-				this.searchResults.photos[1].title = 'Крым 2017';
+				if(this.searchResults.personsResult.length == 0) this.peopleFinded = false; else this.peopleFinded = true;
+				if(this.searchResults.photosResult.length == 0) this.photosFinded = false; else this.photosFinded = true;
+				console.log(this.searchResults)
+				if(this.peopleFinded) {
+					this.searchResults.personsResult[1].avatarUri = 'https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg';
+					this.searchResults.personsResult[0].avatarUri = 'https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg';
+					this.searchResults.personsResult[0].id = 1;
+					this.searchResults.personsResult[1].id = 2;
+				}
+				if(this.personsResult) {
+					this.searchResults.photosResult[0] = {};
+					this.searchResults.photosResult[1] = {};
+					this.searchResults.photosResult[0].avatarUri = 'https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg';
+					this.searchResults.photosResult[1].avatarUri = 'https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg';
+					this.searchResults.photosResult[0].title = 'Анапа 2006';
+					this.searchResults.photosResult[1].title = 'Крым 2017';
+				}
 			} else {
 				this.isActive = false;
 				this.searchResults = '';
@@ -75,6 +84,7 @@ export default {
 		}
 	},
 	computed: {
+		...mapGetters(["getUserToken"]),
 		getSearchResults() {
 			if(this.searchResults) {
 				return this.searchResults;
@@ -135,6 +145,11 @@ export default {
 				margin: 0 0 10px 20px;
 				color: #1a1a1a;
 				font-weight: 500;
+			}
+
+			.block-title__offset {
+				margin-top: 15px;
+				margin-bottom: 15px;
 			}
 
 			&__result {

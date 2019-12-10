@@ -8,7 +8,13 @@
 			</div>
 			<div class="input-wrapper">
 				<span class='input-title'>Password</span>
-				<input type="text" class='input login-page__input' v-model='requestBody.password'>
+				<input type="password" class='input login-page__input' ref='pass' v-model='requestBody.password'>
+				<button 
+					class='input__toggle-button' 
+					v-on:click='togglePassword' 
+					v-bind:class="{'input__toggle-button_active' : !isHidden}">
+						<font-awesome-icon icon='eye'></font-awesome-icon>
+				</button>
 			</div>
 			<button class="button button_primary" v-on:click='authorization'>Login</button>
 			<router-link to='/register' href="" class='login-page__link'>Register</router-link>
@@ -25,30 +31,44 @@ export default {
 			requestBody: {
 				username: "",
 				password: ""
-			}
+			},
+			isHidden: true
 		}
 	},
+	computed: {
+		...mapGetters(["getUserToken"])
+	},
 	methods: {
-		...mapGetters(["getTokenFromCookie"]),
 		...mapMutations(["setUser"]),
 		async authorization() {
 			let res = await fetch("https://familytree-stage.renerick.name/api/1.0.0/user/login", 
 				{
 					method: 'POST',
-					// mode: "no-cors",
 					headers: {
 						'Content-Type': 'application/json'
 					},
 					body: JSON.stringify(this.requestBody)
 				});
-			let token = await res.text();
-			this.setUser(token);
-			document.cookie = "token=" + token + "; mas-age=86400";
-			this.$router.push('/');
+			if(res.ok) {
+				let token = await res.text();
+				this.setUser(token);
+				document.cookie = "token=" + token + "; max-age=86400";
+				this.$router.push('/');
+			}
+		},
+		togglePassword() {
+			if(this.isHidden) {
+				this.$refs.pass.type = 'text';
+				this.isHidden = false;
+			}
+			else {
+				this.$refs.pass.type = 'password';
+				this.isHidden = true;
+			} 
 		}
 	},
 	beforeMount() {
-		if(this.getTokenFromCookie()) this.$router.push('/');
+		if(this.getUserToken) this.$router.push('/');
 	}
 }
 </script>
@@ -83,6 +103,27 @@ export default {
 		
 		.input-wrapper:nth-child(2) {
 			margin-top: 16px;
+			position: relative;
+			
+			.input__toggle-button {
+				background-color: transparent;
+				border: none;
+				position: absolute;
+				bottom: 11px;
+				right: 10px;
+				font-size: 16px;
+				color: #9E9898;
+
+				&_active {
+					color: #242121;
+				}
+			}
+
+			input[type="password"] {
+				font: large Monserrat;
+				letter-spacing: 1px;
+				-webkit-text-security: disc;
+			}
 		}
 
 		.button_primary {

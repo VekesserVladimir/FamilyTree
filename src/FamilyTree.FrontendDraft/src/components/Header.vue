@@ -5,10 +5,10 @@
 			<span class="logo__text">FamilyTree</span>
 		</router-link>
 		<SearchForm/>
-		<button class="button button_primary">
+		<button class="button button_primary header__button">
 			<font-awesome-icon icon='user-plus'/>
 		</button>
-		<button class="button button_primary">
+		<button class="button button_primary header__button" v-on:click='openPhotoUploadForm()'>
 			<font-awesome-icon icon='file-upload'/>
 		</button>
 		<div class="account" v-click-outside="hideMenu">
@@ -16,22 +16,25 @@
 				<span class="menu__header">Admin</span>
 				<router-link to='/profile' class="menu__link">Profile</router-link>
 				<router-link to='/admin' class="menu__link">Admin dashboard</router-link>
-				<a class="menu__link">Logout</a>
+				<span v-on:click='logout' class="menu__link">Logout</span>
 			</div>
 			<button class='account__button' v-on:click='isActive = !isActive'>
 				<img src="https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg" alt="user-photo" class='user-photo'>
 			</button>
 		</div>
+		<UploadForm ref='photoUpload'></UploadForm>
     </div>
 </template>
 
 <script>
 import SearchForm from "./SearchForm";
 import ClickOutside from "vue-click-outside"
+import UploadForm from "./UploadForm"
 
 export default {
 	components: {
-		SearchForm
+		SearchForm,
+		UploadForm
 	},
 	directives: {
 		ClickOutside
@@ -44,6 +47,16 @@ export default {
 	methods: {
 		hideMenu() {
 			if(this.isActive) this.isActive = false;
+		},
+		uploadPhoto() {
+
+		},
+		openPhotoUploadForm() {
+			this.$refs.photoUpload.openForm();
+		},
+		logout() {
+			document.cookie = 'token=;max-age=-1';
+			this.$router.push({ path: 'login' });
 		}
 	}
 }
@@ -54,6 +67,10 @@ export default {
 		margin: 0 auto;
 		width: 1440px;
 		display: flex;
+
+		&__button {
+			margin: 16px 0 0 16px;
+		}
 
 		.logo {
 			display: flex;
@@ -80,10 +97,6 @@ export default {
 			}
 		}
 
-		.button {
-			margin: 16px 0 0 16px;
-		}
-		
 		.account {
 			position: relative;
 			margin-top: 16px;
@@ -112,6 +125,7 @@ export default {
 				transform: scale(0.05);
 				z-index: 3;
 				transition: transform 0.1s ease-in-out;
+				cursor: pointer;
 
 				&_active {
 					transform: scale(1);

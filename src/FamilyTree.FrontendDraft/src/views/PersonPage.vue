@@ -35,15 +35,16 @@ export default {
 			person: null
 		}
 	},
-	methods: {
-		...mapGetters(["getTokenFromCookie"])
+	computed: {
+		...mapGetters(["getUserToken"])
+
 	},
 	async mounted() {
 		let res =  await fetch("https://familytree-stage.renerick.name/api/1.0.0/person/a1191c22-c7fa-48f8-86fa-966d1c18ebba?treeDepth=5", 
 		{
 			method: 'GET',
 			headers: {
-				Authorization: "Bearer " + this.getTokenFromCookie()
+				Authorization: "Bearer " + this.getUserToken
 			}
 		});
 		this.person = await res.json();
@@ -93,7 +94,6 @@ export default {
       }
     }
   ]
-		console.log(this.person);
 		treeConfig(this.person.relatives);
 	}
 }

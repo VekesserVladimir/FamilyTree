@@ -8,13 +8,14 @@ export default {
 		}
 	},
 	getters: {
-		getUser(state) {
+		getUserToken(state) {
 			return state.token;
 		},
 		getTokenFromCookie() {
 			let value = "; " + document.cookie;
 			let parts = value.split("; " + "token" + "=");
-			if (parts.length == 2) return value = parts.pop().split(";").shift();
+			parts.splice(0, 1)
+			return parts[0];
 		}
 	},
 	actions: {
