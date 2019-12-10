@@ -11,10 +11,12 @@
 					v-for='person in photo.taggedPersons' 
 					v-bind:key="person.id"
 				>
-					<img 
-						v-bind:src='person.person.avatarUri' 
-						class='user-photo info__user-photo'
-					>
+					<router-link v-bind:to="'/person/' + person.person.id">
+						<img 
+							v-bind:src='person.person.avatarUri' 
+							class='user-photo info__user-photo'
+						>
+					</router-link>
 				</a>
 			</div>
 			<p class="info__date">{{getDate}}</p>

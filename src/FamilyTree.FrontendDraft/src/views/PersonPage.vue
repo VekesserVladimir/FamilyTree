@@ -40,7 +40,7 @@ export default {
 
 	},
 	async mounted() {
-		let res =  await fetch("https://familytree-stage.renerick.name/api/1.0.0/person/a1191c22-c7fa-48f8-86fa-966d1c18ebba?treeDepth=5", 
+		let res =  await fetch("https://familytree-stage.renerick.name/api/1.0.0/person/" + this.$route.params.id, 
 		{
 			method: 'GET',
 			headers: {
@@ -48,52 +48,7 @@ export default {
 			}
 		});
 		this.person = await res.json();
-		this.person.fullAvatarUri = "https://images.unsplash.com/photo-1489980557514-251d61e3eeb6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80";
-		this.person.relatedPhotos = {};
-		this.person.relatedPhotos.remainsCount = 3;
-		this.person.relatedPhotos.photos = [
-			{
-				uri: "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-			},
-						{
-				uri: "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-			},
-						{
-				uri: "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-			},
-						{
-				uri: "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-			},
-						{
-				uri: "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-			},
-						{
-				uri: "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-			},
-						{
-				uri: "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-			},
-						{
-				uri: "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-			}
-		]
-		this.person.relatives = [
-    {
-      kind: "spouse",
-      person: {
-        id: "string",
-        firstName: "string",
-        lastName: "string",
-        sex: "male",
-        birth: "2019-12-02T20:11:52.353Z",
-        death: "2019-12-02T20:11:52.353Z",
-        biography: "string",
-        relatives: [
-          null
-        ]
-      }
-    }
-  ]
+		console.log(this.person);
 		treeConfig(this.person.relatives);
 	}
 }

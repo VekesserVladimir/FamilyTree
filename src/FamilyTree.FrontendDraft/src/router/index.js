@@ -36,7 +36,7 @@ const routes = [
     component: PhotoPage
   },
   {
-    path: '/person',
+    path: '/person/:id',
     component: PersonPage
   }
 ]

@@ -48,6 +48,6 @@ export default {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: space-between;
-		margin-top: 63px;
+		margin-top: 68px;
 	}
 </style>

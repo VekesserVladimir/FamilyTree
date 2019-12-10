@@ -76,7 +76,7 @@ export default {
 				min-width: 230px;
 				display: inline-flex;
 				align-items: center;
-				padding: 0 8px 0 8px;
+				padding: 0 30px 0 8px;
 				border-radius: 24px;
 				border: 1px solid #9E9898;
 				margin-right: 16px;
