@@ -6,7 +6,7 @@
 				<div class="loader-outter"></div>
 				<div class="loader-inner"></div>
 			</div>
-			<div v-else class="galery">
+			<div v-else class="gallery">
 				<Photo v-for='photo in getPhotos' v-bind:photo="photo" v-bind:key="photo.id"/>
 			</div>
 		</div>
@@ -43,11 +43,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
-	.galery {
+	.gallery {
 		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
 		align-items: space-between;
-		margin-top: 68px;
+		margin-top: 63px;
 	}
 </style>

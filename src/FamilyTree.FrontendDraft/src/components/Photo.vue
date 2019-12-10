@@ -1,4 +1,5 @@
 <template>
+		<router-link v-bind:to="getLink">
 	<div class='photo'>
 		<img v-bind:src='photo.imageUri' class='photo__img'>
 		<div class="info">
@@ -19,6 +20,7 @@
 			<p class="info__date">{{getDate}}</p>
 		</div>
 	</div>
+		</router-link>
 </template>
 
 <script>
@@ -28,6 +30,9 @@ export default {
 		getDate() {
 			let date = new Date(this.photo.date);
 			return date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate();
+		},
+		getLink() {
+			return '/photo/' + this.photo.id;
 		}
 	},
 	mounted() {

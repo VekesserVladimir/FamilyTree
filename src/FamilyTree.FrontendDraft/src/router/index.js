@@ -32,7 +32,7 @@ const routes = [
     component: ProfilePage
   },
   {
-    path: '/photo',
+    path: '/photo/:id',
     component: PhotoPage
   },
   {

@@ -45,25 +45,13 @@ export default {
 		}
 	},
 	async mounted() {
-		let res = await fetch("https://familytree-stage.renerick.name/api/1.0.0/photo/06f353c4-66ea-4b25-8520-4551df553ddf", {
+		let res = await fetch("https://familytree-stage.renerick.name/api/1.0.0/photo/" + this.$route.params, {
 			method: 'GET',
 			headers: {
 				Authorization: "Bearer " + this.getUserToken
 			}
 		});
 		this.photo = await res.json();
-		console.log(this.photo);
-		this.photo.taggedPersons.forEach(item => {
-			item.person.avatarUri = 'https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg';
-			console.log(item);
-		})
-		this.photo.description = "Hard do me sigh with west same lady. Limits far yet turned highly repair parish talked six. " +
-		"If as increasing contrasted entreaties be. Course sir people worthy horses add entire suffer. As so seeing latter he should thirty whence. " +
-		"Now summer who day looked our behind moment coming. Estate was tended ten boy " +
-		"Her too add narrow having wished. So by colonel hearted ferrars. Is inquiry no he several excited am. Way own uncommonly travelling now "+
-		"acceptance bed compliment solicitude. Indulgence contrasted sufficient to unpleasant in in insensible favourable. Steepest speaking up " +
-		"attended it as. Bed uncommonly his discovered for estimating"
-		this.photo.img = "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80";
 		this.isLoading = false;
 		console.log(this.photo);
 	}

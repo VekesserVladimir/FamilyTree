@@ -206,6 +206,7 @@ export default {
 				width: 224px;
 				height: 120px;
 				border-radius: 24px;
+				object-fit: contain;
 			}
 
 			&__input-title {

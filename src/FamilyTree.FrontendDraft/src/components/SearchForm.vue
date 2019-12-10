@@ -14,15 +14,15 @@
 			<h4 class="results__block-title block-title__offset" v-if='!peopleFinded && !photosFinded'>The search has not given any results</h4>
 			<div class="results__people" v-if='peopleFinded'>
 				<h4 class="results__block-title">People</h4>
-				<a href='#' class="results__result" v-for='person in getSearchResults.persons' v-bind:key="person.id">
+				<a href='#' class="results__result" v-for='person in getSearchResults.personsResult' v-bind:key="person.id">
 					<img alt="" class="user-photo results__user-photo" v-bind:src="person.avatarUri">
 					<div class="results__title">{{person.firstName + ' ' + person.lastName}}</div>
 				</a>
 			</div>
 			<div class="results__photos" v-if='photosFinded'>
 				<h4 class="results__block-title">Photos</h4>
-				<a href='#' class="results__result" v-for='photo in getSearchResults.photos' v-bind:key="photo.id">
-					<img alt="" class="user-photo results__user-photo" v-bind:src='photo.avatarUri'>
+				<a href='#' class="results__result" v-for='photo in getSearchResults.photosResult' v-bind:key="photo.id">
+					<img alt="" class="user-photo results__user-photo" v-bind:src='photo.imageUri'>
 					<div class="results__title">{{photo.title}}</div>
 				</a>
 			</div>
@@ -87,6 +87,7 @@ export default {
 		...mapGetters(["getUserToken"]),
 		getSearchResults() {
 			if(this.searchResults) {
+				console.log(this.searchResults);
 				return this.searchResults;
 			} else return null;
 		}
