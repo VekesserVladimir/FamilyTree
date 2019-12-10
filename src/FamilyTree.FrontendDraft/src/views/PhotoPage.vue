@@ -45,7 +45,7 @@ export default {
 		}
 	},
 	async mounted() {
-		let res = await fetch("https://familytree-stage.renerick.name/api/1.0.0/photo/" + this.$route.params, {
+		let res = await fetch("https://familytree-stage.renerick.name/api/1.0.0/photo/" + this.$route.params.id, {
 			method: 'GET',
 			headers: {
 				Authorization: "Bearer " + this.getUserToken
