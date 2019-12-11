@@ -31,6 +31,7 @@
 									v-bind:options="getTypes"
 									v-bind:isLocked="isLocked"
 									v-model="selectedType"
+                                    ref='types'
 								/>
 								<button 
 									class="button button_secondary person-form__button"
@@ -56,6 +57,7 @@
                                 v-bind:style="{ width: 110 + 'px' }"
                                 v-bind:isLocked="false"
                                 v-model="requestBody.sex"
+                                ref='sex'
                             />
 						</div>
                         <div class="input-wrapper">
@@ -142,7 +144,8 @@ export default {
 			this.isActive = true;
 		},
 		addRelative(e) {
-			e.preventDefault();
+            e.preventDefault();
+            console.log(this.selectedPerson, this.selectedType);
 			if(this.selectedPerson && this.selectedType) {
 				this.relatives.push({
 					person: this.selectedPerson,
@@ -151,7 +154,7 @@ export default {
 			}
 			this.selectedPerson = null;
 			this.selectedType = null;
-			this.$refs.searchInput.deleteQuery();
+            this.$refs.searchInput.deleteQuery();
 		},
 		deleteRelative(relative) {
 			let index = this.relatives.findIndex(item => item.id == relative.id);
@@ -174,6 +177,17 @@ export default {
 				body: JSON.stringify(this.requestBody)
             })
             console.log(res);
+            this.$refs.searchInput.deleteQuery();
+            this.$refs.types.deleteOption();
+            this.$refs.sex.deleteOption();
+            this.requestBody.firstName = null;
+            this.requestBody.lastName = null;
+            this.requestBody.birth = null;
+            this.requestBody.death = null;
+            this.requestBody.biography = null;
+            this.relatives = null;
+            this.requestBody.relatives = null;
+
         }
 	},
 	computed: {

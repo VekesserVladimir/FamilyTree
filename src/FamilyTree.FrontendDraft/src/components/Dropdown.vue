@@ -43,7 +43,10 @@ export default {
             this.selectedOption = option.value;
             this.isActive = false;
             this.$emit('input', this.selectedOption);
-        }
+		},
+		deleteOption() {
+			this.selectedOption = null;
+		}
     },
     computed: {
         getOptions() {

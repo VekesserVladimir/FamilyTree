@@ -30,7 +30,7 @@ export default {
         
         &__user-photo {
 			width: 32px;
-			height: 32px;
+            height: 32px;
         }
         
         &__type {
