@@ -175,7 +175,7 @@ export default {
             this.requestBody.death = null;
             this.requestBody.biography = null;
             this.relatives = null;
-            this.requestBody.relatives = null;
+			this.requestBody.relatives = null;
 		},
 
         async createPerson() {

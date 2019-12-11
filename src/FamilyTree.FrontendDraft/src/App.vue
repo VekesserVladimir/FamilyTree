@@ -49,6 +49,7 @@ export default {
 			display: flex;
 			justify-content: space-between;
 			align-items: baseline;
+			width: 100%;
 
 			&__text {
 				font-size: 32px;

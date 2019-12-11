@@ -2,7 +2,9 @@
 	<div class="admin-page">
 		<Header/>
 		<div class="content">
-			<h1 class="header">Administration panel</h1>
+			<div class="heading">
+				<h1 class="heading__text">Administration panel</h1>
+			</div>
 			<div class="panel-container">
 				<UserPanel/>
 				<div class="statistic-panel">

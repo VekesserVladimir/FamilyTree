@@ -7,7 +7,9 @@
 					<div class="loader-inner"></div>
 			</div>
 			<div v-else class="profile-wrapper">
-				<h1 class="header">{{user.username}}</h1>
+				<div class="heading">
+					<h1 class="heading__text">{{user.username}}</h1>
+				</div>
 				<div class="profile">
 					<div class="profile__photo-wrapper">
 						<img v-bind:src="user.photo" class="profile__photo" ref='img'>

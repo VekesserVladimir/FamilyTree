@@ -7,7 +7,12 @@
 					<div class="loader-inner"></div>
 			</div>
 			<div v-else class="photo-page-wrapper">
-				<h1 class="header">{{photo.title}}</h1>
+				<div class="heading">
+					<h1 class="heading__text">{{photo.title}}</h1>
+					<div class="heading__actions">
+						<font-awesome-icon icon="pen" v-on:click='openPersonForm(person)'></font-awesome-icon>
+					</div>
+				</div>
 				<div class="photo-page__photo">
 					<img v-bind:src="photo.imageUri" class='photo-page__img'>
 					<span class="photo-page__date">{{getDate}}</span>

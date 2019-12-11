@@ -23,7 +23,7 @@
 			</button>
 		</div>
 		<UploadForm ref='photoForm'></UploadForm>
-		<PersonForm ref='personForm' v-on:person-processed="$router.push(`/person/${responseObject.id}`)"></PersonForm>
+		<PersonForm ref='personForm' v-on:person-processed="openPersonPage"></PersonForm>
     </div>
 </template>
 
@@ -60,6 +60,9 @@ export default {
 		logout() {
 			document.cookie = 'token=;max-age=-1';
 			this.$router.push({ path: 'login' });
+		},
+		openPersonPage(person) {
+			this.$router.push({ path: `/person/${person.id}` });
 		}
 	}
 }
