@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<router-view/>
+		<router-view />
 	</div>
 </template>
 
@@ -22,6 +22,9 @@ export default {
 </script>
 
 <style lang="less">
+	@secondary-medium: #1F72AD;
+	@achroma-black: #242121;
+
 	body {
 		&::-webkit-scrollbar {
 			width: 4px;
@@ -42,13 +45,27 @@ export default {
 		flex-direction: column;
 		align-items: center;
 
-		.header {
-			font-size: 32px;
-			font-weight: 500;
-			line-height: 48px;
-			color: #242121;
-			margin-top: 24px;
-			width: 100%;
+		.heading {
+			display: flex;
+			justify-content: space-between;
+			align-items: baseline;
+
+			&__text {
+				font-size: 32px;
+				font-weight: 500;
+				line-height: 48px;
+				color: @achroma-black;
+				margin-top: 24px;
+				width: 100%;
+			}
+
+			&__actions {
+				color: @secondary-medium;
+
+				* {
+					cursor: pointer;
+				}
+			}
 		}
 	}
 </style>

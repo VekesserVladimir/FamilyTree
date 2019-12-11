@@ -23,7 +23,7 @@
 			</button>
 		</div>
 		<UploadForm ref='photoForm'></UploadForm>
-		<PersonForm ref='personForm'></PersonForm>
+		<PersonForm ref='personForm' v-on:person-processed="$router.push(`/person/${responseObject.id}`)"></PersonForm>
     </div>
 </template>
 

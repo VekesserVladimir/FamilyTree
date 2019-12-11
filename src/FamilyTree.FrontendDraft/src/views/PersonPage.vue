@@ -1,14 +1,19 @@
 <template>
-	<div class="person-page">
+	<div class="person-page" v-if="person">
 		<Header/>
 		<div class="content">
 			<div class="person-wrapper">
-				<h1 class="header">{{ person.firstName + " " + person.lastName }}</h1>
+				<div class="heading">
+					<h1 class="heading__text">{{ person.firstName + " " + person.lastName }}</h1>
+					<div class="heading__actions">
+						<font-awesome-icon icon="pen" v-on:click='openPersonForm(person)'></font-awesome-icon>
+					</div>
+				</div>
 				<div class="person">
 					<p class="person__biography" v-if='person.biography'>{{ person.biography }}</p>
 					<img v-bind:src="person.imageUri" class="person__photo">
 				</div>
-				<Gallery v-bind:photos="person.relatedPhotos"/>
+				<Gallery v-if="person.relatedPhotos" v-bind:photos="person.relatedPhotos"/>
 				<div class="person__tree">
 					<h4 class="header__small">Relatives</h4>
 					<div id='graph'>
@@ -16,40 +21,54 @@
 				</div>
 			</div>
 		</div>
+		<PersonForm ref='personForm' v-on:person-processed="loadData"></PersonForm>
 	</div>
 </template>
 
 <script>
 import Header from "../components/Header"
 import Gallery from "../components/Gallery"
+import PersonForm from "../components/PersonForm"
 import {mapGetters} from "vuex"
-import treeConfig from "../dTree/tree-config";
+// import treeConfig from "../dTree/tree-config";
 
 export default {
 	components: {
 		Header,
-		Gallery
+		Gallery,
+		PersonForm
 	},
 	data() {
 		return {
 			person: null
 		}
 	},
+	watch: {
+		"$route": "loadData"
+	},
 	computed: {
 		...mapGetters(["getUserToken"])
 
 	},
 	async mounted() {
-		let res =  await fetch("https://familytree-stage.renerick.name/api/1.0.0/person/" + this.$route.params.id, 
-		{
-			method: 'GET',
-			headers: {
-				Authorization: "Bearer " + this.getUserToken
-			}
-		});
-		this.person = await res.json();
-		console.log(this.person);
-		treeConfig(this.person.relatives);
+		await this.loadData();
+	},
+	methods: {
+		openPersonForm() {
+			this.$refs.personForm.openForm(this.person);
+		},
+		async loadData() {
+			let res =  await fetch("https://familytree-stage.renerick.name/api/1.0.0/person/" + this.$route.params.id, 
+			{
+				method: 'GET',
+				headers: {
+					Authorization: "Bearer " + this.getUserToken
+				}
+			});
+			this.person = await res.json();
+			console.log(this.person);
+			// treeConfig(this.person.relatives);
+		}
 	}
 }
 </script>

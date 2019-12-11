@@ -2,7 +2,7 @@
 	<div class="background" v-if='isActive'>
 		<form class="person-form">
 			<font-awesome-icon class=person-form__close icon='times' v-on:click='closeForm()'></font-awesome-icon>
-			<h1 class='person-form__title'><span>Create person</span></h1>
+			<h1 class='person-form__title'><span>Person</span></h1>
 			<div class="person-form__form">
 				<div class="relatives">
 					<h1 class="relatives__title">Relatives</h1>
@@ -112,6 +112,7 @@ export default {
 	data() {
 		return {
             requestBody: {
+				id: null,
                 firstName: null,
                 lastName: null,
                 sex: null,
@@ -140,9 +141,14 @@ export default {
 		closeForm() {
 			if(this.isActive) {
 				this.isActive = false;
+				this.resetForm();
 			}
 		},
-		openForm() {
+		openForm(person) {
+			if (person) {
+				this.requestBody = {...person};
+				this.relatives = person.relatives;
+			}
 			this.isActive = true;
 		},
 		addRelative(e) {
@@ -161,7 +167,17 @@ export default {
 		deleteRelative(relative) {
 			let index = this.relatives.findIndex(item => item.id == relative.id);
 			this.relatives.splice(index, 1);
-        },
+		},
+		resetForm() {
+			this.requestBody.firstName = null;
+            this.requestBody.lastName = null;
+            this.requestBody.birth = null;
+            this.requestBody.death = null;
+            this.requestBody.biography = null;
+            this.relatives = null;
+            this.requestBody.relatives = null;
+		},
+
         async createPerson() {
             this.requestBody.relatives = this.relatives.map(item => {
                 return {
@@ -172,19 +188,35 @@ export default {
 			console.log(JSON.stringify(this.requestBody));
 			
 			try {
-				let response = await fetch("https://familytree-stage.renerick.name/api/1.0.0/person", {
-					method: 'POST',
-						headers: {
-							'Content-Type': 'application/json',
-							Authorization: "Bearer " + this.getUserToken
-						},
-					body: JSON.stringify(this.requestBody)
-				})
+				let response;
+
+				if (this.requestBody.id)
+				{
+					response = await fetch("https://familytree-stage.renerick.name/api/1.0.0/person/" + this.requestBody.id, {
+						method: 'PUT',
+							headers: {
+								'Content-Type': 'application/json',
+								Authorization: "Bearer " + this.getUserToken
+							},
+						body: JSON.stringify(this.requestBody)
+					})
+				} else {
+					response = await fetch("https://familytree-stage.renerick.name/api/1.0.0/person", {
+						method: 'POST',
+							headers: {
+								'Content-Type': 'application/json',
+								Authorization: "Bearer " + this.getUserToken
+							},
+						body: JSON.stringify(this.requestBody)
+					})
+				}
 				console.log(response);
 
 				if (response.ok) {
 					let responseObject = await response.json();
-					this.$router.push(`/person/${responseObject.id}`);
+					this.resetForm();
+					this.closeForm();
+					this.$emit('person-processed', responseObject);
 				}
 			} catch (error) {
 				console.error('Error:', error);

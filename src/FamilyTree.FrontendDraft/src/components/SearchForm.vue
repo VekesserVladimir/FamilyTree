@@ -11,20 +11,20 @@
 			<font-awesome-icon icon='search' class='search-form__icon'/>
 		</button>
 		<div class="results" v-if='isActive'>
-			<h4 class="results__block-title block-title__offset" v-if='!peopleFinded && !photosFinded'>The search has not given any results</h4>
-			<div class="results__people" v-if='peopleFinded'>
+			<h4 class="results__block-title block-title__offset" v-if='!peopleFound && !photosFound'>Query returned no results</h4>
+			<div class="results__people" v-if='peopleFound'>
 				<h4 class="results__block-title">People</h4>
-				<a href='#' class="results__result" v-for='person in getSearchResults.personsResult' v-bind:key="person.id">
+				<router-link :to='`/person/${person.id}`' class="results__result" v-for='person in getSearchResults.personsResult' v-bind:key="person.id">
 					<img alt="" class="user-photo results__user-photo" v-bind:src="person.imageUri">
 					<div class="results__title">{{person.firstName + ' ' + person.lastName}}</div>
-				</a>
+				</router-link>
 			</div>
-			<div class="results__photos" v-if='photosFinded'>
+			<div class="results__photos" v-if='photosFound'>
 				<h4 class="results__block-title">Photos</h4>
-				<a href='#' class="results__result" v-for='photo in getSearchResults.photosResult' v-bind:key="photo.id">
+				<router-link :to='`/photo/${photo.id}`' class="results__result" v-for='photo in getSearchResults.photosResult' v-bind:key="photo.id">
 					<img alt="" class="user-photo results__user-photo" v-bind:src='photo.imageUri'>
 					<div class="results__title">{{photo.title}}</div>
-				</a>
+				</router-link>
 			</div>
 		</div>
 	</form>
@@ -40,8 +40,8 @@ export default {
 		return {
 			searchResults: '',
 			isActive: false,
-			peopleFinded: false,
-			photosFinded: false,
+			peopleFound: false,
+			photosFound: false,
 			query: ''
 		}
 	},
@@ -57,8 +57,8 @@ export default {
 				});
 				this.searchResults = await res.json();
 				this.isActive = true;
-				if(this.searchResults.personsResult.length == 0) this.peopleFinded = false; else this.peopleFinded = true;
-				if(this.searchResults.photosResult.length == 0) this.photosFinded = false; else this.photosFinded = true;
+				if(this.searchResults.personsResult.length == 0) this.peopleFound = false; else this.peopleFound = true;
+				if(this.searchResults.photosResult.length == 0) this.photosFound = false; else this.photosFound = true;
 			} else {
 				this.isActive = false;
 				this.searchResults = '';
