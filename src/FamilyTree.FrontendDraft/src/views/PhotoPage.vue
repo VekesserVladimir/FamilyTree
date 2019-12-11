@@ -13,10 +13,12 @@
 					<span class="photo-page__date">{{getDate}}</span>
 				</div>
 				<div class="tagged-people">
-					<div class="tagged-person" v-for='person in photo.taggedPersons' v-bind:key="person.id">
-						<img v-bind:src="person.person.avatarUri" class="user-photo">
-						<span class='tagged-person__name'>{{person.person.firstName + " " + person.person.lastName}}</span>
-					</div>
+					<router-link v-bind:to="'/person/' + person.person.id" v-for='person in photo.taggedPersons' v-bind:key="person.id">
+						<div class="tagged-person">
+							<img v-bind:src="person.person.imageUri" class="user-photo">
+							<span class='tagged-person__name'>{{person.person.firstName + " " + person.person.lastName}}</span>
+						</div>
+					</router-link>
 				</div>
 				<p class='photo-description'>{{photo.description}}</p>
 			</div>

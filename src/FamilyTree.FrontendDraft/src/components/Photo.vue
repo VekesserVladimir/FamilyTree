@@ -13,7 +13,7 @@
 				>
 					<router-link v-bind:to="'/person/' + person.person.id">
 						<img 
-							v-bind:src='person.person.avatarUri' 
+							v-bind:src='person.person.imageUri' 
 							class='user-photo info__user-photo'
 						>
 					</router-link>
@@ -36,11 +36,7 @@ export default {
 		getLink() {
 			return '/photo/' + this.photo.id;
 		}
-	},
-	mounted() {
-		console.log(this.photo);
 	}
-
 }
 </script>
 

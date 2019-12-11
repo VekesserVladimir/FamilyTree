@@ -6,7 +6,7 @@
 				<h1 class="header">{{ person.firstName + " " + person.lastName }}</h1>
 				<div class="person">
 					<p class="person__biography" v-if='person.biography'>{{ person.biography }}</p>
-					<img v-bind:src="person.fullAvatarUri" class="person__photo">
+					<img v-bind:src="person.imageUri" class="person__photo">
 				</div>
 				<Gallery v-bind:photos="person.relatedPhotos"/>
 				<div class="person__tree">

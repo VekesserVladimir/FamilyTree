@@ -4,10 +4,10 @@ import router from './router';
 import store from './store';
 import './styles/index.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSearch, faUserPlus, faFileUpload, faDatabase, faMeh, faGlobeEurope, faTimes, faUpload, faEye } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faUserPlus, faFileUpload, faDatabase, faMeh, faGlobeEurope, faTimes, faUpload, faEye, faUsers, faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-library.add(faSearch, faUserPlus, faFileUpload, faDatabase, faMeh, faGlobeEurope, faTimes, faUpload, faEye);
+library.add(faSearch, faUserPlus, faFileUpload, faDatabase, faMeh, faGlobeEurope, faTimes, faUpload, faEye, faUsers, faCalendar);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.config.productionTip = false

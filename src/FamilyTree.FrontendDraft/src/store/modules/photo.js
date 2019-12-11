@@ -8,8 +8,8 @@ export default {
 		}
 	},
 	actions: {
-		async requestPhotos(context, offset) {
-			let res = await fetch('https://familytree-stage.renerick.name/api/1.0.0/photos?offset=' + offset + '&count=20',
+		async requestPhotos(context) {
+			let res = await fetch('https://familytree-stage.renerick.name/api/1.0.0/photos',
 				{
 					method: 'GET',
 					headers: {

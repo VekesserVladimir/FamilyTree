@@ -1,18 +1,17 @@
 <template>
 	<div class="background" v-if='isActive'>
-		<transition name='upload-translate'>
-			<div class="upload-form">
-				<font-awesome-icon class=upload-form__close icon='times' v-on:click='closeForm()'></font-awesome-icon>
-				
+		<transition name='photo-translate'>
+			<div class="photo-form">
+				<font-awesome-icon class=photo-form__close icon='times' v-on:click='closeForm()'></font-awesome-icon>
 				<form enctype="multipart/form-data" v-on:submit="AJAXSubmit">
-					<div class="upload-form__header">
+					<div class="photo-form__title">
 						<span>Upload photo</span>
 					</div>
 						<input type="file" name='image' id='photo-input' v-on:change='loadPhoto'>
 				<label for='photo-input' v-if='isUploading'>
-					<div class="upload-form__wrapper">
-						<font-awesome-icon icon='upload' class=upload-form__icon></font-awesome-icon>
-						<p class='upload-form__text'><span>Click</span> to select file <br>or drop image in the box</p>
+					<div class="photo-form__wrapper">
+						<font-awesome-icon icon='upload' class=photo-form__icon></font-awesome-icon>
+						<p class='photo-form__text'><span>Click</span> to select file <br>or drop image in the box</p>
 					</div>
 				</label>
 				<div v-else class="edition-form">
@@ -86,9 +85,6 @@ export default {
 				reader.readAsDataURL(file);
 			}
 		},
-		async uploadPhoto() {
-
-		},
 		async AJAXSubmit(e) {
 			e.preventDefault();
 			let oFormElement = e.target;
@@ -127,7 +123,7 @@ export default {
 		display: none;
 	}
 	
-	.upload-translate {
+	.photo-translate {
 		&-enter-active, &-leave-active {
 			transition: opacity 1.3s ease-in-out;
 		}
@@ -141,7 +137,7 @@ export default {
 		}
 	}
 
-	.upload-form {
+	.photo-form {
 		height: 581px;
 		width: 496px;
 		border-radius: 24px;
@@ -243,7 +239,7 @@ export default {
 			}
 		}
 
-		&__header {
+		&__title {
 			display: flex;
 			justify-content: center;
 

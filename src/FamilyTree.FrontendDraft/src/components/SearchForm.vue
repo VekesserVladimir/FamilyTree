@@ -1,5 +1,5 @@
 <template>
-	<form action="" class='search-form header__search-form' v-click-outside="closeForm">
+	<form action="" class='search-form' v-click-outside="closeForm">
 		<input 
 			type="text" 
 			class='search-form__input'
@@ -15,7 +15,7 @@
 			<div class="results__people" v-if='peopleFinded'>
 				<h4 class="results__block-title">People</h4>
 				<a href='#' class="results__result" v-for='person in getSearchResults.personsResult' v-bind:key="person.id">
-					<img alt="" class="user-photo results__user-photo" v-bind:src="person.avatarUri">
+					<img alt="" class="user-photo results__user-photo" v-bind:src="person.imageUri">
 					<div class="results__title">{{person.firstName + ' ' + person.lastName}}</div>
 				</a>
 			</div>
@@ -59,21 +59,6 @@ export default {
 				this.isActive = true;
 				if(this.searchResults.personsResult.length == 0) this.peopleFinded = false; else this.peopleFinded = true;
 				if(this.searchResults.photosResult.length == 0) this.photosFinded = false; else this.photosFinded = true;
-				console.log(this.searchResults)
-				if(this.peopleFinded) {
-					this.searchResults.personsResult[1].avatarUri = 'https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg';
-					this.searchResults.personsResult[0].avatarUri = 'https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg';
-					this.searchResults.personsResult[0].id = 1;
-					this.searchResults.personsResult[1].id = 2;
-				}
-				if(this.personsResult) {
-					this.searchResults.photosResult[0] = {};
-					this.searchResults.photosResult[1] = {};
-					this.searchResults.photosResult[0].avatarUri = 'https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg';
-					this.searchResults.photosResult[1].avatarUri = 'https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg';
-					this.searchResults.photosResult[0].title = 'Анапа 2006';
-					this.searchResults.photosResult[1].title = 'Крым 2017';
-				}
 			} else {
 				this.isActive = false;
 				this.searchResults = '';
@@ -87,7 +72,6 @@ export default {
 		...mapGetters(["getUserToken"]),
 		getSearchResults() {
 			if(this.searchResults) {
-				console.log(this.searchResults);
 				return this.searchResults;
 			} else return null;
 		}
@@ -100,7 +84,6 @@ export default {
 
 <style lang="less" scoped>
 	.search-form {
-		margin: 16px 0 0 45px;
 		position: relative;
 
 		&__input {
@@ -136,11 +119,11 @@ export default {
 			border: 1px solid #918888;
 			border-top: none;
 			border-radius: 0 0 24px 24px;
-			width: 704px;
 			position: absolute;
 			top: 40px;
 			z-index: 4;
 			background-color: #fff;
+			padding-bottom: 20px;
 
 			&__block-title {
 				margin: 0 0 10px 20px;
@@ -181,11 +164,6 @@ export default {
 				margin-left: 10px;
 				color: #1a1a1a;
 				font-weight: 400;
-			}
-
-			.line {
-				height: 1px;
-				background-color: #918888;
 			}
 		}
 	}

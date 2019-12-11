@@ -4,8 +4,8 @@
 			<img src="../assets/logo.svg" alt="" class='logo__img'> 
 			<span class="logo__text">FamilyTree</span>
 		</router-link>
-		<SearchForm/>
-		<button class="button button_primary header__button">
+		<SearchForm class='header__search-form'/>
+		<button class="button button_primary header__button" v-on:click='openPersonCreateForm()'>
 			<font-awesome-icon icon='user-plus'/>
 		</button>
 		<button class="button button_primary header__button" v-on:click='openPhotoUploadForm()'>
@@ -22,19 +22,22 @@
 				<img src="https://i.ytimg.com/vi/PJnKLbKF3F8/maxresdefault.jpg" alt="user-photo" class='user-photo'>
 			</button>
 		</div>
-		<UploadForm ref='photoUpload'></UploadForm>
+		<UploadForm ref='photoForm'></UploadForm>
+		<PersonForm ref='personForm'></PersonForm>
     </div>
 </template>
 
 <script>
 import SearchForm from "./SearchForm";
 import ClickOutside from "vue-click-outside"
-import UploadForm from "./UploadForm"
+import UploadForm from "./PhotoForm"
+import PersonForm from "./PersonForm"
 
 export default {
 	components: {
 		SearchForm,
-		UploadForm
+		UploadForm,
+		PersonForm
 	},
 	directives: {
 		ClickOutside
@@ -48,11 +51,11 @@ export default {
 		hideMenu() {
 			if(this.isActive) this.isActive = false;
 		},
-		uploadPhoto() {
-
-		},
 		openPhotoUploadForm() {
-			this.$refs.photoUpload.openForm();
+			this.$refs.photoForm.openForm();
+		},
+		openPersonCreateForm() {
+			this.$refs.personForm.openForm();
 		},
 		logout() {
 			document.cookie = 'token=;max-age=-1';
@@ -92,7 +95,12 @@ export default {
 		}
 
 		&__search-form {
+			margin: 16px 0 0 45px;
 			input {
+				width: 704px;
+			}
+
+			.results {
 				width: 704px;
 			}
 		}

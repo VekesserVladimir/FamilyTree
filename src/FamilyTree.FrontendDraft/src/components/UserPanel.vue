@@ -105,7 +105,7 @@ export default {
 			width: 4px;
 
 			&-thumb {
-				background-color: #918888;
+				background-color: rgba(145, 136, 136, 0.5);
 				border-radius: 10px;
 			}
 		}
