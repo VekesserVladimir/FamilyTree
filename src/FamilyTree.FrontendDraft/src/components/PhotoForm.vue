@@ -100,7 +100,8 @@ export default {
 				});
 
 				if (response.ok) {
-					window.location.href = '/';
+					let responseObject = await response.json();
+					this.$router.push(`/photo/${responseObject.id}`);
 				}
 			} catch (error) {
 				console.error('Error:', error);

@@ -169,27 +169,26 @@ export default {
                     personId: item.person.id
                 }
             });
-            console.log(JSON.stringify(this.requestBody));
-            let res = await fetch("https://familytree-stage.renerick.name/api/1.0.0/person", {
-                method: 'POST',
-					headers: {
-                        'Content-Type': 'application/json',
-						Authorization: "Bearer " + this.getUserToken
-					},
-				body: JSON.stringify(this.requestBody)
-            })
-            console.log(res);
-            this.$refs.searchInput.deleteQuery();
-            this.$refs.types.deleteOption();
-            this.$refs.sex.deleteOption();
-            this.requestBody.firstName = null;
-            this.requestBody.lastName = null;
-            this.requestBody.birth = null;
-            this.requestBody.death = null;
-            this.requestBody.biography = null;
-            this.relatives = null;
-            this.requestBody.relatives = null;
+			console.log(JSON.stringify(this.requestBody));
+			
+			try {
+				let response = await fetch("https://familytree-stage.renerick.name/api/1.0.0/person", {
+					method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+							Authorization: "Bearer " + this.getUserToken
+						},
+					body: JSON.stringify(this.requestBody)
+				})
+				console.log(response);
 
+				if (response.ok) {
+					let responseObject = await response.json();
+					this.$router.push(`/person/${responseObject.id}`);
+				}
+			} catch (error) {
+				console.error('Error:', error);
+			}			
         }
 	},
 	computed: {
