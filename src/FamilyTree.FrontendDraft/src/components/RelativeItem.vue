@@ -1,7 +1,7 @@
 <template>
     <div class="relative-item">
         <img class='user-photo relative-item__user-photo' v-bind:src="relative.person.imageUri">
-        <span class="relative-item__type">{{relative.type}}</span>
+        <span class="relative-item__type">{{label}}</span>
         <span class="relative-item__full-name">{{relative.person.firstName + " " + relative.person.lastName}}</span>
         <button class='relative-item__delete' v-on:click='deleteRelative'>
 			<div></div>
@@ -17,7 +17,16 @@ export default {
         deleteRelative() {
             this.$emit('delete-relative', this.relative);
         }
-    }
+    },
+    computed: {
+		label() {
+            if(this.relative.person.sex == "male") 
+                return {"spouse": "Husband", "parent": "Father", "child": "Mother"}[this.relative.type]
+            else 
+                return {"spouse": "Wife", "parent": "Mother", "child": "Daughter"}[this.relative.type]
+        }
+
+	}
 }
 </script>
 
