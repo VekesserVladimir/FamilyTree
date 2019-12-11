@@ -102,6 +102,7 @@ export default {
 				if (response.ok) {
 					let responseObject = await response.json();
 					this.$router.push(`/photo/${responseObject.id}`);
+					this.closeForm();
 				}
 			} catch (error) {
 				console.error('Error:', error);

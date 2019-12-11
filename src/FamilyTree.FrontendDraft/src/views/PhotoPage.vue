@@ -44,6 +44,9 @@ export default {
 			photo: null
 		}
 	},
+	watch: {
+		"$route": "loadData"
+	},
 	computed: {
 		...mapGetters(["getUserToken"]),
 		getDate() {
@@ -52,15 +55,20 @@ export default {
 		}
 	},
 	async mounted() {
-		let res = await fetch("https://familytree-stage.renerick.name/api/1.0.0/photo/" + this.$route.params.id, {
-			method: 'GET',
-			headers: {
-				Authorization: "Bearer " + this.getUserToken
-			}
-		});
-		this.photo = await res.json();
-		this.isLoading = false;
-		console.log(this.photo);
+		await this.loadData();
+	},
+	methods: {		
+		async loadData() {
+			let res = await fetch("https://familytree-stage.renerick.name/api/1.0.0/photo/" + this.$route.params.id, {
+				method: 'GET',
+				headers: {
+					Authorization: "Bearer " + this.getUserToken
+				}
+			});
+			this.photo = await res.json();
+			this.isLoading = false;
+			console.log(this.photo);
+		}
 	}
 }
 </script>
