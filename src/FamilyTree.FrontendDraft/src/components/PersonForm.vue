@@ -124,7 +124,7 @@ export default {
             relatives: [],
 			genders: [
 				{
-                    value: "male",
+					value: "male",
 					label: "Male"
                 },
                 {
