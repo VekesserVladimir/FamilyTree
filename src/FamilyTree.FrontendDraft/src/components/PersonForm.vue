@@ -124,10 +124,12 @@ export default {
             relatives: [],
 			genders: [
 				{
-                    value: "Male"
+                    value: "male",
+					label: "Male"
                 },
                 {
-					value: "Female"
+					value: "female",
+					label: "Female"
 				}
 			]
 		}
@@ -183,31 +185,31 @@ export default {
 				if(this.selectedPerson.sex == "male") {
 					return [
 						{
-							value: "Husband"
+							label: "Husband",
+							value: "spouse"
 						},
 						{
-							value: "Parent"
+							label: "Father",
+							value: "parent"
 						},
 						{
-							value: "Son"
-						},
-						{
-							value: "Relative"
+							label: "Son",
+							value: "child"
 						}
 					]
 				} else 
 					return [
 						{
-							value: "Wife"
+							label: "Wife",
+							value: "spouse"
 						},
 						{
-							value: "Parent"
+							label: "Mother",
+							value: "parent"
 						},
 						{
-							value: "Daughter"
-						},
-						{
-							value: "Relative"
+							label: "Daughter",
+							value: "child"
 						}
 					]
 			}

@@ -3,14 +3,14 @@
 		<div class="dropdown__select" 
             v-on:click='toggleDropdown'
             v-bind:class="{ 'dropdown__select_active' : isActive }"
-            >{{ isLocked ? 'Choose a person' : selectedOption }}</div>
+            >{{ isLocked ? 'Choose a person' : getSelectedOption.label }}</div>
 		<div class="dropdown__options" v-if='isActive'>
 			<div 
                 class="dropdown__option" 
                 v-for='option in getOptions' 
                 v-bind:key="option.id"
                 v-on:click='selectOption(option)'>
-				{{option.value}}
+				{{option.label}}
 			</div>
 		</div>
 	</div>
@@ -20,11 +20,10 @@
 import ClickOutside from "vue-click-outside"
 
 export default {
-	props: ["options", "isLocked"],
+	props: ["options", "isLocked", "value"],
 	data() {
 		return {
             isActive: false,
-            selectedOption: null
 		}
 	},
 	methods: {
@@ -40,17 +39,21 @@ export default {
 			this.isActive = false;
         },
         selectOption(option) {
-            this.selectedOption = option.value;
             this.isActive = false;
-            this.$emit('input', this.selectedOption);
+            this.$emit('input', option.value);
         }
     },
     computed: {
         getOptions() {
-            if(this.selectedOption)
-                return this.options.filter((item) => item.value != this.selectedOption);
+            if(this.value)
+                return this.options.filter((item) => item.value != this.value);
             return this.options;
-        }
+		},
+		getSelectedOption() {
+			if (this.value)
+				return this.options.find(item => item.value == this.value)
+			return ""
+		}
     },
 	directives: {
 		ClickOutside
