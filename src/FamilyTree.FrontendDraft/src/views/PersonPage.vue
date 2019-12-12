@@ -6,7 +6,7 @@
 					<div class="loader-outter"></div>
 					<div class="loader-inner"></div>
 			</div>
-			<div v-if='!isLoading' class="person-wrapper">
+			<div v-else class="person-wrapper">
 				<div class="heading">
 					<h1 class="heading__text">{{ person.firstName + " " + person.lastName }}</h1>
 					<div class="heading__actions">

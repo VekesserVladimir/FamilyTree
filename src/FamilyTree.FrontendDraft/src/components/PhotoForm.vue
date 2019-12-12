@@ -28,8 +28,13 @@
 						<span class="input-title">Title</span>
 						<textarea type="text" class="input edition-form__textarea-title" name='description'></textarea>
 					</div>
-
-					<div class="edition-form__wrapper">
+					<div v-if='isUploadingFileToTheServer'  class="loader-wrapper">
+						<div class="loader">
+								<div class="loader-outter"></div>
+								<div class="loader-inner"></div>
+						</div>
+					</div>
+					<div v-else class="edition-form__wrapper">
 						<img v-bind:src="photo.src" class='edition-form__preview'>
 						<div>
 							<span class='photo-title'>{{photo.title}}</span>
@@ -39,6 +44,7 @@
 							</div>
 						</div>
 					</div>
+					
 				</div>
 				</form>
 			</div>
@@ -56,7 +62,8 @@ export default {
 		return {
 			photo: null,
 			isActive: false,
-			isUploading: true
+			isUploading: true,
+			isUploadingFileToTheServer: false
 		}
 	},
 	components: {
@@ -91,6 +98,7 @@ export default {
 			const formData = new FormData(oFormElement);
 
 			try {
+				this.isUploadingFileToTheServer = true;
 				const response = await fetch("https://familytree-stage.renerick.name/api/1.0.0/photo", {
 					method: 'POST',
 					body: formData,
@@ -106,6 +114,8 @@ export default {
 				}
 			} catch (error) {
 				console.error('Error:', error);
+			} finally {
+				this.isUploadingFileToTheServer = false
 			}
 		},
 		openForm() {
@@ -136,6 +146,15 @@ export default {
 
 		&-enter-to, &-leave {
 			opacity: 1;
+		}
+	}
+
+	.loader-wrapper {
+		width: 100%;
+		text-align: center;
+
+		.loader {
+			margin-top: 30px;
 		}
 	}
 
