@@ -24,13 +24,13 @@
 					</div>
 					<div class="person-form__row">
 						<div class="input-wrapper">
-							<span class="input-title">Type</span>
+							<span class="input-title">Kind</span>
 							<div class="input-wrapper__row">
 								<Dropdown 
 									v-bind:style="{ width: 326 + 'px' }" 
 									v-bind:options="getTypes"
 									v-bind:isLocked="isLocked"
-									v-model="selectedType"
+									v-model="selectedKind"
                                     ref='types'
 								/>
 								<button 
@@ -123,7 +123,7 @@ export default {
             },
 			isActive: false,
 			selectedPerson: null,
-            selectedType: null,
+            selectedKind: null,
             relatives: [],
 			genders: [
 				{
@@ -153,19 +153,19 @@ export default {
 		},
 		addRelative(e) {
             e.preventDefault();
-            console.log(this.selectedPerson, this.selectedType);
-			if(this.selectedPerson && this.selectedType) {
+            console.log(this.selectedPerson, this.selectedKind);
+			if(this.selectedPerson && this.selectedKind) {
 				this.relatives.push({
 					person: this.selectedPerson,
-					type: this.selectedType
+					kind: this.selectedKind
 				});
 			}
 			this.selectedPerson = null;
-			this.selectedType = null;
+			this.selectedKind = null;
             this.$refs.searchInput.deleteQuery();
 		},
 		deleteRelative(relative) {
-			let index = this.relatives.findIndex(item => item.id == relative.id);
+			let index = this.relatives.findIndex(item => item.id == relative.person.id);
 			this.relatives.splice(index, 1);
 		},
 		resetForm() {
@@ -181,7 +181,7 @@ export default {
         async createPerson() {
             this.requestBody.relatives = this.relatives.map(item => {
                 return {
-                    kind: item.type,
+                    kind: item.kind,
                     personId: item.person.id
                 }
             });
@@ -271,7 +271,7 @@ export default {
 
 <style lang='less'>
 	.background {
-		position: absolute;
+		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;

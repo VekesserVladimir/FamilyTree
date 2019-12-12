@@ -2,7 +2,11 @@
 	<div class="person-page" v-if="person">
 		<Header/>
 		<div class="content">
-			<div class="person-wrapper">
+			<div v-if='isLoading' class="loader">
+					<div class="loader-outter"></div>
+					<div class="loader-inner"></div>
+			</div>
+			<div v-if='!isLoading' class="person-wrapper">
 				<div class="heading">
 					<h1 class="heading__text">{{ person.firstName + " " + person.lastName }}</h1>
 					<div class="heading__actions">
@@ -40,7 +44,8 @@ export default {
 	},
 	data() {
 		return {
-			person: null
+			person: null,
+			isLoading: true
 		}
 	},
 	watch: {
@@ -58,6 +63,7 @@ export default {
 			this.$refs.personForm.openForm(this.person);
 		},
 		async loadData() {
+			this.isLoading = true;
 			let res =  await fetch("https://familytree-stage.renerick.name/api/1.0.0/person/" + this.$route.params.id, 
 			{
 				method: 'GET',
@@ -67,6 +73,7 @@ export default {
 			});
 			this.person = await res.json();
 			console.log(this.person);
+			this.isLoading = false;
 			// treeConfig(this.person.relatives);
 		}
 	}

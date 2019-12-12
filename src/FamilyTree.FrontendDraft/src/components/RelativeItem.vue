@@ -20,10 +20,11 @@ export default {
     },
     computed: {
 		label() {
+            console.log(this.relative.person.sex,this.relative.person.sex == "male", this.relative.kind);
             if(this.relative.person.sex == "male") 
-                return {"spouse": "Husband", "parent": "Father", "child": "Mother"}[this.relative.type]
+                return {"spouse": "Husband", "parent": "Father", "child": "Son"}[this.relative.kind]
             else 
-                return {"spouse": "Wife", "parent": "Mother", "child": "Daughter"}[this.relative.type]
+                return {"spouse": "Wife", "parent": "Mother", "child": "Daughter"}[this.relative.kind]
         }
 
 	}
