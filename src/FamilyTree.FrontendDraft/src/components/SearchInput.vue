@@ -79,7 +79,7 @@ export default {
         position: relative;
 
         &__input {
-            width: 464px;
+            width: 100%;
             padding: 0 45px 0 15px;
         }
 

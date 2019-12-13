@@ -8,12 +8,22 @@
 			</div>
 			<div v-else class="photo-page-wrapper">
 				<div class="heading">
-					<h1 class="heading__text">{{photo.title}}</h1>
-					<div class="heading__actions">
-						<font-awesome-icon icon="pen" v-on:click='openPersonForm(person)'></font-awesome-icon>
+					<h1  class="heading__text">
+						<div class="input-wrapper" v-if="editing">
+							<input type="text" class="input person-info__input" v-model='photo.title'>
+						</div>
+						<span v-else>
+							{{photo.title}}
+						</span>
+					</h1>
+
+					<div v-if="!editing" class="heading__actions">
+						<font-awesome-icon icon="pen" v-on:click='editing = true'></font-awesome-icon>
 					</div>
 				</div>
-				<div class="photo-page__photo">
+
+				<TagEditor v-if="editing" v-model="photo"></TagEditor>
+				<div v-else class="photo-page__photo">
 					<img v-bind:src="photo.imageUri" class='photo-page__img'>
 					<span class="photo-page__date">{{getDate}}</span>
 				</div>
@@ -25,23 +35,29 @@
 						</div>
 					</router-link>
 				</div>
-				<p class='photo-description'>{{photo.description}}</p>
+				<div class="input-wrapper" v-if="editing">
+					<textarea class="input person-info__input" v-model='photo.description'></textarea>
+				</div>
+				<p v-else class='photo-description'>{{photo.description}}</p>
 			</div>
 		</div>
 	</div>
 </template>
 <script>
 import Header from "../components/Header"
+import TagEditor from "../components/TagEditor"
 import {mapGetters} from "vuex"
 
 export default {
 	components: {
-		Header
+		Header,
+		TagEditor
 	},
 	data() {
 		return {
 			isLoading: true,
-			photo: null
+			photo: null,
+			editing: false
 		}
 	},
 	watch: {
@@ -140,6 +156,20 @@ export default {
 			font-size: 16px;
 			line-height: 25px;
 			color: #242121;
+		}
+
+		.input-wrapper {
+			textarea {
+				width: 100%;
+				height: 400px;
+				padding: 1em;
+			}
+		}
+		
+		.heading {
+			.input-wrapper, .input-wrapper input {
+				width: 100%;
+			}
 		}
 	}
 </style>
