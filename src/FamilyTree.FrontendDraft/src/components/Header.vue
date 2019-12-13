@@ -32,6 +32,7 @@ import SearchForm from "./SearchForm";
 import ClickOutside from "vue-click-outside"
 import UploadForm from "./PhotoForm"
 import PersonForm from "./PersonForm"
+import { mapMutations } from "vuex"
 
 export default {
 	components: {
@@ -48,6 +49,7 @@ export default {
 		}
 	},
 	methods: {
+		...mapMutations([ "setUser" ]),
 		hideMenu() {
 			if(this.isActive) this.isActive = false;
 		},
@@ -59,7 +61,8 @@ export default {
 		},
 		logout() {
 			document.cookie = 'token=;max-age=-1';
-			this.$router.push({ path: 'login' });
+			this.setUser(null);
+			this.$router.push("/login");
 		},
 		openPersonPage(person) {
 			this.$router.push({ path: `/person/${person.id}` });

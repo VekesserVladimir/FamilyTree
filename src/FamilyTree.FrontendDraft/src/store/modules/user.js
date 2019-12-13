@@ -1,6 +1,6 @@
 export default {
 	state: {
-		token: ""
+		token: null
 	},
 	mutations: {
 		setUser(state, token) {

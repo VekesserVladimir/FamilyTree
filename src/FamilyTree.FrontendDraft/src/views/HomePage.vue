@@ -47,7 +47,7 @@ export default {
 		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
-		align-items: space-between;
+		justify-content: space-between;
 		margin-top: 68px;
 	}
 </style>
